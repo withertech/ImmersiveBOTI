@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "com.withertech.imm_boti.optifine_compatibility.mixin_optifine",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "imm_ptl.refmap.json",
+  "mixins": [
+    "IEOFBuiltChunk",
+    "IEOFConfig",
+    "IEOFVboRegion",
+    "MixinConfig",
+    "MixinDynamicLights",
+    "MixinLightmapTextureManager",
+    "MixinShaders",
+    "MixinShaders_DimensionRedirect",
+    "MixinShaders_Swap",
+    "MixinShadersRender",
+    "MixinWorldUtils"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

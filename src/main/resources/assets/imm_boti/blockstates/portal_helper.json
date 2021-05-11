@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": ModMainForge.MODID + ":block/portal_helper"
+    }
+  }
+}

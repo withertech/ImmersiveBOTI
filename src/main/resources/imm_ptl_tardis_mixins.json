@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.withertech.imm_boti.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "imm_ptl.refmap.json",
+  "mixins": [
+    "common.tardis.exterior.MixinExteriorTile",
+    "common.tardis.interior.MixinDoorEntity",
+    "common.tardis.exterior.MixinBrokenExteriorType"
+  ],
+  "client": [
+    "client.tardis.renderer.MixinBOTIRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
