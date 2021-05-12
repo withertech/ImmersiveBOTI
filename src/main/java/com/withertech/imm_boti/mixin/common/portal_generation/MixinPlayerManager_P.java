@@ -14,6 +14,6 @@ public class MixinPlayerManager_P {
         at = @At("RETURN")
     )
     private void onOnDatapackReloaded(CallbackInfo ci) {
-        CustomPortalGenManagement.onDatapackReload();
+//        CustomPortalGenManagement.onDatapackReload();
     }
 }

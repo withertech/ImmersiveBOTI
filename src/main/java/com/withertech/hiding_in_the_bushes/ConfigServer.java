@@ -9,20 +9,20 @@ import org.apache.commons.lang3.tuple.Pair;
 public class ConfigServer {
     public static final ConfigServer instance;
     public static final ForgeConfigSpec spec;
-    public final ForgeConfigSpec.IntValue portalSearchingRange;
+//    public final ForgeConfigSpec.IntValue portalSearchingRange;
     public final ForgeConfigSpec.IntValue indirectLoadingRadiusCap;
     public final ForgeConfigSpec.BooleanValue activeLoadRemoteChunks;
     public final ForgeConfigSpec.BooleanValue teleportationDebug;
     public final ForgeConfigSpec.BooleanValue multiThreadedNetherPortalSearching;
     public final ForgeConfigSpec.BooleanValue looseMovementCheck;
-    public final ForgeConfigSpec.BooleanValue enableAlternateDimensions;
-    public final ForgeConfigSpec.EnumValue<Global.NetherPortalMode> netherPortalMode;
-    public final ForgeConfigSpec.EnumValue<Global.EndPortalMode> endPortalMode;
+//    public final ForgeConfigSpec.BooleanValue enableAlternateDimensions;
+//    public final ForgeConfigSpec.EnumValue<Global.NetherPortalMode> netherPortalMode;
+//    public final ForgeConfigSpec.EnumValue<Global.EndPortalMode> endPortalMode;
     
     public ConfigServer(ForgeConfigSpec.Builder builder) {
-        portalSearchingRange = builder
-            .comment("The Range of Existing Frame Searching When Generating Nether Portal")
-            .defineInRange("portal_searching_range", 128, 32, 1000);
+//        portalSearchingRange = builder
+//            .comment("The Range of Existing Frame Searching When Generating Nether Portal")
+//            .defineInRange("portal_searching_range", 128, 32, 1000);
         indirectLoadingRadiusCap = builder
             .comment("Indirect Loading Radius Cap")
             .defineInRange("indirect_loading_radius_cap", 8, 3, 20);
@@ -38,15 +38,15 @@ public class ConfigServer {
         looseMovementCheck = builder
             .comment("Loose Serve Side Anti Hack Movement Check")
             .define("loose_movement_check", false);
-        enableAlternateDimensions = builder
-            .comment("Enable Alternate Dimensions")
-            .define("enable_alternate_dimensions", true);
-        netherPortalMode = builder
-            .comment("Nether Portal Mode")
-            .defineEnum("nether_portal_mode", Global.NetherPortalMode.normal);
-        endPortalMode = builder
-            .comment("End Portal Mode")
-            .defineEnum("end_portal_mode", Global.EndPortalMode.normal);
+//        enableAlternateDimensions = builder
+//            .comment("Enable Alternate Dimensions")
+//            .define("enable_alternate_dimensions", false);
+//        netherPortalMode = builder
+//            .comment("Nether Portal Mode")
+//            .defineEnum("nether_portal_mode", Global.NetherPortalMode.normal);
+//        endPortalMode = builder
+//            .comment("End Portal Mode")
+//            .defineEnum("end_portal_mode", Global.EndPortalMode.normal);
     }
     
     static {

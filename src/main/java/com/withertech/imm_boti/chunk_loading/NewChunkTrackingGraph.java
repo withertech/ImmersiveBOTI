@@ -364,9 +364,9 @@ public class NewChunkTrackingGraph {
         }
         return records.stream().map(r -> r.player);
     }
-    
+
     /**
-     * {@link net.minecraft.server.world.ThreadedAnvilChunkStorage#getPlayersWatchingChunk(ChunkPos, boolean)}
+     *
      * The "onlyOnWatchDistanceEdge" is so weird!!!!!!
      * If it does not send only to edge players, placing a block will
      * send light updates and cause client to rebuild the chunk multiple times
@@ -381,7 +381,7 @@ public class NewChunkTrackingGraph {
     }
     
     public static void forceRemovePlayer(ServerPlayerEntity player) {
-        Helper.log("Chunk Tracking Graph Force Remove " + player.getName().getUnformattedComponentText());
+        Helper.info("Chunk Tracking Graph Force Remove " + player.getName().getUnformattedComponentText());
         data.forEach((dim, map) -> map.forEach(
             (chunkPos, records) -> removeInactiveWatchers(
                 records,

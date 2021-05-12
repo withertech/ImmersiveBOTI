@@ -161,7 +161,7 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
     ) {
         if (Global.teleportationDebugEnabled) {
             new Throwable().printStackTrace();
-            Helper.log(String.format("request teleport %s %s (%d %d %d)->(%d %d %d)",
+            Helper.info(String.format("request teleport %s %s (%d %d %d)->(%d %d %d)",
                 player.getName().getUnformattedComponentText(),
                 player.world.getDimensionKey(),
                 (int) player.getPosX(), (int) player.getPosY(), (int) player.getPosZ(),

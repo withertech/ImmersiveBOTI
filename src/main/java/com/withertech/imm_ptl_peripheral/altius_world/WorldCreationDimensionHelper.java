@@ -29,7 +29,7 @@ public class WorldCreationDimensionHelper {
     ) {
         final Minecraft client = Minecraft.getInstance();
         
-        Helper.log("Getting Dimension List");
+        Helper.info("Getting Dimension List");
         
         DatapackCodec dataPackSettings2 = MinecraftServer.func_240772_a_(
             resourcePackManager, dataPackSettings, true
@@ -69,7 +69,7 @@ public class WorldCreationDimensionHelper {
         return dataResult.resultOrPartial(
             Util.prefixString(
                 "Error reading worldgen settings after loading data packs: ",
-                Helper::log
+                Helper::info
             )
         ).orElse(generatorOptions);
         

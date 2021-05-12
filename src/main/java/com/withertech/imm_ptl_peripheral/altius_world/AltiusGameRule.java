@@ -25,7 +25,7 @@ public class AltiusGameRule {
         if (doUpgradeOldDimensionStack) {
             setIsDimensionStack(true);
             doUpgradeOldDimensionStack = false;
-            Helper.log("Upgraded old dimension stack info");
+            Helper.info("Upgraded old dimension stack info");
         }
     }
     

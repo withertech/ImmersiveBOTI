@@ -14,7 +14,7 @@ public class LimitedLogger {
     }
     
     public void log(String s) {
-        invoke(() -> Helper.log(s));
+        invoke(() -> Helper.info(s));
     }
     
     public void err(String s) {

@@ -28,7 +28,7 @@ public class OFHelper {
         if (errorCode != GL_NO_ERROR && Global.renderMode == Global.RenderMode.normal) {
             String message = "[Immersive Portals] Switch to Compatibility Portal Renderer";
             Helper.err("OpenGL Error" + errorCode);
-            Helper.log(message);
+            Helper.info(message);
             CHelper.printChat(message);
             
             Global.renderMode = Global.RenderMode.compatibility;

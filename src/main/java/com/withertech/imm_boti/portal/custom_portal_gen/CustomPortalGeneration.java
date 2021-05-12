@@ -174,7 +174,7 @@ public class CustomPortalGeneration {
 
         //noinspection deprecation
         if (!world.isBlockLoaded(startPos)) {
-            Helper.log("Skip custom portal generation because chunk not loaded");
+            Helper.info("Skip custom portal generation because chunk not loaded");
             return false;
         }
         

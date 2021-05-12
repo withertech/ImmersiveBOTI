@@ -22,7 +22,7 @@ public class SecondaryFrameBuffer {
                 true,//has depth attachment
                 Minecraft.IS_RUNNING_ON_MAC
             );
-            Helper.log("Deferred buffer init");
+            Helper.info("Deferred buffer init");
         }
         if (width != fb.framebufferWidth ||
             height != fb.framebufferHeight
@@ -30,7 +30,7 @@ public class SecondaryFrameBuffer {
             fb.resize(
                 width, height, Minecraft.IS_RUNNING_ON_MAC
             );
-            Helper.log("Deferred buffer resized");
+            Helper.info("Deferred buffer resized");
         }
     }
     

@@ -40,7 +40,7 @@ public class ShaderContextManager {
     public void cleanup() {
         isCleaningUp = true;
         
-        Helper.log("start cleaning shader context " + managedContext.keySet());
+        Helper.info("start cleaning shader context " + managedContext.keySet());
         
         managedContext.forEach(
             (dimension, context) -> {
@@ -71,11 +71,11 @@ public class ShaderContextManager {
         return managedContext.computeIfAbsent(
             dimension, k -> {
                 if (abundantContext.containsKey(dimension)) {
-                    Helper.log("Employed abundant context" + k);
+                    Helper.info("Employed abundant context" + k);
                     return abundantContext.remove(dimension);
                 }
                 else {
-                    Helper.log("Context object created " + k);
+                    Helper.info("Context object created " + k);
                     return createContextByTemplate();
                 }
             }
@@ -142,7 +142,7 @@ public class ShaderContextManager {
                     dimensionToSwitchTo
             );
             newContext.currentWorld = currentClientWorld;
-            Helper.log("Force corrected");
+            Helper.info("Force corrected");
             forceCorrectedNum++;
             if (forceCorrectedNum > 100) {
                 throw new IllegalStateException();
@@ -212,7 +212,7 @@ public class ShaderContextManager {
         
         OFGlobal.copyContextToObject.accept(templateContext);
         
-        Helper.log("shader context template updated");
+        Helper.info("shader context template updated");
     }
     
     private PerDimensionContext createContextByTemplate() {

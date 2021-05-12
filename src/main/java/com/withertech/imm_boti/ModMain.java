@@ -28,7 +28,7 @@ public class ModMain {
     public static final Signal serverCleanupSignal = new Signal();
     
     public static void init() {
-        Helper.log("Immersive Portals Mod Initializing");
+        Helper.info("Immersive Portals Mod Initializing");
         
         MyNetwork.init();
         

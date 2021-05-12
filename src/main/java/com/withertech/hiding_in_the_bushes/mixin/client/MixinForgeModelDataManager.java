@@ -54,10 +54,10 @@ public class MixinForgeModelDataManager {
                     portal_getManager(chunk.getWorld()).onChunkUnload(chunk);
                 });
                 
-                Helper.log("IP Forge Model Data Fix Initialized");
+                Helper.info("IP Forge Model Data Fix Initialized");
             }
             else {
-                Helper.log("IP Forge Model Data Fix is Disabled");
+                Helper.info("IP Forge Model Data Fix is Disabled");
             }
             
             return true;

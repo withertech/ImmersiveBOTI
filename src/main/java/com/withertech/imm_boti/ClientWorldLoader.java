@@ -101,7 +101,7 @@ public class ClientWorldLoader {
         if (lightmapTextureConflict) {
             renderHelperMap.values().forEach(DimensionRenderHelper::cleanUp);
             renderHelperMap.clear();
-            Helper.log("Refreshed Lightmaps");
+            Helper.info("Refreshed Lightmaps");
         }
         
     }
@@ -306,7 +306,7 @@ public class ClientWorldLoader {
         clientWorldMap.put(dimension, newWorld);
         worldRendererMap.put(dimension, worldRenderer);
         
-        Helper.log("Client World Created " + dimension.getLocation());
+        Helper.info("Client World Created " + dimension.getLocation());
 //        new Throwable().printStackTrace();
         
         isCreatingClientWorld = false;

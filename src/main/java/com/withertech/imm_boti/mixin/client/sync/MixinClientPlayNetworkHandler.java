@@ -129,7 +129,7 @@ public abstract class MixinClientPlayNetworkHandler implements IEClientPlayNetwo
         if (world != null) {
             if (world.getDimensionKey() != playerDimension) {
                 if (!Minecraft.getInstance().player.removed) {
-                    Helper.log(String.format(
+                    Helper.info(String.format(
                         "denied position packet %s %s %s %s",
                         ((IEPlayerPositionLookS2CPacket) packet).getPlayerDimension(),
                         packet.getX(), packet.getY(), packet.getZ()
@@ -161,7 +161,7 @@ public abstract class MixinClientPlayNetworkHandler implements IEClientPlayNetwo
         Entity entity_1 = this.world.getEntityByID(entityPassengersSetS2CPacket_1.getEntityId());
         if (entity_1 == null) {
             if (!isReProcessingPassengerPacket) {
-                Helper.log("Re-processed riding packet");
+                Helper.info("Re-processed riding packet");
                 ModMain.clientTaskList.addTask(() -> {
                     isReProcessingPassengerPacket = true;
                     handleSetPassengers(entityPassengersSetS2CPacket_1);

@@ -433,7 +433,7 @@ public abstract class MixinWorldRenderer implements IEWorldRenderer {
         WorldRenderer this_ = (WorldRenderer) (Object) this;
         
         if (world != null) {
-            Helper.log("WorldRenderer reloaded " + world.getDimensionKey().getLocation());
+            Helper.info("WorldRenderer reloaded " + world.getDimensionKey().getLocation());
         }
         
         if (isReloadingOtherWorldRenderers) {
@@ -675,7 +675,7 @@ public abstract class MixinWorldRenderer implements IEWorldRenderer {
             int radius = ((MyBuiltChunkStorage) viewFrustum).getRadius();
             
             if (radius < targetRadius) {
-                Helper.log("Resizing built chunk storage to " + targetRadius);
+                Helper.info("Resizing built chunk storage to " + targetRadius);
                 
                 viewFrustum.deleteGlResources();
                 

@@ -35,7 +35,7 @@ public class BlockManipulationServer {
                 doDestroyBlock(dimension, packet, player);
             }
             else {
-                Helper.log("Rejected cross portal block breaking packet " + player);
+                Helper.info("Rejected cross portal block breaking packet " + player);
             }
         }
     }
@@ -175,7 +175,7 @@ public class BlockManipulationServer {
         player.markPlayerActive();
         if (targetWorld.isBlockModifiable(player, blockPos)) {
             if (!canPlayerReach(dimension, player, blockPos)) {
-                Helper.log("Reject cross portal block placing packet " + player);
+                Helper.info("Reject cross portal block placing packet " + player);
                 return;
             }
             

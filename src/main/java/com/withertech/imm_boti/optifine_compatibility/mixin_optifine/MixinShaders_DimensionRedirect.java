@@ -33,11 +33,11 @@ public class MixinShaders_DimensionRedirect {
         Minecraft client = Minecraft.getInstance();
         RegistryKey<World> currDimension = client.world.getDimensionKey();
         
-        Helper.log("Shader init " + currDimension);
+        Helper.info("Shader init " + currDimension);
         
         if (RenderDimensionRedirect.isNoShader(currentWorld.getDimensionKey())) {
             shaderPack = new ShaderPackDefault();
-            Helper.log("Set to internal shader");
+            Helper.info("Set to internal shader");
         }
     }
     

@@ -28,8 +28,8 @@ public abstract class MixinItemEntity_P {
             return;
         }
         
-        this_.world.getProfiler().startSection("imm_ptl_item_tick");
-        CustomPortalGenManagement.onItemTick(this_);
-        this_.world.getProfiler().endSection();
+//        this_.world.getProfiler().startSection("imm_ptl_item_tick");
+//        CustomPortalGenManagement.onItemTick(this_);
+//        this_.world.getProfiler().endSection();
     }
 }

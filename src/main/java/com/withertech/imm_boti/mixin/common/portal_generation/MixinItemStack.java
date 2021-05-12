@@ -17,6 +17,6 @@ public class MixinItemStack {
         cancellable = true
     )
     private void onUseOnBlockEnded(ItemUseContext context, CallbackInfoReturnable<ActionResultType> cir) {
-        CustomPortalGenManagement.onItemUse(context, cir.getReturnValue());
+//        CustomPortalGenManagement.onItemUse(context, cir.getReturnValue());
     }
 }

@@ -1,30 +1,21 @@
 package com.withertech.imm_boti.events;
 
-import com.withertech.hiding_in_the_bushes.ModMainForge;
+import com.withertech.imm_boti.Helper;
 import com.withertech.imm_boti.McHelper;
-import com.withertech.imm_boti.api.PortalAPI;
 import com.withertech.imm_boti.my_util.DQuaternion;
-import com.withertech.imm_boti.portal.GeometryPortalShape;
 import com.withertech.imm_boti.portal.Portal;
 import com.withertech.imm_boti.portal.PortalManipulation;
 import com.withertech.imm_boti.portal.global_portals.GlobalPortalStorage;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.tardis.api.events.TardisEvent;
-import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.tileentities.ConsoleTile;
-import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static com.withertech.imm_boti.portal.PortalManipulation.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TardisEvents
@@ -79,6 +70,8 @@ public class TardisEvents
 				Portal exteriorPortal = PortalManipulation.createReversePortal(interiorPortal, Portal.entityType);
 				interiorPortal.setCustomName(new StringTextComponent("Interior"));
 				exteriorPortal.setCustomName(new StringTextComponent("Exterior"));
+				Helper.debug("Interior Portal Created: " + interiorPortal);
+				Helper.debug("Exterior Portal Created: " + exteriorPortal);
 				GlobalPortalStorage.convertNormalPortalIntoGlobalPortal(interiorPortal);
 				GlobalPortalStorage.convertNormalPortalIntoGlobalPortal(exteriorPortal);
 			})
@@ -90,14 +83,14 @@ public class TardisEvents
 		console.getDoor().ifPresent(doorEntity ->
 			McHelper.getNearbyPortals(doorEntity, 3).collect(Collectors.toList()).forEach(portal ->
 			{
-				ModMainForge.LOGGER.debug(portal);
+				Helper.debug("Interior Portal Destroyed: " + portal);
 				GlobalPortalStorage.get((ServerWorld) portal.world).removePortal(portal);
 			})
 		);
 		console.getOrFindExteriorTile().ifPresent(exteriorTile ->
 			McHelper.getNearbyPortals(exteriorTile.getWorld(), Vector3d.copyCentered(exteriorTile.getPos()), 3).collect(Collectors.toList()).forEach(portal ->
 			{
-				ModMainForge.LOGGER.debug(portal);
+				Helper.debug("Exterior Portal Destroyed: " + portal);
 				GlobalPortalStorage.get((ServerWorld) portal.world).removePortal(portal);
 			})
 		);

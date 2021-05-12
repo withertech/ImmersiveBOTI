@@ -274,7 +274,7 @@ public class GlobalPortalStorage extends WorldSavedData {
         
         ((IEClientWorld) world).setGlobalPortals(newPortals);
         
-        Helper.log("Global Portals Updated " + dimension.getLocation());
+        Helper.info("Global Portals Updated " + dimension.getLocation());
     }
     
     public static void convertNormalPortalIntoGlobalPortal(Portal portal) {

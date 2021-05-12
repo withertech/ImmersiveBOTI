@@ -29,7 +29,7 @@ public class NetherPortalMatcher {
         );
         
         if (airCube == null) {
-            Helper.log("Cannot Find Portal Placement on Ground with 3 Spacing");
+            Helper.info("Cannot Find Portal Placement on Ground with 3 Spacing");
             airCube = getAirCubeOnSolidGround(
                 areaSize, new BlockPos(2, 0, 2), world, searchingCenter,
                 radius, true
@@ -37,7 +37,7 @@ public class NetherPortalMatcher {
         }
         
         if (airCube == null) {
-            Helper.log("Cannot Find Portal Placement on Ground with 1 Spacing");
+            Helper.info("Cannot Find Portal Placement on Ground with 1 Spacing");
             airCube = getAirCubeOnSolidGround(
                 areaSize, new BlockPos(6, 0, 6), world, searchingCenter,
                 radius, false
@@ -45,17 +45,17 @@ public class NetherPortalMatcher {
         }
         
         if (airCube == null) {
-            Helper.log("Cannot Find Portal Placement on Non Solid Surface");
+            Helper.info("Cannot Find Portal Placement on Non Solid Surface");
             return null;
         }
         
         if (world.getBlockState(airCube.l.down()).getMaterial().isSolid()) {
-            Helper.log("Generated Portal On Ground");
+            Helper.info("Generated Portal On Ground");
             
             return pushDownBox(world, airCube.getSubBoxInCenter(areaSize));
         }
         else {
-            Helper.log("Generated Portal On Non Solid Surface");
+            Helper.info("Generated Portal On Non Solid Surface");
             
             return levitateBox(world, airCube.getSubBoxInCenter(areaSize), 40);
         }

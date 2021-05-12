@@ -487,9 +487,9 @@ public class ClientDebugCommand {
             .executes(context -> {
                 McHelper.getServer().getWorlds().forEach(world -> {
                     ChunkGenerator generator = world.getChunkProvider().getChunkGenerator();
-                    Helper.log(world.getDimensionKey().getLocation());
-                    Helper.log(McHelper.serializeToJson(generator, ChunkGenerator.field_235948_a_));
-                    Helper.log(McHelper.serializeToJson(
+                    Helper.info(world.getDimensionKey().getLocation());
+                    Helper.info(McHelper.serializeToJson(generator, ChunkGenerator.field_235948_a_));
+                    Helper.info(McHelper.serializeToJson(
                         world.getDimensionType(),
                         DimensionType.CODEC.stable()
                     ));
@@ -497,7 +497,7 @@ public class ClientDebugCommand {
                 
                 DimensionGeneratorSettings options = McHelper.getServer().getServerConfiguration().getDimensionGeneratorSettings();
                 
-                Helper.log(McHelper.serializeToJson(options, DimensionGeneratorSettings.field_236201_a_));
+                Helper.info(McHelper.serializeToJson(options, DimensionGeneratorSettings.field_236201_a_));
                 
                 return 0;
             })
@@ -680,7 +680,7 @@ public class ClientDebugCommand {
         
         dispatcher.register(builder);
         
-        Helper.log("Successfully initialized command /immersive_portals_debug");
+        Helper.info("Successfully initialized command /immersive_portals_debug");
     }
     
     public static void invokeEraseChunk(World world, ChunkPos center, int r, int downY, int upY) {
@@ -791,7 +791,7 @@ public class ClientDebugCommand {
         
         String result = str.toString();
         
-        Helper.log(str);
+        Helper.info(str);
         
         context.getSource().asPlayer().sendStatusMessage(new StringTextComponent(result), false);
         
@@ -890,7 +890,7 @@ public class ClientDebugCommand {
             RegistryKey<World> dimension, RegistryKey<Biome> biomeKey,
             BlockPos blockPos, Vector3d vec3d
         ) {
-            Helper.log(str + integer + doubleNum + identifier + dimension + biomeKey + blockPos + vec3d);
+            Helper.info(str + integer + doubleNum + identifier + dimension + biomeKey + blockPos + vec3d);
         }
         
         public static void clientToServer(
@@ -900,7 +900,7 @@ public class ClientDebugCommand {
             Item item, ItemStack itemStack,
             CompoundNBT compoundTag, ITextComponent text, int[] intArray
         ) {
-            Helper.log(
+            Helper.info(
                 player.getName().getUnformattedComponentText() + uuid + block + blockState + item + itemStack
                     + compoundTag + text + Arrays.toString(intArray)
             );

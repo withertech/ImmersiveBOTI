@@ -47,7 +47,7 @@ public class ShaderClippingManager {
                 ).getInputStream();
             
             toReplace = IOUtils.toString(inputStream, Charset.defaultCharset());
-            Helper.log("Loaded Shader Code Replacement");
+            Helper.info("Loaded Shader Code Replacement");
         }
         catch (Throwable e) {
             throw new IllegalArgumentException(e);

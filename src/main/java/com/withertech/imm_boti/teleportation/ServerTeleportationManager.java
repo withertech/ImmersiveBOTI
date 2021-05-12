@@ -132,7 +132,7 @@ public class ServerTeleportationManager {
         
         if (canPlayerTeleport(player, dimensionBefore, oldEyePos, portal)) {
             if (isTeleporting(player)) {
-                Helper.log(player.toString() + "is teleporting frequently");
+                Helper.info(player.toString() + "is teleporting frequently");
             }
             
             notifyChasersForPlayer(player, portal);
@@ -265,9 +265,9 @@ public class ServerTeleportationManager {
         ((IEServerPlayNetworkHandler) player.connection).cancelTeleportRequest();
         
     }
-    
+
     /**
-     * {@link ServerPlayerEntity#moveToWorld(ServerWorld)}
+     * {@link ServerPlayerEntity#changeDimension(ServerWorld)}
      */
     private void changePlayerDimension(
         ServerPlayerEntity player,
@@ -314,7 +314,7 @@ public class ServerTeleportationManager {
             McHelper.adjustVehicle(player);
         }
         
-        Helper.log(String.format(
+        Helper.info(String.format(
             "%s :: (%s %s %s %s)->(%s %s %s %s)",
             player.getName().getUnformattedComponentText(),
             fromWorld.getDimensionKey().getLocation(),
@@ -471,9 +471,9 @@ public class ServerTeleportationManager {
             return portal.transformPoint(eyePos);
         }
     }
-    
+
     /**
-     * {@link Entity#moveToWorld(ServerWorld)}
+     * {@link Entity#changeDimension(ServerWorld)}
      * Sometimes resuing the same entity object is problematic
      * because entity's AI related things may have world reference inside
      */

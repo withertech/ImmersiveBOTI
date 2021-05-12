@@ -42,7 +42,7 @@ public class StcDimensionSync {
         
         DimensionTypeSync.acceptTypeMapData(typeInfo);
         
-        Helper.log("Received Dimension Int Id Sync");
-        Helper.log("\n" + DimensionIdRecord.clientRecord);
+        Helper.info("Received Dimension Int Id Sync");
+        Helper.info("\n" + DimensionIdRecord.clientRecord);
     }
 }

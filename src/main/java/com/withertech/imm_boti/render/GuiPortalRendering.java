@@ -88,7 +88,7 @@ public class GuiPortalRendering {
         Framebuffer mcFB = Minecraft.getInstance().getFramebuffer();
         if (renderTarget.framebufferTextureWidth != mcFB.framebufferTextureWidth || renderTarget.framebufferTextureHeight != mcFB.framebufferTextureHeight) {
             renderTarget.resize(mcFB.framebufferTextureWidth, mcFB.framebufferTextureHeight, true);
-            Helper.log("Resized Framebuffer for GUI Portal Rendering");
+            Helper.info("Resized Framebuffer for GUI Portal Rendering");
         }
         
         renderingTasks.put(renderTarget, worldRenderInfo);

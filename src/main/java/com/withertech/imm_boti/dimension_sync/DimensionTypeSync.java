@@ -51,8 +51,8 @@ public class DimensionTypeSync {
     public static void acceptTypeMapData(CompoundNBT tag) {
         clientTypeMap = typeMapFromTag(tag);
         
-        Helper.log("Received Dimension Type Sync");
-        Helper.log("\n" + Helper.myToString(
+        Helper.info("Received Dimension Type Sync");
+        Helper.info("\n" + Helper.myToString(
             clientTypeMap.entrySet().stream().map(
                 e -> e.getKey().getLocation().toString() + " -> " + e.getValue().getLocation()
             )

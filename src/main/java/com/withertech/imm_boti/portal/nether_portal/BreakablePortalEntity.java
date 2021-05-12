@@ -103,7 +103,7 @@ public abstract class BreakablePortalEntity extends Portal {
         );
         this.remove();
         
-        Helper.log("Broke " + this);
+        Helper.info("Broke " + this);
     }
     
     public void notifyPlaceholderUpdate() {

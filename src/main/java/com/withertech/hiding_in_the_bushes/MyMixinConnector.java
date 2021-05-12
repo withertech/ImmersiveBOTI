@@ -23,7 +23,7 @@ public class MyMixinConnector implements IMixinConnector {
     
     @Override
     public void connect() {
-        Helper.log("Invoking Mixin Connector");
+        Helper.info("Invoking Mixin Connector");
 
         Mixins.addConfiguration(
             "imm_ptl_mixins.json"

@@ -93,7 +93,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
             return false;
         }
         
-        Helper.log(String.format(
+        Helper.info(String.format(
             "Trying to convert conventional portal %s -> %s by %s (%d %d %d)",
             fromWorld.getDimensionKey().getLocation(),
             toWorld.getDimensionKey().getLocation(),
@@ -119,7 +119,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
             return false;
         }
         
-        Helper.log(fromShape.innerAreaBox + " " + toShape.innerAreaBox);
+        Helper.info(fromShape.innerAreaBox + " " + toShape.innerAreaBox);
         
         PortalGenInfo portalGenInfo = tryToMatch(
             fromWorld.getDimensionKey(), toWorld.getDimensionKey(),
@@ -154,7 +154,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
                 cpg.onPortalGenerated(portal);
             }
             
-            Helper.log("Created flipping floor portal");
+            Helper.info("Created flipping floor portal");
         }
         else {
             BreakablePortalEntity[] portals =
@@ -164,7 +164,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
                 cpg.onPortalGenerated(portal);
             }
             
-            Helper.log("Created normal bi-way bi-faced portal");
+            Helper.info("Created normal bi-way bi-faced portal");
             
         }
         

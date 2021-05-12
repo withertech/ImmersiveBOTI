@@ -98,7 +98,7 @@ public class OFBuiltChunkStorageFix {
                     ((IEOFVboRegion) o).ip_deleteGlBuffers();
                 }
                 
-                Helper.log("Purged OptiFine render region " + key);
+                Helper.info("Purged OptiFine render region " + key);
                 
                 return true;
             }

@@ -103,7 +103,7 @@ public class McHelper {
         ServerPlayerEntity player,
         String text
     ) {
-        Helper.log(text);
+        Helper.info(text);
         player.sendStatusMessage(new StringTextComponent(text), false);
     }
     
@@ -236,7 +236,7 @@ public class McHelper {
                     finalizer.run();
                 }
                 else {
-                    Helper.log("Future done but the task is aborted");
+                    Helper.info("Future done but the task is aborted");
                 }
                 return true;
             }
@@ -698,7 +698,7 @@ public class McHelper {
     }
     
     public static void sendMessageToFirstLoggedPlayer(ITextComponent text) {
-        Helper.log(text.getUnformattedComponentText());
+        Helper.info(text.getUnformattedComponentText());
         ModMain.serverTaskList.addTask(() -> {
             MinecraftServer server = getServer();
             if (server == null) {
@@ -818,9 +818,9 @@ public class McHelper {
         }
         return tag.toFormattedComponent(indent, depth);
     }
-    
+
     /**
-     * {@link CompoundTag#toText(String, int)}
+     * {@link CompoundNBT#toFormattedComponent(String, int)}
      */
     public static ITextComponent compoundTagToTextSorted(CompoundNBT tag, String indent, int depth) {
         if (tag.isEmpty()) {

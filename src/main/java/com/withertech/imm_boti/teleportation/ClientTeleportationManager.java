@@ -119,7 +119,7 @@ public class ClientTeleportationManager {
                     }
                     else {
                         if (i != 0) {
-                            Helper.log("Nested teleport");
+                            Helper.info("Nested teleport");
                         }
                     }
                 }
@@ -234,7 +234,7 @@ public class ClientTeleportationManager {
         //but after pre render info being updated
         RenderStates.updatePreRenderInfo(RenderStates.tickDelta);
         
-        Helper.log(String.format("Client Teleported %s %s", portal, tickTimeForTeleportation));
+        Helper.info(String.format("Client Teleported %s %s", portal, tickTimeForTeleportation));
         
         isTeleportingTick = true;
         isTeleportingFrame = true;
@@ -251,7 +251,7 @@ public class ClientTeleportationManager {
     }
     
     private void forceTeleportPlayer(RegistryKey<World> toDimension, Vector3d destination) {
-        Helper.log("force teleported " + toDimension + destination);
+        Helper.info("force teleported " + toDimension + destination);
         
         ClientWorld fromWorld = client.world;
         RegistryKey<World> fromDimension = fromWorld.getDimensionKey();
@@ -333,7 +333,7 @@ public class ClientTeleportationManager {
             player.startRiding(vehicle, true);
         }
         
-        Helper.log(String.format(
+        Helper.info(String.format(
             "Client Changed Dimension from %s to %s time: %s",
             fromDimension.getLocation(),
             toDimension.getLocation(),

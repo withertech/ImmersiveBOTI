@@ -657,7 +657,7 @@ public class Portal extends Entity implements PortalLike {
         }
         else {
             if (!isPortalValid()) {
-                Helper.log("removed invalid portal" + this);
+                Helper.info("removed invalid portal" + this);
                 remove();
                 return;
             }

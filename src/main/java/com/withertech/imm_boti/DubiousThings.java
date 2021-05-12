@@ -48,7 +48,7 @@ public class DubiousThings {
             Helper.err("Client Player Mismatch");
             if (playerInWorld instanceof ClientPlayerEntity) {
                 client.player = ((ClientPlayerEntity) playerInWorld);
-                Helper.log("Force corrected");
+                Helper.info("Force corrected");
             }
             else {
                 Helper.err("Non-player entity in client has duplicate id");

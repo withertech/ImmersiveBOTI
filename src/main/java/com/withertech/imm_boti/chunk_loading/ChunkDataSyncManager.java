@@ -31,10 +31,7 @@ public class ChunkDataSyncManager {
             this, ChunkDataSyncManager::onEndWatch
         );
     }
-    
-    /**
-     * {@link ThreadedAnvilChunkStorage#sendChunkDataPackets(ServerPlayerEntity, Packet[], WorldChunk)}
-     */
+
     private void onBeginWatch(ServerPlayerEntity player, DimensionalChunkPos chunkPos) {
         McHelper.getServer().getProfiler().startSection("begin_watch");
         
@@ -75,7 +72,7 @@ public class ChunkDataSyncManager {
                     )
                 );
                 if (Global.lightLogging) {
-                    Helper.log(String.format(
+                    Helper.info(String.format(
                         "light sent immediately %s %d %d %d %d",
                         chunk.getWorld().getDimensionKey().getLocation(),
                         chunk.getPos().x, chunk.getPos().z,
@@ -86,16 +83,13 @@ public class ChunkDataSyncManager {
                 ieStorage.updateEntityTrackersAfterSendingChunkPacket(chunk, player);
                 
                 McHelper.getServer().getProfiler().endSection();
-                
+
                 return;
             }
         }
         //if the chunk is not present then the packet will be sent when chunk is ready
     }
-    
-    /**
-     * {@link ThreadedAnvilChunkStorage#sendChunkDataPackets(ServerPlayerEntity, Packet[], WorldChunk)}r
-     */
+
     public void onChunkProvidedDeferred(Chunk chunk) {
         RegistryKey<World> dimension = chunk.getWorld().getDimensionKey();
         IEThreadedAnvilChunkStorage ieStorage = McHelper.getIEStorage(dimension);
@@ -113,7 +107,7 @@ public class ChunkDataSyncManager {
             () -> {
                 SUpdateLightPacket lightPacket = new SUpdateLightPacket(chunk.getPos(), ieStorage.getLightingProvider(), true);
                 if (Global.lightLogging) {
-                    Helper.log(String.format(
+                    Helper.info(String.format(
                         "light sent deferred %s %d %d %d %d",
                         chunk.getWorld().getDimensionKey().getLocation(),
                         chunk.getPos().x, chunk.getPos().z,

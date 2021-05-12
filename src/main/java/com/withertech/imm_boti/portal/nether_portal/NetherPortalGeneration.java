@@ -54,7 +54,7 @@ public class NetherPortalGeneration {
                 );
         
         if (foundAirCube == null) {
-            Helper.log("Cannot find normal portal placement");
+            Helper.info("Cannot find normal portal placement");
             foundAirCube = NetherPortalMatcher.findCubeAirAreaAtAnywhere(
                 neededAreaSize, toWorld, mappedPosInOtherDimension, 32
             );
@@ -227,7 +227,7 @@ public class NetherPortalGeneration {
             fromWorld, indicatorPos, LoadingIndicatorEntity.class, 1
         ).findAny().isPresent();
         if (isOtherGenerationRunning) {
-            Helper.log(
+            Helper.info(
                 "Aborted Portal Generation Because Another Generation is Running Nearby"
             );
             return true;
@@ -239,7 +239,7 @@ public class NetherPortalGeneration {
     
     public static boolean checkPortalGeneration(ServerWorld fromWorld, BlockPos startingPos) {
         if (!fromWorld.isBlockLoaded(startingPos)) {
-            Helper.log("Cancel Portal Generation Because Chunk Not Loaded");
+            Helper.info("Cancel Portal Generation Because Chunk Not Loaded");
             return false;
         }
         

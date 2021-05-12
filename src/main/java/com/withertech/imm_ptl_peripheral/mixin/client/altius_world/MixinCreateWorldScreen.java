@@ -113,7 +113,7 @@ public abstract class MixinCreateWorldScreen extends Screen implements IECreateW
                 GameRules.BooleanValue rule = levelInfo.getGameRules().get(AltiusGameRule.dimensionStackKey);
                 rule.set(true, null);
                 
-                Helper.log("Generating dimension stack world");
+                Helper.info("Generating dimension stack world");
             }
         }
         

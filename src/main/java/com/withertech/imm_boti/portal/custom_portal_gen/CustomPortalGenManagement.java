@@ -42,7 +42,7 @@ public class CustomPortalGenManagement {
         convGen.clear();
         playerPosBeforeTravel.clear();
         
-        Helper.log("Loading custom portal gen");
+        Helper.info("Loading custom portal gen");
         
         MinecraftServer server = McHelper.getServer();
         
@@ -87,11 +87,11 @@ public class CustomPortalGenManagement {
             gen.identifier = entry.getKey().getLocation();
             
             if (!gen.initAndCheck()) {
-                Helper.log("Custom Portal Gen Is Not Activated " + gen.toString());
+                Helper.info("Custom Portal Gen Is Not Activated " + gen.toString());
                 return;
             }
             
-            Helper.log("Loaded Custom Portal Gen " + entry.getKey().getLocation());
+            Helper.info("Loaded Custom Portal Gen " + entry.getKey().getLocation());
             
             load(gen);
             

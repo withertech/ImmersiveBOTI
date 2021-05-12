@@ -33,20 +33,20 @@ public class DimensionIdManagement {
     public static void onServerStarted() {
         DimensionIdRecord ipRecord = readIPDimensionRegistry();
         if (ipRecord == null) {
-            Helper.log("Immersive Portals' dimension id record is missing");
+            Helper.info("Immersive Portals' dimension id record is missing");
             
             DimensionIdRecord fabricRecord = getFabricRecord();
             
             if (fabricRecord != null) {
-                Helper.log("Found Fabric's dimension id record");
-                Helper.log("\n" + fabricRecord);
+                Helper.info("Found Fabric's dimension id record");
+                Helper.info("\n" + fabricRecord);
                 
                 DimensionIdRecord.serverRecord = fabricRecord;
                 fabricRecord = null;
             }
             else {
-                Helper.log("Cannot retrieve Fabric's dimension id record.");
-                Helper.log("If this is not a newly created world," +
+                Helper.info("Cannot retrieve Fabric's dimension id record.");
+                Helper.info("If this is not a newly created world," +
                     " existing portal data may be corrupted!!!"
                 );
                 DimensionIdRecord.serverRecord = null;
@@ -54,7 +54,7 @@ public class DimensionIdManagement {
         }
         else {
             DimensionIdRecord.serverRecord = ipRecord;
-            Helper.log("Successfully read IP's dimension id record");
+            Helper.info("Successfully read IP's dimension id record");
         }
         
         completeServerIdRecord();
@@ -68,7 +68,7 @@ public class DimensionIdManagement {
             
             CompressedStreamTools.writeCompressed(tag, fileInputStream);
             
-            Helper.log("Dimension Id Info Saved to File");
+            Helper.info("Dimension Id Info Saved to File");
         }
         catch (IOException e) {
             throw new RuntimeException(
@@ -82,7 +82,7 @@ public class DimensionIdManagement {
         File dataFile = getIPDimIdFile();
         
         if (!dataFile.exists()) {
-            Helper.log("Immersive Portals' Dimension Id Record File Does Not Exist");
+            Helper.info("Immersive Portals' Dimension Id Record File Does Not Exist");
             return null;
         }
         
@@ -108,12 +108,12 @@ public class DimensionIdManagement {
     
     private static void completeServerIdRecord() {
         if (DimensionIdRecord.serverRecord == null) {
-            Helper.log("Dimension Id Record is Missing");
+            Helper.info("Dimension Id Record is Missing");
             DimensionIdRecord.serverRecord = new DimensionIdRecord(HashBiMap.create());
         }
         
-        Helper.log("Start Completing Dimension Id Record");
-        Helper.log("Before:\n" + DimensionIdRecord.serverRecord);
+        Helper.info("Start Completing Dimension Id Record");
+        Helper.info("Before:\n" + DimensionIdRecord.serverRecord);
         
         Set<RegistryKey<World>> keys = McHelper.getServer().func_240770_D_();
         
@@ -132,7 +132,7 @@ public class DimensionIdManagement {
         List<RegistryKey<World>> keysList = new ArrayList<>(keys);
         keysList.sort(Comparator.comparing(RegistryKey::toString));
         
-        Helper.log("Server Loaded Dimensions:\n" + Helper.myToString(
+        Helper.info("Server Loaded Dimensions:\n" + Helper.myToString(
             keysList.stream().map(RegistryKey::getLocation)
         ));
         
@@ -143,7 +143,7 @@ public class DimensionIdManagement {
             }
         });
         
-        Helper.log("After:\n" + DimensionIdRecord.serverRecord);
+        Helper.info("After:\n" + DimensionIdRecord.serverRecord);
     }
     
     /**

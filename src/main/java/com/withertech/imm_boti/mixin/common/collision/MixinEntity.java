@@ -91,7 +91,7 @@ public abstract class MixinEntity implements IEEntity {
             
             if (entity instanceof ServerPlayerEntity) {
                 ServerTeleportationManager.sendPositionConfirmMessage(((ServerPlayerEntity) entity));
-                Helper.log("position confirm message sent " + entity);
+                Helper.info("position confirm message sent " + entity);
                 return Vector3d.ZERO;
             }
             else {
@@ -160,7 +160,7 @@ public abstract class MixinEntity implements IEEntity {
                     Math.abs(getPosY() - ny) > 10 ||
                     Math.abs(getPosZ() - nz) > 10
                 ) {
-                    Helper.log(String.format(
+                    Helper.info(String.format(
                         "%s %s teleported from %s %s %s to %s %s %s",
                         getName().getUnformattedComponentText(),
                         world.getDimensionKey(),

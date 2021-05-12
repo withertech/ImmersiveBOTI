@@ -66,7 +66,7 @@ public class ModMainClient {
     
     private static void switchRenderer(PortalRenderer renderer) {
         if (CGlobal.renderer != renderer) {
-            Helper.log("switched to renderer " + renderer.getClass());
+            Helper.info("switched to renderer " + renderer.getClass());
             CGlobal.renderer = renderer;
         }
     }
@@ -124,7 +124,7 @@ public class ModMainClient {
         
         GcMonitor.initClient();
         
-        Helper.log(OFInterface.isOptifinePresent ? "Optifine is present" : "Optifine is not present");
+        Helper.info(OFInterface.isOptifinePresent ? "Optifine is present" : "Optifine is not present");
     }
     
 }
