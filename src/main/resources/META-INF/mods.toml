@@ -8,7 +8,7 @@ modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
 loaderVersion="[28,)" #mandatory (28 is current forge version)
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/withertech/ImmersiveBOTI/issues" #optional
+issueTrackerURL="https://github.com/withertech/TimeyWimeyHoles/issues" #optional
 
 license="Apache License"
 
@@ -23,7 +23,7 @@ displayName="Timey Wimey Holes" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://github.com/withertech/ImmersiveBOTI" #optional
+displayURL="https://github.com/withertech/TimeyWimeyHoles" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="icon.png" #optional
 # A text field displayed in the mod UI
