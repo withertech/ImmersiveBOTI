@@ -1,12 +1,10 @@
-# Immersive Portals Mod for Forge
+# Immersive BOTI
 
-https://www.curseforge.com/minecraft/mc-mods/immersive-portals-for-forge
+[comment]: <> (https://www.curseforge.com/minecraft/mc-mods/immersive-portals-for-forge)
 
-The Forge version is being provided but not supported. Only the Fabric version(https://github.com/qouteall/ImmersivePortalsMod)
- is still being supported.
+This mod is WIP ad should not be used in modpacks
 
-The most code is remapped from
- the Fabric version(https://github.com/qouteall/ImmersivePortalsMod)
+Based on (https://github.com/qouteall/ImmersivePortalsModForForge)
 
 ## How to run this code
 ```gradlew genIntellijRuns``` or ```gradlew genEclipseRuns```
