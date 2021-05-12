@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = "https://plugins.gradle.org/m2/" }
         jcenter()
         mavenCentral()
         maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
@@ -8,15 +9,19 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
 
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'    }
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath group: 'gradle.plugin.com.matthewprenger', name: 'CurseGradle', version: '1.4.0'
+    }
+
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.16-mc1.16.5-forge'
+version = '0.0.1'
 group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'tim-wim-hole'
 
@@ -140,7 +145,22 @@ jar {
 jar.finalizedBy('reobfJar')
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
+curseforge {
+    apiKey = System.getenv('CURSEFORGE_API_KEY') ?: 'unset'
+    project {
+        id = '481480'
+        changelog = 'Initial Release'
+        releaseType = 'alpha'
+        addGameVersion '1.16.5'
+        relations {
+            requiredDependency 'new-tardis-mod'
+        }
+        mainArtifact(jar) {
+            displayName = "Timey-Wimey-Holes-Alpha-$project.version"
 
+        }
+    }
+}
 publishing {
     publications {
         mavenJava(MavenPublication) {
