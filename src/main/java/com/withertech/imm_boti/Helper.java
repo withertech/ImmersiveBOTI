@@ -52,7 +52,7 @@ import java.util.stream.Stream;
 // helper methods
 public class Helper {
     
-    private static final Logger LOGGER = LogManager.getLogger("Portal");
+    private static final Logger LOGGER = LogManager.getLogger("BOTI");
     
     public static FloatBuffer getModelViewMatrix() {
         return getMatrix(GL11.GL_MODELVIEW_MATRIX);
@@ -391,7 +391,11 @@ public class Helper {
         return Streams.stream(iterator);
     }
     
-    public static void log(Object str) {
+    public static void info(Object str) {
+        LOGGER.info(str);
+    }
+
+    public static void debug(Object str) {
         LOGGER.info(str);
     }
     
@@ -783,10 +787,10 @@ public class Helper {
             return withSwitchedContextServer((ServerWorld) world, func);
         }
     }
-    
+
     /**
      * @author LoganDark
-     * @see Helper#rayTrace(World, RaycastContext, boolean, List)
+     * @see Helper#rayTrace(World, RayTraceContext, boolean, List)
      */
     private static Tuple<BlockRayTraceResult, List<Portal>> rayTrace(
         World world,
@@ -875,10 +879,10 @@ public class Helper {
     ) {
         return rayTrace(world, context, includeGlobalPortals, new ArrayList<>());
     }
-    
+
     /**
      * @param hitResult The HitResult to check.
-     * @return If the HitResult passed is either {@code null}, or of type {@link HitResult.Type#MISS}.
+     * @return If the HitResult passed is either {@code null}, or of type {@link RayTraceResult.Type#MISS}.
      */
     @SuppressWarnings("WeakerAccess")
     public static boolean hitResultIsMissedOrNull(RayTraceResult hitResult) {
@@ -886,7 +890,7 @@ public class Helper {
     }
     
     /**
-     * @param vec  The {@link Vec3d} to get the {@link Direction} of.
+     * @param vec  The {@link Vector3d} to get the {@link Direction} of.
      * @param axis The {@link Direction.Axis} of directions to exclude.
      * @return The {@link Direction} of the passed {@code vec}, excluding directions of axis {@code axis}.
      */
