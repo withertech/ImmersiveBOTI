@@ -2,9 +2,9 @@ package com.withertech.hiding_in_the_bushes.mixin.client;
 
 import com.withertech.forge_model_data_fix.ForgeModelDataManagerPerWorld;
 import com.withertech.hiding_in_the_bushes.ModMainForge;
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.ModMain;
-import com.withertech.imm_boti.chunk_loading.MyClientChunkManager;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.ModMain;
+import com.withertech.tim_wim_holes.chunk_loading.MyClientChunkManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;

@@ -1,7 +1,7 @@
 package com.withertech.hiding_in_the_bushes.network;
 
-import com.withertech.imm_boti.block_manipulation.BlockManipulationServer;
-import com.withertech.imm_boti.dimension_sync.DimId;
+import com.withertech.tim_wim_holes.block_manipulation.BlockManipulationServer;
+import com.withertech.tim_wim_holes.dimension_sync.DimId;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPlayerDiggingPacket;

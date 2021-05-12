@@ -1,8 +1,8 @@
 package com.withertech.imm_ptl_peripheral.altius_world;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.my_util.GuiHelper;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.my_util.GuiHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;

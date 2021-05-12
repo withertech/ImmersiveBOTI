@@ -1,6 +1,6 @@
 package com.withertech.imm_ptl_peripheral.mixin.common.alternate_dimension;
 
-import com.withertech.imm_boti.Helper;
+import com.withertech.tim_wim_holes.Helper;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.RestrictSunGoal;
 import net.minecraft.pathfinding.GroundPathNavigator;

@@ -17,8 +17,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.16-mc1.16.5-forge'
-group = 'com.withertech.imm_boti' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'imm-boti'
+group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'tim-wim-hole'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -39,6 +39,8 @@ minecraft {
         client {
             workingDirectory project.file('run')
 
+            property 'mixin.debug.export', 'true'
+
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', ''
 
@@ -46,7 +48,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                imm_boti {
+                tim_wim_hole {
                     source sourceSets.main
                 }
             }
@@ -62,7 +64,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                imm_boti {
+                tim_wim_hole {
                     source sourceSets.main
                 }
             }
@@ -78,10 +80,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'imm_boti', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'tim_wim_hole', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                imm_boti {
+                tim_wim_hole {
                     source sourceSets.main
                 }
             }
@@ -121,7 +123,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "imm_boti",
+                "Specification-Title"     : "tim_wim_hole",
                 "Specification-Vendor"    : "",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

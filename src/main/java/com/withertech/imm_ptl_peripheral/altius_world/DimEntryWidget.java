@@ -2,7 +2,7 @@ package com.withertech.imm_ptl_peripheral.altius_world;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.withertech.imm_boti.Helper;
+import com.withertech.tim_wim_holes.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.IGuiEventListener;

@@ -1,7 +1,7 @@
 package com.withertech.imm_ptl_peripheral.altius_world;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.withertech.imm_boti.api.IPDimensionAPI;
+import com.withertech.tim_wim_holes.api.IPDimensionAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;

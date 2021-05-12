@@ -1,6 +1,8 @@
-# Immersive BOTI
+# Timey Wimey Holes
 
 [comment]: <> (https://www.curseforge.com/minecraft/mc-mods/immersive-portals-for-forge)
+
+Seamless BOTI for the TARDIS mod
 
 This mod is WIP and should not be used in modpacks
 

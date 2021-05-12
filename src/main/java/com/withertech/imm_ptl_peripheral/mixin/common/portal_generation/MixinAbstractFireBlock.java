@@ -2,7 +2,7 @@ package com.withertech.imm_ptl_peripheral.mixin.common.portal_generation;
 
 import com.withertech.hiding_in_the_bushes.O_O;
 import com.withertech.imm_ptl_peripheral.portal_generation.IntrinsicPortalGeneration;
-import com.withertech.imm_boti.Global;
+import com.withertech.tim_wim_holes.Global;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.PortalSize;
 import net.minecraft.util.Direction;

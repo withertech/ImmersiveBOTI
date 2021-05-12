@@ -2,7 +2,7 @@ package com.withertech.imm_ptl_peripheral.mixin.common.portal_generation;
 
 import com.withertech.imm_ptl_peripheral.PeripheralModMain;
 import com.withertech.imm_ptl_peripheral.portal_generation.IntrinsicPortalGeneration;
-import com.withertech.imm_boti.portal.BreakableMirror;
+import com.withertech.tim_wim_holes.portal.BreakableMirror;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.FlintAndSteelItem;

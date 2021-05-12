@@ -1,6 +1,6 @@
 package com.withertech.hiding_in_the_bushes;
 
-import com.withertech.imm_boti.Helper;
+import com.withertech.tim_wim_holes.Helper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.spongepowered.asm.mixin.Mixins;

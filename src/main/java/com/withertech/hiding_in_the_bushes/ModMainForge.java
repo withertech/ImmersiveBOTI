@@ -1,16 +1,16 @@
 package com.withertech.hiding_in_the_bushes;
 
 import com.withertech.imm_ptl_peripheral.PeripheralModMain;
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.ModMain;
-import com.withertech.imm_boti.ModMainClient;
-import com.withertech.imm_boti.portal.LoadingIndicatorEntity;
-import com.withertech.imm_boti.portal.Portal;
-import com.withertech.imm_boti.portal.global_portals.GlobalPortalStorage;
-import com.withertech.imm_boti.render.LoadingIndicatorRenderer;
-import com.withertech.imm_boti.render.PortalEntityRenderer;
-import com.withertech.imm_boti.render.context_management.RenderDimensionRedirect;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.ModMain;
+import com.withertech.tim_wim_holes.ModMainClient;
+import com.withertech.tim_wim_holes.portal.LoadingIndicatorEntity;
+import com.withertech.tim_wim_holes.portal.Portal;
+import com.withertech.tim_wim_holes.portal.global_portals.GlobalPortalStorage;
+import com.withertech.tim_wim_holes.render.LoadingIndicatorRenderer;
+import com.withertech.tim_wim_holes.render.PortalEntityRenderer;
+import com.withertech.tim_wim_holes.render.context_management.RenderDimensionRedirect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -50,7 +50,7 @@ import java.util.function.Supplier;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ModMainForge.MODID)
 public class ModMainForge {
-    public static final String MODID = "imm_boti";
+    public static final String MODID = "tim_wim_holes";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     

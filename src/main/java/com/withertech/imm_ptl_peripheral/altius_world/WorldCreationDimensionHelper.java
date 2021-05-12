@@ -5,7 +5,7 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.Lifecycle;
 import com.withertech.imm_ptl_peripheral.ducks.IECreateWorldScreen;
-import com.withertech.imm_boti.Helper;
+import com.withertech.tim_wim_holes.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.command.Commands;

@@ -15,11 +15,11 @@ license="Apache License"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId="imm_boti" #mandatory
+modId="tim_wim_holes" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="0.14" #mandatory
  # A display name for the mod
-displayName="Immersive BOTI" #mandatory
+displayName="Timey Wimey Holes" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -35,7 +35,7 @@ description='''
 Seamless BOTI for the TARDIS mod
 '''
  #A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.imm_boti]] #optional
+[[dependencies.tim_wim_holes]] #optional
     # the modid of the dependencyr
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -47,14 +47,14 @@ Seamless BOTI for the TARDIS mod
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.imm_boti]]
+[[dependencies.tim_wim_holes]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.imm_boti]]
+[[dependencies.tim_wim_holes]]
     modId="tardis"
     mandatory=true
     versionRange="(1,)"

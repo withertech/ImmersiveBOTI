@@ -1,6 +1,6 @@
 package com.withertech.hiding_in_the_bushes.mixin.common;
 
-import com.withertech.imm_boti.Global;
+import com.withertech.tim_wim_holes.Global;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.management.PlayerList;
 import org.spongepowered.asm.mixin.Final;

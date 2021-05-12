@@ -1,8 +1,8 @@
 package com.withertech.hiding_in_the_bushes.mixin.common;
 
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.ModMain;
-import com.withertech.imm_boti.portal.custom_portal_gen.CustomPortalGenManagement;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.ModMain;
+import com.withertech.tim_wim_holes.portal.custom_portal_gen.CustomPortalGenManagement;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;

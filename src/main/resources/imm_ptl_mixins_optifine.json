@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.withertech.imm_boti.optifine_compatibility.mixin_optifine",
+  "package": "com.withertech.tim_wim_holes.optifine_compatibility.mixin_optifine",
   "compatibilityLevel": "JAVA_8",
   "refmap": "imm_ptl.refmap.json",
   "mixins": [

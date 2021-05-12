@@ -1,8 +1,8 @@
 package com.withertech.imm_ptl_peripheral.altius_world;
 
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.McHelper;
-import com.withertech.imm_boti.ModMain;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.McHelper;
+import com.withertech.tim_wim_holes.ModMain;
 import net.minecraft.world.GameRules;
 
 public class AltiusGameRule {

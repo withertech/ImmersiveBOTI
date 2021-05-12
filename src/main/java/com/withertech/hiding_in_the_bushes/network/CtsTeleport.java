@@ -1,7 +1,7 @@
 package com.withertech.hiding_in_the_bushes.network;
 
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.dimension_sync.DimId;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.dimension_sync.DimId;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.RegistryKey;

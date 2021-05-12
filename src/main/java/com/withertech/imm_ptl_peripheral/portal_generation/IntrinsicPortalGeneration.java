@@ -1,8 +1,8 @@
 package com.withertech.imm_ptl_peripheral.portal_generation;
 
 import com.google.common.collect.Lists;
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.portal.custom_portal_gen.CustomPortalGeneration;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.portal.custom_portal_gen.CustomPortalGeneration;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;

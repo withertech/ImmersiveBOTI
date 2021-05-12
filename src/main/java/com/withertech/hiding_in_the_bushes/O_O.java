@@ -1,10 +1,10 @@
 package com.withertech.hiding_in_the_bushes;
 
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.McHelper;
-import com.withertech.imm_boti.chunk_loading.MyClientChunkManager;
-import com.withertech.imm_boti.portal.custom_portal_gen.PortalGenInfo;
-import com.withertech.imm_boti.portal.nether_portal.BlockPortalShape;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.McHelper;
+import com.withertech.tim_wim_holes.chunk_loading.MyClientChunkManager;
+import com.withertech.tim_wim_holes.portal.custom_portal_gen.PortalGenInfo;
+import com.withertech.tim_wim_holes.portal.nether_portal.BlockPortalShape;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.multiplayer.ClientChunkProvider;

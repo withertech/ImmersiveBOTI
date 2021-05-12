@@ -1,8 +1,8 @@
 package com.withertech.hiding_in_the_bushes.network;
 
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.dimension_sync.DimensionIdRecord;
-import com.withertech.imm_boti.dimension_sync.DimensionTypeSync;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.dimension_sync.DimensionIdRecord;
+import com.withertech.tim_wim_holes.dimension_sync.DimensionTypeSync;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;

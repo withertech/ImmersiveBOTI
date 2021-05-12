@@ -1,8 +1,8 @@
 package com.withertech.imm_ptl_peripheral.mixin.common.portal_generation;
 
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.portal.EndPortalEntity;
-import com.withertech.imm_boti.portal.PortalPlaceholderBlock;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.portal.EndPortalEntity;
+import com.withertech.tim_wim_holes.portal.PortalPlaceholderBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

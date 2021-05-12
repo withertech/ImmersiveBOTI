@@ -2,12 +2,12 @@ package com.withertech.imm_ptl_peripheral.altius_world;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.withertech.imm_ptl_peripheral.alternate_dimension.AlternateDimensions;
-import com.withertech.imm_boti.CHelper;
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.Helper;
-import com.withertech.imm_boti.ModMain;
-import com.withertech.imm_boti.my_util.GuiHelper;
-import com.withertech.imm_boti.my_util.MyTaskList;
+import com.withertech.tim_wim_holes.CHelper;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.Helper;
+import com.withertech.tim_wim_holes.ModMain;
+import com.withertech.tim_wim_holes.my_util.GuiHelper;
+import com.withertech.tim_wim_holes.my_util.MyTaskList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.CreateWorldScreen;

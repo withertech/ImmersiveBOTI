@@ -1,6 +1,6 @@
 package com.withertech.imm_ptl_peripheral.altius_world;
 
-import com.withertech.imm_boti.ModMain;
+import com.withertech.tim_wim_holes.ModMain;
 
 public class AltiusManagement {
     // Dimension stack world can only be created in client

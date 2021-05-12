@@ -1,6 +1,5 @@
 package com.withertech.hiding_in_the_bushes;
 
-import com.withertech.imm_boti.Global;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;

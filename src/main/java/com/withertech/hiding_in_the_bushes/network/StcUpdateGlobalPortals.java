@@ -1,7 +1,7 @@
 package com.withertech.hiding_in_the_bushes.network;
 
-import com.withertech.imm_boti.dimension_sync.DimId;
-import com.withertech.imm_boti.portal.global_portals.GlobalPortalStorage;
+import com.withertech.tim_wim_holes.dimension_sync.DimId;
+import com.withertech.tim_wim_holes.portal.global_portals.GlobalPortalStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.RegistryKey;

@@ -6,7 +6,7 @@ import com.withertech.imm_ptl_peripheral.altius_world.AltiusInfo;
 import com.withertech.imm_ptl_peripheral.altius_world.AltiusManagement;
 import com.withertech.imm_ptl_peripheral.altius_world.AltiusScreen;
 import com.withertech.imm_ptl_peripheral.ducks.IECreateWorldScreen;
-import com.withertech.imm_boti.Helper;
+import com.withertech.tim_wim_holes.Helper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.client.gui.screen.Screen;

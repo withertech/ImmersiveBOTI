@@ -2,9 +2,9 @@ package com.withertech.imm_ptl_peripheral;
 
 import com.mojang.serialization.Lifecycle;
 import com.withertech.hiding_in_the_bushes.ModMainForge;
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.McHelper;
-import com.withertech.imm_boti.commands.PortalCommand;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.McHelper;
+import com.withertech.tim_wim_holes.commands.PortalCommand;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;

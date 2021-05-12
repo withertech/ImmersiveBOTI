@@ -1,8 +1,8 @@
 package com.withertech.imm_ptl_peripheral.guide;
 
-import com.withertech.imm_boti.Global;
-import com.withertech.imm_boti.McHelper;
-import com.withertech.imm_boti.network.CommonNetworkClient;
+import com.withertech.tim_wim_holes.Global;
+import com.withertech.tim_wim_holes.McHelper;
+import com.withertech.tim_wim_holes.network.CommonNetworkClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.Util;
