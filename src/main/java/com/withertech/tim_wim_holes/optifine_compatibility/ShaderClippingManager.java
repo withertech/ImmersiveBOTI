@@ -94,7 +94,7 @@ public class ShaderClippingManager {
                 uniform_equationW.setValue((float) equation[3]);
             }
             else {
-                Helper.err("Culling Equation is Null?");
+                Helper.error("Culling Equation is Null?");
                 uniform_equationXYZ.setValue(0, 0, 0);
                 uniform_equationW.setValue(2333);
             }

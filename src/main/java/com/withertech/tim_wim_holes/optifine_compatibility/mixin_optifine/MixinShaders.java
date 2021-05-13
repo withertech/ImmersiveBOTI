@@ -92,7 +92,7 @@ public abstract class MixinShaders {
     @Inject(method = "storeConfig", at = @At("HEAD"), cancellable = true)
     private static void onStoreConfig(CallbackInfo ci) {
         if (OFGlobal.shaderContextManager.isContextSwitched()) {
-            Helper.err("Trying to store config when context switched");
+            Helper.error("Trying to store config when context switched");
             ci.cancel();
         }
     }

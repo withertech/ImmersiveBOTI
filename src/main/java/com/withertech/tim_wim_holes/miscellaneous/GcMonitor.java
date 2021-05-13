@@ -73,7 +73,7 @@ public class GcMonitor {
                 }
             }
             
-            Helper.err(
+            Helper.error(
                 "Memory not enough. Try to Shrink loading distance or allocate more memory." +
                     " If this happens with low loading distance, it usually indicates memory leak"
             );

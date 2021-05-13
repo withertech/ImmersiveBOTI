@@ -147,7 +147,7 @@ public class ServerTeleportationManager {
             PehkuiInterface.onServerEntityTeleported.accept(player, portal);
         }
         else {
-            Helper.err(String.format(
+            Helper.error(String.format(
                 "Player cannot teleport through portal %s %s %s %s",
                 player.getName().getUnformattedComponentText(),
                 player.world.getDimensionKey(),
@@ -405,7 +405,7 @@ public class ServerTeleportationManager {
     private void teleportRegularEntity(Entity entity, Portal portal) {
         Validate.isTrue(!(entity instanceof ServerPlayerEntity));
         if (entity.world != portal.world) {
-            Helper.err(String.format("Cannot teleport %s from %s through %s", entity, entity.world.getDimensionKey(), portal));
+            Helper.error(String.format("Cannot teleport %s from %s through %s", entity, entity.world.getDimensionKey(), portal));
             return;
         }
         

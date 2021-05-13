@@ -201,7 +201,7 @@ public class McHelper {
         int[] progress = new int[1];
         Helper.SimpleBox<Boolean> isAborted = new Helper.SimpleBox<>(false);
         Helper.SimpleBox<Runnable> finishBehavior = new Helper.SimpleBox<>(() -> {
-            Helper.err("Error Occured???");
+            Helper.error("Error Occured???");
         });
         CompletableFuture<Void> future = CompletableFuture.runAsync(
             () -> {
@@ -241,12 +241,12 @@ public class McHelper {
                 return true;
             }
             if (future.isCancelled()) {
-                Helper.err("The future is cancelled???");
+                Helper.error("The future is cancelled???");
                 finalizer.run();
                 return true;
             }
             if (future.isCompletedExceptionally()) {
-                Helper.err("The future is completed exceptionally???");
+                Helper.error("The future is completed exceptionally???");
                 finalizer.run();
                 return true;
             }
@@ -745,7 +745,7 @@ public class McHelper {
         boolean spawned = entity.world.addEntity(entity);
         
         if (!spawned) {
-            Helper.err("Failed to spawn " + entity + entity.world);
+            Helper.error("Failed to spawn " + entity + entity.world);
         }
         
         entity.forceSpawn = false;

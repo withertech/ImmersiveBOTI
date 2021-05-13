@@ -131,7 +131,7 @@ public class CustomPortalGeneration {
             );
         }
         
-        Helper.err("Cannot get reverse custom portal gen");
+        Helper.error("Cannot get reverse custom portal gen");
         return null;
     }
     
@@ -187,7 +187,7 @@ public class CustomPortalGeneration {
         ServerWorld toWorld = McHelper.getServer().getWorld(destDimension);
         
         if (toWorld == null) {
-            Helper.err("Missing dimension " + destDimension.getLocation());
+            Helper.error("Missing dimension " + destDimension.getLocation());
             return false;
         }
         

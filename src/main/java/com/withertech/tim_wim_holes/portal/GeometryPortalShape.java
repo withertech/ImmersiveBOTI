@@ -89,7 +89,7 @@ public class GeometryPortalShape {
         
         int size = tag.size();
         if (size % 6 != 0) {
-            Helper.err("Bad Portal Shape Data " + tag);
+            Helper.error("Bad Portal Shape Data " + tag);
             return;
         }
         

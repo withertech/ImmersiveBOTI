@@ -70,8 +70,8 @@ public class DimensionTypeSync {
                         DimensionType dimensionType = w.getDimensionType();
                         ResourceLocation id = dimensionTypes.getKey(dimensionType);
                         if (id == null) {
-                            Helper.err("Missing dim type id for " + w.getDimensionKey());
-                            Helper.err("Registered dimension types " +
+                            Helper.error("Missing dim type id for " + w.getDimensionKey());
+                            Helper.error("Registered dimension types " +
                                 Helper.myToString(dimensionTypes.keySet().stream()));
                             return DimensionType.OVERWORLD;
                         }
@@ -111,7 +111,7 @@ public class DimensionTypeSync {
         RegistryKey<DimensionType> obj = clientTypeMap.get(worldKey);
         
         if (obj == null) {
-            Helper.err("Missing Dimension Type For " + worldKey);
+            Helper.error("Missing Dimension Type For " + worldKey);
             return DimensionType.OVERWORLD;
         }
         

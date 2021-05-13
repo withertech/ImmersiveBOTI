@@ -70,7 +70,7 @@ public class AltiusInfo {
         }
         
         if (!McHelper.getGlobalPortals(McHelper.getServerWorld(entries.get(0).dimension)).isEmpty()) {
-            Helper.err("There are already global portals when initializing dimension stack");
+            Helper.error("There are already global portals when initializing dimension stack");
             return;
         }
         

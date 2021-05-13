@@ -56,7 +56,7 @@ public class EndPortalEntity extends Portal {
             generateScaledViewEndPortal(world, portalCenter);
         }
         else {
-            Helper.err("End portal mode abnormal");
+            Helper.error("End portal mode abnormal");
         }
         
         // for toObsidianPlatform mode, if the platform does not get generated before

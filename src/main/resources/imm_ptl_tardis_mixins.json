@@ -5,8 +5,8 @@
   "refmap": "imm_ptl.refmap.json",
   "mixins": [
     "common.tardis.exterior.MixinExteriorTile",
-    "common.tardis.interior.MixinDoorEntity",
-    "common.tardis.exterior.MixinBrokenExteriorType"
+    "common.tardis.exterior.MixinBrokenExteriorType",
+    "common.tardis.interior.MixinDoorEntity"
   ],
   "client": [
     "client.tardis.renderer.MixinBOTIRenderer"

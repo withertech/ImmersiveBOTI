@@ -67,7 +67,7 @@ public class NetherPortalGeneration {
         }
         
         if (foundAirCube == null) {
-            Helper.err("Cannot find air cube within 32 blocks? " +
+            Helper.error("Cannot find air cube within 32 blocks? " +
                 "Force placed portal. It will occupy normal blocks.");
             
             foundAirCube = IntBox.getBoxByBasePointAndSize(

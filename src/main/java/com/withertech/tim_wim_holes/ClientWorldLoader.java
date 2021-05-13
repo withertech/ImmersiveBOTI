@@ -89,7 +89,7 @@ public class ClientWorldLoader {
             helper.tick();
             if (helper.world != client.world) {
                 if (helper.lightmapTexture == client.gameRenderer.getLightTexture()) {
-                    Helper.err(String.format(
+                    Helper.error(String.format(
                         "Lightmap Texture Conflict %s %s",
                         helper.world.getDimensionKey(),
                         client.world.getDimensionKey()

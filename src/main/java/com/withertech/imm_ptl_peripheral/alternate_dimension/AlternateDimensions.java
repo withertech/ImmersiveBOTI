@@ -54,7 +54,7 @@ public class AlternateDimensions {
         DimensionType surfaceTypeObject = registryManager.getRegistry(Registry.DIMENSION_TYPE_KEY).getOrDefault(new ResourceLocation(ModMainForge.MODID + ":surface_type"));
         
         if (surfaceTypeObject == null) {
-            Helper.err("Missing dimension type immersive_portals:surface_type");
+            Helper.error("Missing dimension type immersive_portals:surface_type");
             return;
         }
         

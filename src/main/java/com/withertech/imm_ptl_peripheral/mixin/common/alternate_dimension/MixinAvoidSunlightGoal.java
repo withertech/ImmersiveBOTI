@@ -25,7 +25,7 @@ public class MixinAvoidSunlightGoal {
     )
     private void onStop(CallbackInfo ci) {
         if (!(entity.getNavigator() instanceof GroundPathNavigator)) {
-            Helper.err("Avoid sunlight goal abnormal");
+            Helper.error("Avoid sunlight goal abnormal");
             ci.cancel();
         }
     }

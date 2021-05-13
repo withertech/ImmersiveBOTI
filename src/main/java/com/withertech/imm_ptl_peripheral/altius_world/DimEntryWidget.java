@@ -57,7 +57,7 @@ public class DimEntryWidget extends AbstractOptionList.Entry<DimEntryWidget> {
             Minecraft.getInstance().getResourceManager().getResource(dimIconPath);
         }
         catch (IOException e) {
-            Helper.err("Cannot load texture " + dimIconPath);
+            Helper.error("Cannot load texture " + dimIconPath);
             dimensionIconPresent = false;
         }
         

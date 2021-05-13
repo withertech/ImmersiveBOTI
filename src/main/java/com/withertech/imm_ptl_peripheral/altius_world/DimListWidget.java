@@ -80,7 +80,7 @@ public class DimListWidget extends AbstractList<DimEntryWidget> {
         int i1 = entryWidgets.indexOf(a);
         int i2 = entryWidgets.indexOf(b);
         if (i1 == -1 || i2 == -1) {
-            Helper.err("Dimension Stack GUI Abnormal");
+            Helper.error("Dimension Stack GUI Abnormal");
             return;
         }
         

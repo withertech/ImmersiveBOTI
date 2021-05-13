@@ -463,7 +463,7 @@ public class Portal extends Entity implements PortalLike {
             }
             else {
                 if (!specialShape.isValid()) {
-                    Helper.err("Portal shape invalid ");
+                    Helper.error("Portal shape invalid ");
                     specialShape = null;
                 }
             }
@@ -749,7 +749,7 @@ public class Portal extends Entity implements PortalLike {
             if (world instanceof ServerWorld) {
                 ServerWorld destWorld = McHelper.getServer().getWorld(dimensionTo);
                 if (destWorld == null) {
-                    Helper.err("Missing Dimension " + dimensionTo.getLocation());
+                    Helper.error("Missing Dimension " + dimensionTo.getLocation());
                     return false;
                 }
             }

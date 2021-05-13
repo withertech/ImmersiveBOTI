@@ -76,7 +76,7 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
         RegistryKey<World> packetDimension = ((IEPlayerMoveC2SPacket) packet).getPlayerDimension();
         
         if (packetDimension == null) {
-            Helper.err("Player move packet is missing dimension info. Maybe the player client doesn't have IP");
+            Helper.error("Player move packet is missing dimension info. Maybe the player client doesn't have IP");
             ModMain.serverTaskList.addTask(() -> {
                 player.connection.disconnect(new StringTextComponent(
                     "The client does not have Immersive Portals mod"

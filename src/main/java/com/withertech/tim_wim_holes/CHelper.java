@@ -70,7 +70,7 @@ public class CHelper {
         }
         int errorCode = GL11.glGetError();
         if (errorCode != GL_NO_ERROR) {
-            Helper.err("OpenGL Error" + errorCode);
+            Helper.error("OpenGL Error" + errorCode);
             new Throwable().printStackTrace();
             reportedErrorNum++;
         }

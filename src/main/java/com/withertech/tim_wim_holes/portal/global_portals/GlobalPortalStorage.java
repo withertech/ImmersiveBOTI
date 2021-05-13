@@ -168,7 +168,7 @@ public class GlobalPortalStorage extends WorldSavedData {
                 newData.add(e);
             }
             else {
-                Helper.err("error reading portal" + compoundTag);
+                Helper.error("error reading portal" + compoundTag);
             }
         }
         return newData;
@@ -240,7 +240,7 @@ public class GlobalPortalStorage extends WorldSavedData {
         data.removeIf(e -> {
             RegistryKey<World> dimensionTo = ((Portal) e).dimensionTo;
             if (McHelper.getServer().getWorld(dimensionTo) == null) {
-                Helper.err("Missing Dimension for global portal " + dimensionTo.getLocation());
+                Helper.error("Missing Dimension for global portal " + dimensionTo.getLocation());
                 return true;
             }
             return false;

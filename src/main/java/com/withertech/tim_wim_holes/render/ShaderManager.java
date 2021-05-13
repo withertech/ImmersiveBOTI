@@ -46,7 +46,7 @@ public class ShaderManager {
             int logLength = GL20.glGetShaderi(idShader, GL20.GL_INFO_LOG_LENGTH);
             if (logLength > 0) {
                 String errorLog = GL20.glGetShaderInfoLog(idShader, logLength);
-                Helper.err("SHADER COMPILE ERROR");
+                Helper.error("SHADER COMPILE ERROR");
                 System.err.print(errorLog);
             }
             
@@ -74,7 +74,7 @@ public class ShaderManager {
         //check errors
         int logLength = GL20.glGetProgrami(idProgram, GL20.GL_INFO_LOG_LENGTH);
         if (logLength > 0) {
-            Helper.err("LINKING ERROR");
+            Helper.error("LINKING ERROR");
         }
         
         //is it ok?

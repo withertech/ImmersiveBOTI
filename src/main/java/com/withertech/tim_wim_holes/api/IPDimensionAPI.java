@@ -74,7 +74,7 @@ public class IPDimensionAPI {
         SimpleRegistry<Dimension> registry = generatorOptions.func_236224_e_();
         long seed = generatorOptions.getSeed();
         if (!registry.keySet().contains(Dimension.THE_NETHER.getLocation())) {
-            Helper.err("Missing the nether. This may be caused by DFU. Trying to fix");
+            Helper.error("Missing the nether. This may be caused by DFU. Trying to fix");
             
             IPDimensionAPI.addDimension(
                 seed,
@@ -90,7 +90,7 @@ public class IPDimensionAPI {
         }
         
         if (!registry.keySet().contains(Dimension.THE_END.getLocation())) {
-            Helper.err("Missing the end. This may be caused by DFU. Trying to fix");
+            Helper.error("Missing the end. This may be caused by DFU. Trying to fix");
             IPDimensionAPI.addDimension(
                 seed,
                 registry,

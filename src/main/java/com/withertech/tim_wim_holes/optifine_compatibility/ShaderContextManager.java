@@ -117,7 +117,7 @@ public class ShaderContextManager {
         if (shadersCurrentWorld != null) {
             RegistryKey<World> shaderCurrentDimension = shadersCurrentWorld.getDimensionKey();
             if (shaderCurrentDimension != dimensionToSwitchTo) {
-                Helper.err(
+                Helper.error(
                     "Shader Context Abnormal. Shader: " +
                         shaderCurrentDimension +
                         "Main: " +
@@ -135,7 +135,7 @@ public class ShaderContextManager {
         RegistryKey<World> newContextDimension = newContext.currentWorld.getDimensionKey();
         
         if (newContextDimension != dimensionToSwitchTo) {
-            Helper.err(
+            Helper.error(
                 "Shader Context Abnormal. Shader: " +
                     newContextDimension +
                     "Main: " +

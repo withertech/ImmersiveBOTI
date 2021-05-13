@@ -39,34 +39,131 @@ public class TardisEvents
 			{
 				Portal interiorPortal = Portal.entityType.create(Objects.requireNonNull(console.getWorld()));
 				assert interiorPortal != null;
-				interiorPortal.setOriginPos(door.getPositionVec().add(0, 1, -0.4));
-				interiorPortal.setDestinationDimension(Objects.requireNonNull(exterior.getWorld()).getDimensionKey());
-
-				switch (console.getTrueExteriorFacingDirection())
+				switch (door.getHorizontalFacing())
 				{
 					case NORTH:
-						interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-						interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0, 0, 0.6));
+						interiorPortal.setOriginPos(door.getPositionVec().add(0, 1, -0.4));
+						interiorPortal.setOrientationAndSize(
+								new Vector3d(1.0, 0, 0), // axisW
+								new Vector3d(0, 1.0, 0), // axisH
+								1.125, // width
+								2.4375 // height
+						);
+
+						switch (console.getTrueExteriorFacingDirection())
+						{
+							case NORTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0, 0, 0.6));
+								break;
+							case WEST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0.6, 0, 0));
+								break;
+							case SOUTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0, 0, 0.6));
+								break;
+							case EAST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0.6, 0, 0));
+								break;
+						}
+
 						break;
 					case SOUTH:
-						interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-						interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0, 0, 0.6));
+						interiorPortal.setOriginPos(door.getPositionVec().add(0, 1, 0.4));
+						interiorPortal.setOrientationAndSize(
+								new Vector3d(-1.0, 0, 0), // axisW
+								new Vector3d(0, 1.0, 0), // axisH
+								1.125, // width
+								2.4375 // height
+						);
+
+						switch (console.getTrueExteriorFacingDirection())
+						{
+							case NORTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0, 0, 0.6));
+								break;
+							case WEST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0.6, 0, 0));
+								break;
+							case SOUTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0, 0, 0.6));
+								break;
+							case EAST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0.6, 0, 0));
+								break;
+						}
+
 						break;
 					case WEST:
-						interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-						interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0.6, 0, 0));
+						interiorPortal.setOriginPos(door.getPositionVec().add(-0.4, 1, 0));
+						interiorPortal.setOrientationAndSize(
+								new Vector3d(0, 0, -1.0), // axisW
+								new Vector3d(0, 1.0, 0), // axisH
+								1.125, // width
+								2.4375 // height
+						);
+
+						switch (console.getTrueExteriorFacingDirection())
+						{
+							case NORTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0, 0, 0.6));
+								break;
+							case WEST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0.6, 0, 0));
+								break;
+							case SOUTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0, 0, 0.6));
+								break;
+							case EAST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0.6, 0, 0));
+								break;
+						}
+
 						break;
 					case EAST:
-						interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-						interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0.6, 0, 0));
+						interiorPortal.setOriginPos(door.getPositionVec().add(0.4, 1, 0));
+						interiorPortal.setOrientationAndSize(
+								new Vector3d(0, 0, 1.0), // axisW
+								new Vector3d(0, 1.0, 0), // axisH
+								1.125, // width
+								2.4375 // height
+						);
+
+						switch (console.getTrueExteriorFacingDirection())
+						{
+							case NORTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0, 0, 0.6));
+								break;
+							case WEST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).subtract(0.6, 0, 0));
+								break;
+							case SOUTH:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0, 0, 0.6));
+								break;
+							case EAST:
+								interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+								interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.0).add(0.6, 0, 0));
+								break;
+						}
+
 						break;
 				}
-				interiorPortal.setOrientationAndSize(
-						new Vector3d(1, 0, 0), // axisW
-						new Vector3d(0, 1, 0), // axisH
-						1.125, // width
-						2.4375 // height
-				);
+				interiorPortal.setDestinationDimension(Objects.requireNonNull(exterior.getWorld()).getDimensionKey());
+
 				Portal exteriorPortal = PortalManipulation.createReversePortal(interiorPortal, Portal.entityType);
 				interiorPortal.setCustomName(new StringTextComponent("Interior"));
 				exteriorPortal.setCustomName(new StringTextComponent("Exterior"));

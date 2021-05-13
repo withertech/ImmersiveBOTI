@@ -33,7 +33,7 @@ public class MyTaskList {
                 return task.runAndGetIsFinished();
             }
             catch (Throwable e) {
-                Helper.err("Failed to process task " + task);
+                Helper.error("Failed to process task " + task);
                 e.printStackTrace();
                 return true;
             }

@@ -155,7 +155,7 @@ public abstract class BreakablePortalEntity extends Portal {
             markShouldBreak();
         }
         else if (!isPortalPaired()) {
-            Helper.err("Break portal because of abnormal pairing");
+            Helper.error("Break portal because of abnormal pairing");
             markShouldBreak();
         }
     }

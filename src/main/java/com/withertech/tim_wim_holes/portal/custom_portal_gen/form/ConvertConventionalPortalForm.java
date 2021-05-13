@@ -57,12 +57,12 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
         @Nullable Entity triggeringEntity
     ) {
         if (triggeringEntity == null) {
-            Helper.err("Null triggering entity for portal conversion");
+            Helper.error("Null triggering entity for portal conversion");
             return false;
         }
         
         if (!(triggeringEntity instanceof ServerPlayerEntity)) {
-            Helper.err("Non player entity triggers portal conversion");
+            Helper.error("Non player entity triggers portal conversion");
             return false;
         }
         
@@ -70,7 +70,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
         
         
         if (player.world != toWorld) {
-            Helper.err("The player is not in the correct world " +
+            Helper.error("The player is not in the correct world " +
                 player.world.getDimensionKey().getLocation());
             return false;
         }
@@ -106,7 +106,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
         );
         
         if (fromShape == null) {
-            Helper.err("Cannot find from side shape");
+            Helper.error("Cannot find from side shape");
             return false;
         }
         
@@ -115,7 +115,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
         );
         
         if (toShape == null) {
-            Helper.err("Cannot fine to side shape");
+            Helper.error("Cannot fine to side shape");
             return false;
         }
         
@@ -127,7 +127,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
         );
         
         if (portalGenInfo == null) {
-            Helper.err("Shapes are incompatible");
+            Helper.error("Shapes are incompatible");
             player.sendStatusMessage(
                 new TranslationTextComponent(
                     "imm_ptl.incompatible_shape"
@@ -229,7 +229,7 @@ public class ConvertConventionalPortalForm extends PortalGenForm {
             axis = Direction.Axis.Z;
         }
         else {
-            Helper.err("The box is not flat " + box);
+            Helper.error("The box is not flat " + box);
             return null;
         }
         

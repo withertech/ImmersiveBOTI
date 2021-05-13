@@ -185,7 +185,7 @@ public class DimensionIdManagement {
         CompoundNBT dimensionTypeTag = fabricRegistryRecord.getCompound("minecraft:dimension_type");
         
         if (dimensionTypeTag.isEmpty()) {
-            Helper.err("Missing 'minecraft:dimension_type' " + fabricRegistryRecord);
+            Helper.error("Missing 'minecraft:dimension_type' " + fabricRegistryRecord);
             return null;
         }
         
@@ -198,7 +198,7 @@ public class DimensionIdManagement {
                 bimap.put(DimId.idToKey(dim), data - 1);
             }
             else {
-                Helper.err(String.format(
+                Helper.error(String.format(
                     "Non-int tag in fabric registry data %s %s %s", t, dim, fabricRegistryRecord
                 ));
             }

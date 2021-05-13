@@ -396,17 +396,13 @@ public class Helper {
     }
 
     public static void debug(Object str) {
-        LOGGER.info(str);
-    }
-    
-    public static void err(Object str) {
-        LOGGER.error(str);
-    }
-    
-    public static void dbg(Object str) {
         LOGGER.debug(str);
     }
     
+    public static void error(Object str) {
+        LOGGER.error(str);
+    }
+
     public static Vector3d[] eightVerticesOf(AxisAlignedBB box) {
         return new Vector3d[]{
             new Vector3d(box.minX, box.minY, box.minZ),

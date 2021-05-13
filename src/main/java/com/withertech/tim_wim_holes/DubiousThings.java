@@ -40,18 +40,18 @@ public class DubiousThings {
     private static void checkClientPlayerState() {
         Minecraft client = Minecraft.getInstance();
         if (client.world != client.player.world) {
-            Helper.err("Player world abnormal");
+            Helper.error("Player world abnormal");
             //don't know how to fix it
         }
         Entity playerInWorld = client.world.getEntityByID(client.player.getEntityId());
         if (playerInWorld != client.player) {
-            Helper.err("Client Player Mismatch");
+            Helper.error("Client Player Mismatch");
             if (playerInWorld instanceof ClientPlayerEntity) {
                 client.player = ((ClientPlayerEntity) playerInWorld);
                 Helper.info("Force corrected");
             }
             else {
-                Helper.err("Non-player entity in client has duplicate id");
+                Helper.error("Non-player entity in client has duplicate id");
             }
         }
     }

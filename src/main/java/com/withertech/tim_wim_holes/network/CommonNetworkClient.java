@@ -66,7 +66,7 @@ public class CommonNetworkClient {
         
         if ((netHandler).getWorld() != packetWorld) {
             ((IEClientPlayNetworkHandler) netHandler).setWorld(packetWorld);
-            Helper.err("The world field of client net handler is wrong");
+            Helper.error("The world field of client net handler is wrong");
         }
         
         client.getProfiler().startSection(() -> {
@@ -108,7 +108,7 @@ public class CommonNetworkClient {
         }
         finally {
             if (client.world != newWorld) {
-                Helper.err("Respawn packet should not be redirected");
+                Helper.error("Respawn packet should not be redirected");
                 originalWorld = client.world;
                 originalWorldRenderer = client.worldRenderer;
                 throw new RuntimeException("Respawn packet should not be redirected");
@@ -123,7 +123,7 @@ public class CommonNetworkClient {
     public static void processEntitySpawn(String entityTypeString, int entityId, RegistryKey<World> dim, CompoundNBT compoundTag) {
         Optional<EntityType<?>> entityType = EntityType.byKey(entityTypeString);
         if (!entityType.isPresent()) {
-            Helper.err("unknown entity type " + entityTypeString);
+            Helper.error("unknown entity type " + entityTypeString);
             return;
         }
         
