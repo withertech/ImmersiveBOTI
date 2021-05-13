@@ -21,7 +21,7 @@ apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.0.2'
+version = '0.0.3'
 group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'tim-wim-hole'
 
@@ -149,8 +149,9 @@ curseforge {
     apiKey = System.getenv('CURSEFORGE_API_KEY') ?: 'unset'
     project {
         id = '481480'
-        changelog = '''
-fixed wrong links in mods.toml
+        changelog =
+'''
+fix some weird portal rotation bugs and interior change and time vortex stuff
 '''
         releaseType = 'alpha'
         addGameVersion '1.16.5'
