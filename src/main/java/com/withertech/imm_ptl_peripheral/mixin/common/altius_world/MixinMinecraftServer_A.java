@@ -8,9 +8,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(MinecraftServer.class)
-public abstract class MixinMinecraftServer_A {
-    @Shadow
-    public abstract ServerWorld getWorld(RegistryKey<World> dimensionType);
+public abstract class MixinMinecraftServer_A
+{
+	@Shadow
+	public abstract ServerWorld getWorld(RegistryKey<World> dimensionType);
 
 //    @Inject(
 //        method = "prepareStartRegion",

@@ -9,36 +9,44 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public class MixinLivingEntity {
-    
-    //maybe avoid memory leak???
-    @Inject(method = "Lnet/minecraft/entity/LivingEntity;tick()V", at = @At("RETURN"))
-    private void onTickEnded(CallbackInfo ci) {
-        LivingEntity this_ = (LivingEntity) (Object) this;
-        if (this_.getRevengeTarget() != null) {
-            if (this_.getRevengeTarget().world != this_.world) {
-            	this_.setRevengeTarget(null);
-            }
-        }
-        if (this_.getLastAttackedEntity() != null) {
-            if (this_.getLastAttackedEntity().world != this_.world) {
-            	this_.setAttackingPlayer(null);
-            }
-        }
-    }
-    
-    @Inject(
-        method = "Lnet/minecraft/entity/LivingEntity;canEntityBeSeen(Lnet/minecraft/entity/Entity;)Z",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private void onCanSee(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (entity.world != ((Entity) (Object) this).world) {
-            cir.setReturnValue(false);
-            return;
-        }
-    }
-    
+public class MixinLivingEntity
+{
+
+	//maybe avoid memory leak???
+	@Inject(method = "Lnet/minecraft/entity/LivingEntity;tick()V", at = @At("RETURN"))
+	private void onTickEnded(CallbackInfo ci)
+	{
+		LivingEntity this_ = (LivingEntity) (Object) this;
+		if (this_.getRevengeTarget() != null)
+		{
+			if (this_.getRevengeTarget().world != this_.world)
+			{
+				this_.setRevengeTarget(null);
+			}
+		}
+		if (this_.getLastAttackedEntity() != null)
+		{
+			if (this_.getLastAttackedEntity().world != this_.world)
+			{
+				this_.setAttackingPlayer(null);
+			}
+		}
+	}
+
+	@Inject(
+			method = "Lnet/minecraft/entity/LivingEntity;canEntityBeSeen(Lnet/minecraft/entity/Entity;)Z",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private void onCanSee(Entity entity, CallbackInfoReturnable<Boolean> cir)
+	{
+		if (entity.world != ((Entity) (Object) this).world)
+		{
+			cir.setReturnValue(false);
+			return;
+		}
+	}
+
 //    @Inject(
 //        method = "canSee",
 //        at = @At("RETURN"),

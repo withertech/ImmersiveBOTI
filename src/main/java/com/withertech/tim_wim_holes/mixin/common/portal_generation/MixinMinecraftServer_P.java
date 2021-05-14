@@ -7,9 +7,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
-public class MixinMinecraftServer_P {
-    @Inject(method = "Lnet/minecraft/server/MinecraftServer;func_240800_l__()V", at = @At("RETURN"))
-    private void onLoadWorldFinished(CallbackInfo ci) {
+public class MixinMinecraftServer_P
+{
+	@Inject(method = "Lnet/minecraft/server/MinecraftServer;func_240800_l__()V", at = @At("RETURN"))
+	private void onLoadWorldFinished(CallbackInfo ci)
+	{
 //        CustomPortalGenManagement.onDatapackReload();
-    }
+	}
 }

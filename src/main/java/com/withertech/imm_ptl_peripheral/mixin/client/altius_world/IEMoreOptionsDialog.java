@@ -4,6 +4,7 @@ import net.minecraft.client.gui.screen.WorldOptionsScreen;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(WorldOptionsScreen.class)
-public interface IEMoreOptionsDialog {
+public interface IEMoreOptionsDialog
+{
 
 }

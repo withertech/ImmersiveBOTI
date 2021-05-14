@@ -7,25 +7,29 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class LoadingIndicatorRenderer extends EntityRenderer<LoadingIndicatorEntity> {
-    public LoadingIndicatorRenderer(EntityRendererManager entityRenderDispatcher_1) {
-        super(entityRenderDispatcher_1);
-    }
-    
-    @Override
-    public ResourceLocation getEntityTexture(LoadingIndicatorEntity var1) {
-        return null;
-    }
-    
-    @Override
-    public void render(
-        LoadingIndicatorEntity entity_1,
-        float float_1,
-        float float_2,
-        MatrixStack matrixStack_1,
-        IRenderTypeBuffer vertexConsumerProvider_1,
-        int int_1
-    ) {
+public class LoadingIndicatorRenderer extends EntityRenderer<LoadingIndicatorEntity>
+{
+	public LoadingIndicatorRenderer(EntityRendererManager entityRenderDispatcher_1)
+	{
+		super(entityRenderDispatcher_1);
+	}
+
+	@Override
+	public ResourceLocation getEntityTexture(LoadingIndicatorEntity var1)
+	{
+		return null;
+	}
+
+	@Override
+	public void render(
+			LoadingIndicatorEntity entity_1,
+			float float_1,
+			float float_2,
+			MatrixStack matrixStack_1,
+			IRenderTypeBuffer vertexConsumerProvider_1,
+			int int_1
+	)
+	{
 //        String[] splited = entity_1.getText().getString().split("\n");
 //        for (int i = 0; i < splited.length; i++) {
 //            matrixStack_1.push();
@@ -39,5 +43,5 @@ public class LoadingIndicatorRenderer extends EntityRenderer<LoadingIndicatorEnt
 //            );
 //            matrixStack_1.pop();
 //        }
-    }
+	}
 }

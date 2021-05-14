@@ -10,36 +10,37 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.entity.Entity;
 
-public interface IEWorldRenderer {
-    EntityRendererManager getEntityRenderDispatcher();
-    
-    ViewFrustum getBuiltChunkStorage();
-    
-    ObjectList getVisibleChunks();
-    
-    void setVisibleChunks(ObjectList l);
-    
-    ChunkRenderDispatcher getChunkBuilder();
-    
-    void myRenderEntity(
-        Entity entity,
-        double cameraX,
-        double cameraY,
-        double cameraZ,
-        float tickDelta,
-        MatrixStack matrixStack,
-        IRenderTypeBuffer vertexConsumerProvider
-    );
-    
-    ShaderGroup portal_getTransparencyShader();
-    
-    void portal_setTransparencyShader(ShaderGroup arg);
-    
-    RenderTypeBuffers getBufferBuilderStorage();
-    
-    void setBufferBuilderStorage(RenderTypeBuffers arg);
-    
-    int portal_getRenderDistance();
-    
-    void portal_setRenderDistance(int arg);
+public interface IEWorldRenderer
+{
+	EntityRendererManager getEntityRenderDispatcher();
+
+	ViewFrustum getBuiltChunkStorage();
+
+	ObjectList getVisibleChunks();
+
+	void setVisibleChunks(ObjectList l);
+
+	ChunkRenderDispatcher getChunkBuilder();
+
+	void myRenderEntity(
+			Entity entity,
+			double cameraX,
+			double cameraY,
+			double cameraZ,
+			float tickDelta,
+			MatrixStack matrixStack,
+			IRenderTypeBuffer vertexConsumerProvider
+	);
+
+	ShaderGroup portal_getTransparencyShader();
+
+	void portal_setTransparencyShader(ShaderGroup arg);
+
+	RenderTypeBuffers getBufferBuilderStorage();
+
+	void setBufferBuilderStorage(RenderTypeBuffers arg);
+
+	int portal_getRenderDistance();
+
+	void portal_setRenderDistance(int arg);
 }

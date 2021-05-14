@@ -9,29 +9,31 @@ import net.minecraft.world.server.ChunkHolder;
 import net.minecraft.world.server.ChunkManager;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.ServerWorldLightManager;
+
 import java.io.File;
 
-public interface IEThreadedAnvilChunkStorage {
-    int getWatchDistance();
-    
-    ServerWorld getWorld();
-    
-    ServerWorldLightManager getLightingProvider();
-    
-    ChunkHolder getChunkHolder_(long long_1);
-    
-    void onPlayerRespawn(ServerPlayerEntity oldPlayer);
-    
-    void updateEntityTrackersAfterSendingChunkPacket(
-        Chunk chunk,
-        ServerPlayerEntity playerEntity
-    );
-    
-    void resendSpawnPacketToTrackers(Entity entity);
-    
-    File portal_getsaveDir();
-    
-    boolean portal_isChunkGenerated(ChunkPos chunkPos);
-    
-    Int2ObjectMap<ChunkManager.EntityTracker> getEntityTrackerMap();
+public interface IEThreadedAnvilChunkStorage
+{
+	int getWatchDistance();
+
+	ServerWorld getWorld();
+
+	ServerWorldLightManager getLightingProvider();
+
+	ChunkHolder getChunkHolder_(long long_1);
+
+	void onPlayerRespawn(ServerPlayerEntity oldPlayer);
+
+	void updateEntityTrackersAfterSendingChunkPacket(
+			Chunk chunk,
+			ServerPlayerEntity playerEntity
+	);
+
+	void resendSpawnPacketToTrackers(Entity entity);
+
+	File portal_getsaveDir();
+
+	boolean portal_isChunkGenerated(ChunkPos chunkPos);
+
+	Int2ObjectMap<ChunkManager.EntityTracker> getEntityTrackerMap();
 }

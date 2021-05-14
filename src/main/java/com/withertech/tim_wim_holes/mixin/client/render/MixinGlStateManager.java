@@ -12,41 +12,49 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GlStateManager.class)
-public abstract class MixinGlStateManager {
-    @Shadow
-    public static void disableCull() {
-        throw new IllegalStateException();
-    }
-    
-    @Inject(
-        method = "Lcom/mojang/blaze3d/platform/GlStateManager;enableCull()V",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private static void onEnableCull(CallbackInfo ci) {
-        if (RenderStates.shouldForceDisableCull) {
-            disableCull();
-            ci.cancel();
-        }
-    }
-    
-    @Inject(
-        method = "Lcom/mojang/blaze3d/platform/GlStateManager;genBuffers()I",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private static void onGenBuffers(CallbackInfoReturnable<Integer> cir) {
-        if (Global.cacheGlBuffer) {
-            cir.setReturnValue(GlBufferCache.getNewBufferId());
-            cir.cancel();
-        }
-    }
-    
-    @Inject(method = "Lcom/mojang/blaze3d/platform/GlStateManager;enableFog()V", at = @At("HEAD"), cancellable = true)
-    private static void onEnableFog(CallbackInfo ci) {
-        if (Global.debugDisableFog) {
-            ci.cancel();
-        }
-    }
-    
+public abstract class MixinGlStateManager
+{
+	@Shadow
+	public static void disableCull()
+	{
+		throw new IllegalStateException();
+	}
+
+	@Inject(
+			method = "Lcom/mojang/blaze3d/platform/GlStateManager;enableCull()V",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private static void onEnableCull(CallbackInfo ci)
+	{
+		if (RenderStates.shouldForceDisableCull)
+		{
+			disableCull();
+			ci.cancel();
+		}
+	}
+
+	@Inject(
+			method = "Lcom/mojang/blaze3d/platform/GlStateManager;genBuffers()I",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private static void onGenBuffers(CallbackInfoReturnable<Integer> cir)
+	{
+		if (Global.cacheGlBuffer)
+		{
+			cir.setReturnValue(GlBufferCache.getNewBufferId());
+			cir.cancel();
+		}
+	}
+
+	@Inject(method = "Lcom/mojang/blaze3d/platform/GlStateManager;enableFog()V", at = @At("HEAD"), cancellable = true)
+	private static void onEnableFog(CallbackInfo ci)
+	{
+		if (Global.debugDisableFog)
+		{
+			ci.cancel();
+		}
+	}
+
 }

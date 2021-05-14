@@ -1,30 +1,32 @@
 package com.withertech.imm_ptl_peripheral.mixin.common.altius_world;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-
-import java.util.function.Supplier;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+
+import java.util.function.Supplier;
 
 @Mixin(NoiseChunkGenerator.class)
-public abstract class MixinNoiseChunkGenerator extends ChunkGenerator {
-    
-    @Shadow
-    @Final
-    public Supplier<DimensionSettings> field_236080_h_;
-    
-    @Shadow
-    @Final
-    private int field_236085_x_;
-    
-    public MixinNoiseChunkGenerator(BiomeProvider biomeSource, DimensionStructuresSettings arg) {
-        super(biomeSource, arg);
-    }
+public abstract class MixinNoiseChunkGenerator extends ChunkGenerator
+{
+
+	@Shadow
+	@Final
+	public Supplier<DimensionSettings> field_236080_h_;
+
+	@Shadow
+	@Final
+	private int field_236085_x_;
+
+	public MixinNoiseChunkGenerator(BiomeProvider biomeSource, DimensionStructuresSettings arg)
+	{
+		super(biomeSource, arg);
+	}
 //
 //    @Inject(
 //        method = "buildBedrock",
@@ -79,5 +81,5 @@ public abstract class MixinNoiseChunkGenerator extends ChunkGenerator {
 //            }
 //        }
 //    }
-    
+
 }

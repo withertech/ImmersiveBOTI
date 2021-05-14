@@ -29,100 +29,106 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Mixin(value = ChunkManager.class, priority = 1100)
-public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvilChunkStorage {
-    @Shadow
-    private int viewDistance;
-    
-    @Shadow
-    @Final
-    private ServerWorldLightManager lightManager;
-    
-    @Shadow
-    @Final
-    private ServerWorld world;
-    
-    @Shadow
-    protected abstract ChunkHolder func_219219_b(long long_1);
-    
-    @Shadow
-    abstract void setPlayerTracking(
-        ServerPlayerEntity serverPlayerEntity_1,
-        boolean boolean_1
-    );
-    
-    @Shadow
-    @Final
-    private Int2ObjectMap entities;
-    
-    @Shadow
-    @Final
-    private AtomicInteger loadedChunkCount;
-    
-    @Shadow
-    @Final
-    private ITaskExecutor<ChunkTaskPriorityQueueSorter.FunctionEntry<Runnable>> field_219265_s;
-    
-    @Shadow
-    @Final
-    private File dimensionDirectory;
-    
-    @Shadow
-    protected abstract CompoundNBT loadChunkData(ChunkPos pos) throws IOException;
-    
-    @Override
-    public int getWatchDistance() {
-        return viewDistance;
-    }
-    
-    @Override
-    public ServerWorld getWorld() {
-        return world;
-    }
-    
-    @Override
-    public ServerWorldLightManager getLightingProvider() {
-        return lightManager;
-    }
-    
-    @Override
-    public ChunkHolder getChunkHolder_(long long_1) {
-        return func_219219_b(long_1);
-    }
-    
-    @Override
-    public File portal_getsaveDir() {
-        return dimensionDirectory;
-    }
-    
-    @Override
-    public boolean portal_isChunkGenerated(ChunkPos chunkPos) {
-        if (world.getChunkProvider().chunkExists(chunkPos.x, chunkPos.z)) {
-            return true;
-        }
-        
-        try {
-            CompoundNBT tag = loadChunkData(chunkPos);
-            return tag != null;
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
-    /**
-     * @author qouteall
-     */
-    @Overwrite
-    public void sendChunkData(
-        ServerPlayerEntity player,
-        IPacket<?>[] packets_1,
-        Chunk worldChunk_1
-    ) {
-        //chunk data packet will be sent on ChunkDataSyncManager
-    }
-    
-    //cancel vanilla packet sending
+public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvilChunkStorage
+{
+	@Shadow
+	private int viewDistance;
+
+	@Shadow
+	@Final
+	private ServerWorldLightManager lightManager;
+
+	@Shadow
+	@Final
+	private ServerWorld world;
+	@Shadow
+	@Final
+	private Int2ObjectMap entities;
+	@Shadow
+	@Final
+	private AtomicInteger loadedChunkCount;
+	@Shadow
+	@Final
+	private ITaskExecutor<ChunkTaskPriorityQueueSorter.FunctionEntry<Runnable>> field_219265_s;
+	@Shadow
+	@Final
+	private File dimensionDirectory;
+
+	@Shadow
+	protected abstract ChunkHolder func_219219_b(long long_1);
+
+	@Shadow
+	abstract void setPlayerTracking(
+			ServerPlayerEntity serverPlayerEntity_1,
+			boolean boolean_1
+	);
+
+	@Shadow
+	protected abstract CompoundNBT loadChunkData(ChunkPos pos) throws IOException;
+
+	@Override
+	public int getWatchDistance()
+	{
+		return viewDistance;
+	}
+
+	@Override
+	public ServerWorld getWorld()
+	{
+		return world;
+	}
+
+	@Override
+	public ServerWorldLightManager getLightingProvider()
+	{
+		return lightManager;
+	}
+
+	@Override
+	public ChunkHolder getChunkHolder_(long long_1)
+	{
+		return func_219219_b(long_1);
+	}
+
+	@Override
+	public File portal_getsaveDir()
+	{
+		return dimensionDirectory;
+	}
+
+	@Override
+	public boolean portal_isChunkGenerated(ChunkPos chunkPos)
+	{
+		if (world.getChunkProvider().chunkExists(chunkPos.x, chunkPos.z))
+		{
+			return true;
+		}
+
+		try
+		{
+			CompoundNBT tag = loadChunkData(chunkPos);
+			return tag != null;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * @author qouteall
+	 */
+	@Overwrite
+	public void sendChunkData(
+			ServerPlayerEntity player,
+			IPacket<?>[] packets_1,
+			Chunk worldChunk_1
+	)
+	{
+		//chunk data packet will be sent on ChunkDataSyncManager
+	}
+
+	//cancel vanilla packet sending
 //    @Redirect(
 //        method = "makeChunkTickable",
 //        at = @At(
@@ -137,29 +143,33 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 //    ) {
 //        return null;
 //    }
-    
-    //do my packet sending
-    @Inject(
-        method = "Lnet/minecraft/world/server/ChunkManager;func_219179_a(Lnet/minecraft/world/server/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;",
-        at = @At("RETURN"),
-        cancellable = true
-    )
-    private void onCreateTickingFuture(
-        ChunkHolder chunkHolder,
-        CallbackInfoReturnable<CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>>> cir
-    ) {
-        CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>> future = cir.getReturnValue();
-        
-        future.thenAcceptAsync((either) -> {
-            either.mapLeft((worldChunk) -> {
-                this.loadedChunkCount.getAndIncrement();
-                
-                Global.chunkDataSyncManager.onChunkProvidedDeferred(worldChunk);
-                
-                return Either.left(worldChunk);
-            });
-        }, (runnable) -> {
-            this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable));
-        });
-    }
+
+	//do my packet sending
+	@Inject(
+			method = "Lnet/minecraft/world/server/ChunkManager;func_219179_a(Lnet/minecraft/world/server/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;",
+			at = @At("RETURN"),
+			cancellable = true
+	)
+	private void onCreateTickingFuture(
+			ChunkHolder chunkHolder,
+			CallbackInfoReturnable<CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>>> cir
+	)
+	{
+		CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>> future = cir.getReturnValue();
+
+		future.thenAcceptAsync((either) ->
+		{
+			either.mapLeft((worldChunk) ->
+			{
+				this.loadedChunkCount.getAndIncrement();
+
+				Global.chunkDataSyncManager.onChunkProvidedDeferred(worldChunk);
+
+				return Either.left(worldChunk);
+			});
+		}, (runnable) ->
+		{
+			this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable));
+		});
+	}
 }

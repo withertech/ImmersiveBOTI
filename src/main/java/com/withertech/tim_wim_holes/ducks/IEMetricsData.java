@@ -1,5 +1,6 @@
 package com.withertech.tim_wim_holes.ducks;
 
-public interface IEMetricsData {
-    long[] getSamplesNonClientOnly();
+public interface IEMetricsData
+{
+	long[] getSamplesNonClientOnly();
 }

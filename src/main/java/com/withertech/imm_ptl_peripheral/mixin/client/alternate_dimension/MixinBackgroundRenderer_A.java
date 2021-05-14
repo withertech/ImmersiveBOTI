@@ -11,26 +11,29 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(FogRenderer.class)
-public class MixinBackgroundRenderer_A {
-    //avoid alternate dimension dark when seeing from overworld
-    @Redirect(
-        method = "Lnet/minecraft/client/renderer/FogRenderer;updateFogColor(Lnet/minecraft/client/renderer/ActiveRenderInfo;FLnet/minecraft/client/world/ClientWorld;IF)V",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/renderer/ActiveRenderInfo;getProjectedView()Lnet/minecraft/util/math/vector/Vector3d;"
-        )
-    )
-    private static Vector3d redirectCameraGetPos(ActiveRenderInfo camera) {
-        ClientWorld world = Minecraft.getInstance().world;
-        if (world != null && AlternateDimensions.isAlternateDimension(world)) {
-            return new Vector3d(
-                camera.getProjectedView().x,
-                Math.max(32.0, camera.getProjectedView().y),
-                camera.getProjectedView().z
-            );
-        }
-        else {
-            return camera.getProjectedView();
-        }
-    }
+public class MixinBackgroundRenderer_A
+{
+	//avoid alternate dimension dark when seeing from overworld
+	@Redirect(
+			method = "Lnet/minecraft/client/renderer/FogRenderer;updateFogColor(Lnet/minecraft/client/renderer/ActiveRenderInfo;FLnet/minecraft/client/world/ClientWorld;IF)V",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/client/renderer/ActiveRenderInfo;getProjectedView()Lnet/minecraft/util/math/vector/Vector3d;"
+			)
+	)
+	private static Vector3d redirectCameraGetPos(ActiveRenderInfo camera)
+	{
+		ClientWorld world = Minecraft.getInstance().world;
+		if (world != null && AlternateDimensions.isAlternateDimension(world))
+		{
+			return new Vector3d(
+					camera.getProjectedView().x,
+					Math.max(32.0, camera.getProjectedView().y),
+					camera.getProjectedView().z
+			);
+		} else
+		{
+			return camera.getProjectedView();
+		}
+	}
 }

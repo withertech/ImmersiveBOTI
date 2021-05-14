@@ -9,22 +9,25 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ClientWorld.class)
-public abstract class MixinClientWorld_MA implements IEClientWorld_MA {
-    @Shadow
-    @Final
-    private Int2ObjectMap<Entity> entitiesById;
-    
-    @Shadow
-    protected abstract void removeEntity(Entity entityIn);
-    
-    @Override
-    public void removeEntityWhilstMaintainingCapability(Entity entityToRemove) {
-        int eid = entityToRemove.getEntityId();
-        Entity entity = entitiesById.remove(eid);
-        if (entity != null) {
-            //keep the capability
-            entity.remove(true);
-            this.removeEntity(entity);
-        }
-    }
+public abstract class MixinClientWorld_MA implements IEClientWorld_MA
+{
+	@Shadow
+	@Final
+	private Int2ObjectMap<Entity> entitiesById;
+
+	@Shadow
+	protected abstract void removeEntity(Entity entityIn);
+
+	@Override
+	public void removeEntityWhilstMaintainingCapability(Entity entityToRemove)
+	{
+		int eid = entityToRemove.getEntityId();
+		Entity entity = entitiesById.remove(eid);
+		if (entity != null)
+		{
+			//keep the capability
+			entity.remove(true);
+			this.removeEntity(entity);
+		}
+	}
 }

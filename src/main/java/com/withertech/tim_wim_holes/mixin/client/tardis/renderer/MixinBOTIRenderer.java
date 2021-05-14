@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinBOTIRenderer
 {
 	@Inject(method = "renderBOTI(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/tardis/mod/client/renderers/boti/PortalInfo;)V", at = @At("HEAD"), cancellable = true, remap = false)
-	private static void renderBOTI(MatrixStack ms, PortalInfo info, CallbackInfo ci) {
+	private static void renderBOTI(MatrixStack ms, PortalInfo info, CallbackInfo ci)
+	{
 		if (!TConfig.CLIENT.enableBoti.get()) ci.cancel();
 	}
 }

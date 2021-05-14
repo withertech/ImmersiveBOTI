@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 
 @Pseudo
 @Mixin(value = ShadersRender.class, remap = false)
-public class MixinShadersRender {
+public class MixinShadersRender
+{
 
 }

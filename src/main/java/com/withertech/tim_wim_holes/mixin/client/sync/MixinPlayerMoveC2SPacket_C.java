@@ -14,25 +14,29 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CPlayerPacket.class)
-public class MixinPlayerMoveC2SPacket_C {
-    @Inject(
-        method = "<init>(Z)V",
-        at = @At("RETURN")
-    )
-    private void onConstruct(boolean boolean_1, CallbackInfo ci) {
-        RegistryKey<World> dimension = Minecraft.getInstance().player.world.getDimensionKey();
-        ((IEPlayerMoveC2SPacket) this).setPlayerDimension(dimension);
-        assert dimension == Minecraft.getInstance().world.getDimensionKey();
-    }
-    
-    @Inject(
-        method = "Lnet/minecraft/network/play/client/CPlayerPacket;writePacketData(Lnet/minecraft/network/PacketBuffer;)V",
-        at = @At("HEAD")
-    )
-    private void onWrite(PacketBuffer buf, CallbackInfo ci) {
-        if (NetworkAdapt.doesServerHasIP()) {
-            RegistryKey<World> playerDimension = ((IEPlayerMoveC2SPacket) this).getPlayerDimension();
-            DimId.writeWorldId(buf, playerDimension, true);
-        }
-    }
+public class MixinPlayerMoveC2SPacket_C
+{
+	@Inject(
+			method = "<init>(Z)V",
+			at = @At("RETURN")
+	)
+	private void onConstruct(boolean boolean_1, CallbackInfo ci)
+	{
+		RegistryKey<World> dimension = Minecraft.getInstance().player.world.getDimensionKey();
+		((IEPlayerMoveC2SPacket) this).setPlayerDimension(dimension);
+		assert dimension == Minecraft.getInstance().world.getDimensionKey();
+	}
+
+	@Inject(
+			method = "Lnet/minecraft/network/play/client/CPlayerPacket;writePacketData(Lnet/minecraft/network/PacketBuffer;)V",
+			at = @At("HEAD")
+	)
+	private void onWrite(PacketBuffer buf, CallbackInfo ci)
+	{
+		if (NetworkAdapt.doesServerHasIP())
+		{
+			RegistryKey<World> playerDimension = ((IEPlayerMoveC2SPacket) this).getPlayerDimension();
+			DimId.writeWorldId(buf, playerDimension, true);
+		}
+	}
 }

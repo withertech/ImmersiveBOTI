@@ -6,7 +6,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Particle.class)
-public interface IEParticle {
-    @Accessor("world")
-    ClientWorld portal_getWorld();
+public interface IEParticle
+{
+	@Accessor("world")
+	ClientWorld portal_getWorld();
 }

@@ -4,7 +4,8 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Structure.class)
-public class MixinStructureFeature {
+public class MixinStructureFeature
+{
 //    @Redirect(
 //        method = "method_28657",
 //        at = @At(

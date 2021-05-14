@@ -8,19 +8,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(Entity.class)
-public class MixinEntity_C {
-    // avoid invisible armor stands to be visible through portal
-    @Redirect(
-        method = "Lnet/minecraft/entity/Entity;isInvisibleToPlayer(Lnet/minecraft/entity/player/PlayerEntity;)Z",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/entity/player/PlayerEntity;isSpectator()Z"
-        )
-    )
-    private boolean redirectIsSpectator(PlayerEntity playerEntity) {
-        if (WorldRenderInfo.isRendering()) {
-            return false;
-        }
-        return playerEntity.isSpectator();
-    }
+public class MixinEntity_C
+{
+	// avoid invisible armor stands to be visible through portal
+	@Redirect(
+			method = "Lnet/minecraft/entity/Entity;isInvisibleToPlayer(Lnet/minecraft/entity/player/PlayerEntity;)Z",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/entity/player/PlayerEntity;isSpectator()Z"
+			)
+	)
+	private boolean redirectIsSpectator(PlayerEntity playerEntity)
+	{
+		if (WorldRenderInfo.isRendering())
+		{
+			return false;
+		}
+		return playerEntity.isSpectator();
+	}
 }

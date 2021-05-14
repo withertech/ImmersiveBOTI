@@ -11,24 +11,28 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(IRenderTypeBuffer.Impl.class)
-public class MixinVertexConsumerProviderImmediate {
-    @Inject(
-        method = "Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;finish(Lnet/minecraft/client/renderer/RenderType;)V",
-        at = @At("HEAD")
-    )
-    private void onBeginDraw(RenderType layer, CallbackInfo ci) {
-        if (PortalRendering.isRenderingOddNumberOfMirrors()) {
-            RenderStates.shouldForceDisableCull = true;
-            GlStateManager.disableCull();
-        }
-    }
-    
-    @Inject(
-        method = "Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;finish(Lnet/minecraft/client/renderer/RenderType;)V",
-        at = @At("RETURN")
-    )
-    private void onEndDraw(RenderType layer, CallbackInfo ci) {
-        RenderStates.shouldForceDisableCull = false;
-        GlStateManager.enableCull();
-    }
+public class MixinVertexConsumerProviderImmediate
+{
+	@Inject(
+			method = "Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;finish(Lnet/minecraft/client/renderer/RenderType;)V",
+			at = @At("HEAD")
+	)
+	private void onBeginDraw(RenderType layer, CallbackInfo ci)
+	{
+		if (PortalRendering.isRenderingOddNumberOfMirrors())
+		{
+			RenderStates.shouldForceDisableCull = true;
+			GlStateManager.disableCull();
+		}
+	}
+
+	@Inject(
+			method = "Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;finish(Lnet/minecraft/client/renderer/RenderType;)V",
+			at = @At("RETURN")
+	)
+	private void onEndDraw(RenderType layer, CallbackInfo ci)
+	{
+		RenderStates.shouldForceDisableCull = false;
+		GlStateManager.enableCull();
+	}
 }

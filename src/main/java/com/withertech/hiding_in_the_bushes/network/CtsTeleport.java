@@ -12,44 +12,50 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public class CtsTeleport {
-    RegistryKey<World> dimensionBefore;
-    Vector3d posBefore;
-    UUID portalEntityId;
-    
-    public CtsTeleport(RegistryKey<World> dimensionBefore, Vector3d posBefore, UUID portalEntityId) {
-        this.dimensionBefore = dimensionBefore;
-        this.posBefore = posBefore;
-        this.portalEntityId = portalEntityId;
-    }
-    
-    public CtsTeleport(PacketBuffer buf) {
-        dimensionBefore = DimId.readWorldId(buf, false);
-        posBefore = new Vector3d(
-            buf.readDouble(),
-            buf.readDouble(),
-            buf.readDouble()
-        );
-        portalEntityId = buf.readUniqueId();
-    }
-    
-    public void encode(PacketBuffer buf) {
-        DimId.writeWorldId(buf, dimensionBefore, true);
-        buf.writeDouble(posBefore.x);
-        buf.writeDouble(posBefore.y);
-        buf.writeDouble(posBefore.z);
-        buf.writeUniqueId(portalEntityId);
-    }
-    
-    public void handle(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            Global.serverTeleportationManager.onPlayerTeleportedInClient(
-                (ServerPlayerEntity) context.get().getSender(),
-                dimensionBefore,
-                posBefore,
-                portalEntityId
-            );
-        });
-        context.get().setPacketHandled(true);
-    }
+public class CtsTeleport
+{
+	RegistryKey<World> dimensionBefore;
+	Vector3d posBefore;
+	UUID portalEntityId;
+
+	public CtsTeleport(RegistryKey<World> dimensionBefore, Vector3d posBefore, UUID portalEntityId)
+	{
+		this.dimensionBefore = dimensionBefore;
+		this.posBefore = posBefore;
+		this.portalEntityId = portalEntityId;
+	}
+
+	public CtsTeleport(PacketBuffer buf)
+	{
+		dimensionBefore = DimId.readWorldId(buf, false);
+		posBefore = new Vector3d(
+				buf.readDouble(),
+				buf.readDouble(),
+				buf.readDouble()
+		);
+		portalEntityId = buf.readUniqueId();
+	}
+
+	public void encode(PacketBuffer buf)
+	{
+		DimId.writeWorldId(buf, dimensionBefore, true);
+		buf.writeDouble(posBefore.x);
+		buf.writeDouble(posBefore.y);
+		buf.writeDouble(posBefore.z);
+		buf.writeUniqueId(portalEntityId);
+	}
+
+	public void handle(Supplier<NetworkEvent.Context> context)
+	{
+		context.get().enqueueWork(() ->
+		{
+			Global.serverTeleportationManager.onPlayerTeleportedInClient(
+					context.get().getSender(),
+					dimensionBefore,
+					posBefore,
+					portalEntityId
+			);
+		});
+		context.get().setPacketHandled(true);
+	}
 }

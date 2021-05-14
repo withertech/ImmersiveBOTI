@@ -12,21 +12,25 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SPlayerPositionLookPacket.class)
-public class MixinPlayerPositionLookS2CPacket implements IEPlayerPositionLookS2CPacket {
-    private RegistryKey<World> playerDimension;
-    
-    @Override
-    public RegistryKey<World> getPlayerDimension() {
-        return playerDimension;
-    }
-    
-    @Override
-    public void setPlayerDimension(RegistryKey<World> dimension) {
-        playerDimension = dimension;
-    }
-    
-    @Inject(method = "Lnet/minecraft/network/play/server/SPlayerPositionLookPacket;writePacketData(Lnet/minecraft/network/PacketBuffer;)V", at = @At("RETURN"))
-    private void onWrite(PacketBuffer packetByteBuf_1, CallbackInfo ci) {
-        DimId.writeWorldId(packetByteBuf_1, playerDimension, false);
-    }
+public class MixinPlayerPositionLookS2CPacket implements IEPlayerPositionLookS2CPacket
+{
+	private RegistryKey<World> playerDimension;
+
+	@Override
+	public RegistryKey<World> getPlayerDimension()
+	{
+		return playerDimension;
+	}
+
+	@Override
+	public void setPlayerDimension(RegistryKey<World> dimension)
+	{
+		playerDimension = dimension;
+	}
+
+	@Inject(method = "Lnet/minecraft/network/play/server/SPlayerPositionLookPacket;writePacketData(Lnet/minecraft/network/PacketBuffer;)V", at = @At("RETURN"))
+	private void onWrite(PacketBuffer packetByteBuf_1, CallbackInfo ci)
+	{
+		DimId.writeWorldId(packetByteBuf_1, playerDimension, false);
+	}
 }

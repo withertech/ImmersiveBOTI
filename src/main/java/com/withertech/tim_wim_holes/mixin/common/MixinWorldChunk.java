@@ -9,13 +9,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Chunk.class)
-public abstract class MixinWorldChunk implements IEWorldChunk {
-    @Final
-    @Shadow
-    private ClassInheritanceMultiMap<Entity>[] entityLists;
+public abstract class MixinWorldChunk implements IEWorldChunk
+{
+	@Final
+	@Shadow
+	private ClassInheritanceMultiMap<Entity>[] entityLists;
 
-    @Override
-    public ClassInheritanceMultiMap<Entity>[] portal_getEntitySections() {
-        return entityLists;
-    }
+	@Override
+	public ClassInheritanceMultiMap<Entity>[] portal_getEntitySections()
+	{
+		return entityLists;
+	}
 }

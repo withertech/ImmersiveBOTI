@@ -4,7 +4,8 @@ import net.minecraft.world.gen.feature.OreFeature;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(OreFeature.class)
-public class MixinOreFeature {
+public class MixinOreFeature
+{
 //    @ModifyVariable(
 //        method = "Lnet/minecraft/world/gen/feature/OreFeature;generate(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/OreFeatureConfig;)Z",
 //        at = @At("HEAD"),

@@ -12,47 +12,55 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.io.IOException;
 import java.util.function.Supplier;
 
-public class CtsRightClick {
-    RegistryKey<World> dimension;
-    CPlayerTryUseItemOnBlockPacket packet;
-    
-    public CtsRightClick(
-        RegistryKey<World> dimension,
-        CPlayerTryUseItemOnBlockPacket packet
-    ) {
-        this.dimension = dimension;
-        this.packet = packet;
-    }
-    
-    public CtsRightClick(PacketBuffer buf) {
-        dimension = DimId.readWorldId(buf, false);
-        packet = new CPlayerTryUseItemOnBlockPacket();
-        try {
-            packet.readPacketData(buf);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void encode(PacketBuffer buf) {
-        DimId.writeWorldId(buf, dimension, true);
-        try {
-            packet.writePacketData(buf);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void handle(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            BlockManipulationServer.processRightClickBlock(
-                dimension, packet,
-                ((ServerPlayerEntity) context.get().getSender())
-            );
-        });
-        context.get().setPacketHandled(true);
-    }
-    
+public class CtsRightClick
+{
+	RegistryKey<World> dimension;
+	CPlayerTryUseItemOnBlockPacket packet;
+
+	public CtsRightClick(
+			RegistryKey<World> dimension,
+			CPlayerTryUseItemOnBlockPacket packet
+	)
+	{
+		this.dimension = dimension;
+		this.packet = packet;
+	}
+
+	public CtsRightClick(PacketBuffer buf)
+	{
+		dimension = DimId.readWorldId(buf, false);
+		packet = new CPlayerTryUseItemOnBlockPacket();
+		try
+		{
+			packet.readPacketData(buf);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void encode(PacketBuffer buf)
+	{
+		DimId.writeWorldId(buf, dimension, true);
+		try
+		{
+			packet.writePacketData(buf);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void handle(Supplier<NetworkEvent.Context> context)
+	{
+		context.get().enqueueWork(() ->
+		{
+			BlockManipulationServer.processRightClickBlock(
+					dimension, packet,
+					context.get().getSender()
+			);
+		});
+		context.get().setPacketHandled(true);
+	}
+
 }

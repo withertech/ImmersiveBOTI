@@ -4,7 +4,8 @@ import net.minecraft.client.renderer.ActiveRenderInfo;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ActiveRenderInfo.class)
-public abstract class MixinCamera_I {
+public abstract class MixinCamera_I
+{
 //    @Shadow
 //    protected abstract void moveBy(double x, double y, double z);
 //

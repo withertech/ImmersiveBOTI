@@ -10,16 +10,18 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(DimensionGeneratorSettings.class)
-public class MixinGeneratorOptions implements IEGeneratorOptions {
-    
-    @Shadow
-    @Final
-    @Mutable
-    private SimpleRegistry<Dimension> field_236208_h_;
-    
-    @Override
-    public void setDimOptionRegistry(SimpleRegistry<Dimension> reg) {
-        field_236208_h_ = reg;
-    }
-    
+public class MixinGeneratorOptions implements IEGeneratorOptions
+{
+
+	@Shadow
+	@Final
+	@Mutable
+	private SimpleRegistry<Dimension> field_236208_h_;
+
+	@Override
+	public void setDimOptionRegistry(SimpleRegistry<Dimension> reg)
+	{
+		field_236208_h_ = reg;
+	}
+
 }

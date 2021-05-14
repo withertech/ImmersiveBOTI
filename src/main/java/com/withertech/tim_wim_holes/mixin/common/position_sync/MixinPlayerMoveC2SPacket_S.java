@@ -12,31 +12,36 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CPlayerPacket.class)
-public class MixinPlayerMoveC2SPacket_S implements IEPlayerMoveC2SPacket {
-    private RegistryKey<World> playerDimension;
-    
-    @Inject(
-        method = "Lnet/minecraft/network/play/client/CPlayerPacket;readPacketData(Lnet/minecraft/network/PacketBuffer;)V",
-        at = @At("HEAD")
-    )
-    private void onRead(PacketBuffer buf, CallbackInfo ci) {
-        try {
-            playerDimension = DimId.readWorldId(buf, false);
-        }
-        catch (IndexOutOfBoundsException e) {
-            //nothing
-        }
-    }
-    
-    @Override
-    public RegistryKey<World> getPlayerDimension() {
-        return playerDimension;
-    }
-    
-    @Override
-    public void setPlayerDimension(RegistryKey<World> dim) {
-        playerDimension = dim;
-    }
-    
-    
+public class MixinPlayerMoveC2SPacket_S implements IEPlayerMoveC2SPacket
+{
+	private RegistryKey<World> playerDimension;
+
+	@Inject(
+			method = "Lnet/minecraft/network/play/client/CPlayerPacket;readPacketData(Lnet/minecraft/network/PacketBuffer;)V",
+			at = @At("HEAD")
+	)
+	private void onRead(PacketBuffer buf, CallbackInfo ci)
+	{
+		try
+		{
+			playerDimension = DimId.readWorldId(buf, false);
+		} catch (IndexOutOfBoundsException e)
+		{
+			//nothing
+		}
+	}
+
+	@Override
+	public RegistryKey<World> getPlayerDimension()
+	{
+		return playerDimension;
+	}
+
+	@Override
+	public void setPlayerDimension(RegistryKey<World> dim)
+	{
+		playerDimension = dim;
+	}
+
+
 }

@@ -12,24 +12,28 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WorldSettings.class)
-public class MixinLevelInfo {
-    
-    @Inject(
-        method = "Lnet/minecraft/world/WorldSettings;decodeWorldSettings(Lcom/mojang/serialization/Dynamic;Lnet/minecraft/util/datafix/codec/DatapackCodec;)Lnet/minecraft/world/WorldSettings;",
-        at = @At("RETURN"),
-        cancellable = true
-    )
-    private static void onReadLevelInfoFromDynamic(
-        Dynamic<?> dynamic,
-        DatapackCodec dataPackSettings,
-        CallbackInfoReturnable<WorldSettings> cir
-    ) {
-        DataResult<?> altiusElement = dynamic.getElement("altius");
-        Object obj = altiusElement.get().left().orElse(null);
-        if (obj != null) {
-            if (obj instanceof CompoundNBT) {
-                AltiusGameRule.upgradeOldDimensionStack();
-            }
-        }
-    }
+public class MixinLevelInfo
+{
+
+	@Inject(
+			method = "Lnet/minecraft/world/WorldSettings;decodeWorldSettings(Lcom/mojang/serialization/Dynamic;Lnet/minecraft/util/datafix/codec/DatapackCodec;)Lnet/minecraft/world/WorldSettings;",
+			at = @At("RETURN"),
+			cancellable = true
+	)
+	private static void onReadLevelInfoFromDynamic(
+			Dynamic<?> dynamic,
+			DatapackCodec dataPackSettings,
+			CallbackInfoReturnable<WorldSettings> cir
+	)
+	{
+		DataResult<?> altiusElement = dynamic.getElement("altius");
+		Object obj = altiusElement.get().left().orElse(null);
+		if (obj != null)
+		{
+			if (obj instanceof CompoundNBT)
+			{
+				AltiusGameRule.upgradeOldDimensionStack();
+			}
+		}
+	}
 }

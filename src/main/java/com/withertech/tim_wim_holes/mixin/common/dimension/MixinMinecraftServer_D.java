@@ -14,25 +14,27 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
-public abstract class MixinMinecraftServer_D {
-    @Shadow
-    @Final
-    protected IServerConfiguration serverConfig;
-    
-    @Shadow
-    public abstract DynamicRegistries getDynamicRegistries();
-    
-    @Inject(method = "Lnet/minecraft/server/MinecraftServer;func_240787_a_(Lnet/minecraft/world/chunk/listener/IChunkStatusListener;)V", at = @At("HEAD"))
-    private void onBeforeCreateWorlds(
-        IChunkStatusListener worldGenerationProgressListener, CallbackInfo ci
-    ) {
-        DimensionGeneratorSettings generatorOptions = serverConfig.getDimensionGeneratorSettings();
-        
-        DynamicRegistries registryManager = getDynamicRegistries();
-        
-        IPDimensionAPI.onServerWorldInit.emit(generatorOptions, registryManager);
-        
-        
-    }
-    
+public abstract class MixinMinecraftServer_D
+{
+	@Shadow
+	@Final
+	protected IServerConfiguration serverConfig;
+
+	@Shadow
+	public abstract DynamicRegistries getDynamicRegistries();
+
+	@Inject(method = "Lnet/minecraft/server/MinecraftServer;func_240787_a_(Lnet/minecraft/world/chunk/listener/IChunkStatusListener;)V", at = @At("HEAD"))
+	private void onBeforeCreateWorlds(
+			IChunkStatusListener worldGenerationProgressListener, CallbackInfo ci
+	)
+	{
+		DimensionGeneratorSettings generatorOptions = serverConfig.getDimensionGeneratorSettings();
+
+		DynamicRegistries registryManager = getDynamicRegistries();
+
+		IPDimensionAPI.onServerWorldInit.emit(generatorOptions, registryManager);
+
+
+	}
+
 }

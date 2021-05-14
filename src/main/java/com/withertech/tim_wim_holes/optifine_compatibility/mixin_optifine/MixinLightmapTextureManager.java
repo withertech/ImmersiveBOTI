@@ -12,17 +12,19 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Pseudo
 @Mixin(LightTexture.class)
-public class MixinLightmapTextureManager {
-    @Redirect(
-        method = "Lnet/minecraft/client/renderer/LightTexture;updateLightmap(F)V",
-        at = @At(
-            value = "FIELD",
-            target = "Lnet/minecraft/client/Minecraft;world:Lnet/minecraft/client/world/ClientWorld;"
-        )
-    )
-    ClientWorld redirectWorldInUpdate(Minecraft client) {
-        return ClientWorldLoader.getWorld(RenderDimensionRedirect.getRedirectedDimension(
-            client.world.getDimensionKey()
-        ));
-    }
+public class MixinLightmapTextureManager
+{
+	@Redirect(
+			method = "Lnet/minecraft/client/renderer/LightTexture;updateLightmap(F)V",
+			at = @At(
+					value = "FIELD",
+					target = "Lnet/minecraft/client/Minecraft;world:Lnet/minecraft/client/world/ClientWorld;"
+			)
+	)
+	ClientWorld redirectWorldInUpdate(Minecraft client)
+	{
+		return ClientWorldLoader.getWorld(RenderDimensionRedirect.getRedirectedDimension(
+				client.world.getDimensionKey()
+		));
+	}
 }

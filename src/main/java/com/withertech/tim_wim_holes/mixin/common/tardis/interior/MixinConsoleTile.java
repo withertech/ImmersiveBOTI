@@ -23,16 +23,17 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(value = ConsoleTile.class, remap = false)
 public abstract class MixinConsoleTile extends TileEntity
 {
+	@Shadow
+	private ConsoleRoom nextRoomToChange;
+	@Shadow
+	private ConsoleRoom consoleRoom;
+	@Shadow
+	private AbstractExterior exterior;
+
 	public MixinConsoleTile(TileEntityType<?> tileEntityTypeIn)
 	{
 		super(tileEntityTypeIn);
 	}
-
-	@Shadow private ConsoleRoom nextRoomToChange;
-
-	@Shadow private ConsoleRoom consoleRoom;
-
-	@Shadow private AbstractExterior exterior;
 
 	/**
 	 * @author Witherking25
@@ -40,16 +41,19 @@ public abstract class MixinConsoleTile extends TileEntity
 	@Overwrite
 	public void startInteriorChangeProcess(ServerWorld destWorld)
 	{
-		if (!WorldHelper.areDimensionTypesSame(destWorld, TDimensions.DimensionTypes.TARDIS_TYPE) && this.getInteriorManager().isInteriorStillRegenerating()) {
+		if (!WorldHelper.areDimensionTypesSame(destWorld, TDimensions.DimensionTypes.TARDIS_TYPE) && this.getInteriorManager().isInteriorStillRegenerating())
+		{
 
 
-			if (this.nextRoomToChange != null) {
+			if (this.nextRoomToChange != null)
+			{
 				ServerWorld consoleWorld = this.getWorld().getServer().getWorld(this.getWorld().getDimensionKey());
 				this.setConsoleRoom(this.nextRoomToChange);
 				this.consoleRoom.spawnConsoleRoom(consoleWorld, false);
 			}
 
-			this.getOrFindExteriorTile().ifPresent((ext) -> {
+			this.getOrFindExteriorTile().ifPresent((ext) ->
+			{
 				ext.setInteriorRegenerating(true);
 				ext.setDoorState(EnumDoorState.CLOSED);
 				ext.setLocked(true);
@@ -60,16 +64,20 @@ public abstract class MixinConsoleTile extends TileEntity
 			int fuelUsage = TConfig.SERVER.interiorChangeArtronUse.get();
 			int processingTime = this.getInteriorManager().getInteriorProcessingTime();
 			ArtronUse use = this.getOrCreateArtronUse(ArtronUse.ArtronType.INTERIOR_CHANGE);
-			use.setArtronUsePerTick((float)(fuelUsage / processingTime));
+			use.setArtronUsePerTick((float) (fuelUsage / processingTime));
 			use.setTicksToDrain(processingTime);
 		}
 	}
 
-	@Shadow public abstract void setConsoleRoom(ConsoleRoom room);
+	@Shadow
+	public abstract void setConsoleRoom(ConsoleRoom room);
 
-	@Shadow public abstract InteriorManager getInteriorManager();
+	@Shadow
+	public abstract InteriorManager getInteriorManager();
 
-	@Shadow public abstract ArtronUse getOrCreateArtronUse(ArtronUse.IArtronType type);
+	@Shadow
+	public abstract ArtronUse getOrCreateArtronUse(ArtronUse.IArtronType type);
 
-	@Shadow public abstract LazyOptional<ExteriorTile> getOrFindExteriorTile();
+	@Shadow
+	public abstract LazyOptional<ExteriorTile> getOrFindExteriorTile();
 }

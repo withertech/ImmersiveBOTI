@@ -10,15 +10,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Pseudo
 @Mixin(targets = "net.optifine.DynamicLights", remap = false)
-public class MixinDynamicLights {
-    //avoid updating dynamic light when rendering portal
-    @Inject(method = "update", at = @At("HEAD"), cancellable = true)
-    private static void onUpdate(WorldRenderer renderGlobal, CallbackInfo ci) {
-        if (PortalRendering.isRendering()) {
-            ci.cancel();
-        }
-    }
-    
+public class MixinDynamicLights
+{
+	//avoid updating dynamic light when rendering portal
+	@Inject(method = "update", at = @At("HEAD"), cancellable = true)
+	private static void onUpdate(WorldRenderer renderGlobal, CallbackInfo ci)
+	{
+		if (PortalRendering.isRendering())
+		{
+			ci.cancel();
+		}
+	}
+
 //    @ModifyConstant(
 //        method = "Lnet/optifine/DynamicLights;getLightLevel(Lnet/minecraft/util/math/BlockPos;)D",
 //        constant = @Constant(doubleValue = 56.25D)

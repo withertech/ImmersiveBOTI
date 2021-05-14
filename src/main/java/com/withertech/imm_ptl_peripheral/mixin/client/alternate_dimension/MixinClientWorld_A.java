@@ -4,7 +4,8 @@ import net.minecraft.client.world.ClientWorld;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ClientWorld.class)
-public class MixinClientWorld_A {
+public class MixinClientWorld_A
+{
 //
 //    @Redirect(
 //        method = "method_23777",

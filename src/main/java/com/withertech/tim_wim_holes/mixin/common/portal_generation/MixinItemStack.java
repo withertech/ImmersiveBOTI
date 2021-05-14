@@ -9,13 +9,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemStack.class)
-public class MixinItemStack {
-    @Inject(
-        method = "Lnet/minecraft/item/ItemStack;onItemUse(Lnet/minecraft/item/ItemUseContext;)Lnet/minecraft/util/ActionResultType;",
-        at = @At("RETURN"),
-        cancellable = true
-    )
-    private void onUseOnBlockEnded(ItemUseContext context, CallbackInfoReturnable<ActionResultType> cir) {
+public class MixinItemStack
+{
+	@Inject(
+			method = "Lnet/minecraft/item/ItemStack;onItemUse(Lnet/minecraft/item/ItemUseContext;)Lnet/minecraft/util/ActionResultType;",
+			at = @At("RETURN"),
+			cancellable = true
+	)
+	private void onUseOnBlockEnded(ItemUseContext context, CallbackInfoReturnable<ActionResultType> cir)
+	{
 //        CustomPortalGenManagement.onItemUse(context, cir.getReturnValue());
-    }
+	}
 }

@@ -12,20 +12,23 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Commands.class)
-public class MixinCommandManager {
-    @Shadow
-    @Final
-    private CommandDispatcher<CommandSource> dispatcher;
-    
-    @Inject(
-        method = "<init>",
-        at = @At("RETURN")
-    )
-    private void initCommands(Commands.EnvironmentType environment, CallbackInfo ci) {
-        if (environment == Commands.EnvironmentType.INTEGRATED) {
-            PortalCommand.registerClientDebugCommand(dispatcher);
-        }
-        PortalCommand.register(dispatcher);
-    }
-    
+public class MixinCommandManager
+{
+	@Shadow
+	@Final
+	private CommandDispatcher<CommandSource> dispatcher;
+
+	@Inject(
+			method = "<init>",
+			at = @At("RETURN")
+	)
+	private void initCommands(Commands.EnvironmentType environment, CallbackInfo ci)
+	{
+		if (environment == Commands.EnvironmentType.INTEGRATED)
+		{
+			PortalCommand.registerClientDebugCommand(dispatcher);
+		}
+		PortalCommand.register(dispatcher);
+	}
+
 }

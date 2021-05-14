@@ -19,61 +19,70 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Copies {@link net.minecraftforge.client.model.ModelDataManager}
  */
-public class ForgeModelDataManagerPerWorld {
-    private WeakReference<World> currentWorld = new WeakReference<>(null);
-    
-    private final Map<ChunkPos, Set<BlockPos>> needModelDataRefresh = new ConcurrentHashMap<>();
-    
-    private final Map<ChunkPos, Map<BlockPos, IModelData>> modelDataCache = new ConcurrentHashMap<>();
-    
-    public ForgeModelDataManagerPerWorld() {
-    
-    }
-    
-    private void cleanCaches(World world) {
-    
-    }
-    
-    public void requestModelDataRefresh(TileEntity te) {
-        Preconditions.checkNotNull(te, "Tile entity must not be null");
-        World world = te.getWorld();
-        
-        cleanCaches(world);
-        needModelDataRefresh.computeIfAbsent(new ChunkPos(te.getPos()), $ -> Collections.synchronizedSet(new HashSet<>()))
-            .add(te.getPos());
-    }
-    
-    private void refreshModelData(World world, ChunkPos chunk) {
-        cleanCaches(world);
-        Set<BlockPos> needUpdate = needModelDataRefresh.remove(chunk);
-        
-        if (needUpdate != null) {
-            Map<BlockPos, IModelData> data = modelDataCache.computeIfAbsent(chunk, $ -> new ConcurrentHashMap<>());
-            for (BlockPos pos : needUpdate) {
-                TileEntity toUpdate = world.getTileEntity(pos);
-                if (toUpdate != null && !toUpdate.isRemoved()) {
-                    data.put(pos, toUpdate.getModelData());
-                }
-                else {
-                    data.remove(pos);
-                }
-            }
-        }
-    }
-    
-    public void onChunkUnload(Chunk chunk) {
-        needModelDataRefresh.remove(chunk);
-        modelDataCache.remove(chunk);
-    }
-    
-    @Nullable
-    public IModelData getModelData(World world, BlockPos pos) {
-        return getModelData(world, new ChunkPos(pos)).get(pos);
-    }
-    
-    public Map<BlockPos, IModelData> getModelData(World world, ChunkPos pos) {
-        Preconditions.checkArgument(world.isRemote, "Cannot request model data for server world");
-        refreshModelData(world, pos);
-        return modelDataCache.getOrDefault(pos, Collections.emptyMap());
-    }
+public class ForgeModelDataManagerPerWorld
+{
+	private final Map<ChunkPos, Set<BlockPos>> needModelDataRefresh = new ConcurrentHashMap<>();
+	private final Map<ChunkPos, Map<BlockPos, IModelData>> modelDataCache = new ConcurrentHashMap<>();
+	private final WeakReference<World> currentWorld = new WeakReference<>(null);
+
+	public ForgeModelDataManagerPerWorld()
+	{
+
+	}
+
+	private void cleanCaches(World world)
+	{
+
+	}
+
+	public void requestModelDataRefresh(TileEntity te)
+	{
+		Preconditions.checkNotNull(te, "Tile entity must not be null");
+		World world = te.getWorld();
+
+		cleanCaches(world);
+		needModelDataRefresh.computeIfAbsent(new ChunkPos(te.getPos()), $ -> Collections.synchronizedSet(new HashSet<>()))
+				.add(te.getPos());
+	}
+
+	private void refreshModelData(World world, ChunkPos chunk)
+	{
+		cleanCaches(world);
+		Set<BlockPos> needUpdate = needModelDataRefresh.remove(chunk);
+
+		if (needUpdate != null)
+		{
+			Map<BlockPos, IModelData> data = modelDataCache.computeIfAbsent(chunk, $ -> new ConcurrentHashMap<>());
+			for (BlockPos pos : needUpdate)
+			{
+				TileEntity toUpdate = world.getTileEntity(pos);
+				if (toUpdate != null && !toUpdate.isRemoved())
+				{
+					data.put(pos, toUpdate.getModelData());
+				} else
+				{
+					data.remove(pos);
+				}
+			}
+		}
+	}
+
+	public void onChunkUnload(Chunk chunk)
+	{
+		needModelDataRefresh.remove(chunk);
+		modelDataCache.remove(chunk);
+	}
+
+	@Nullable
+	public IModelData getModelData(World world, BlockPos pos)
+	{
+		return getModelData(world, new ChunkPos(pos)).get(pos);
+	}
+
+	public Map<BlockPos, IModelData> getModelData(World world, ChunkPos pos)
+	{
+		Preconditions.checkArgument(world.isRemote, "Cannot request model data for server world");
+		refreshModelData(world, pos);
+		return modelDataCache.getOrDefault(pos, Collections.emptyMap());
+	}
 }

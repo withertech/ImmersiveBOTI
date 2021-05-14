@@ -22,65 +22,73 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RayTraceContext.class)
-public abstract class MixinRaycastContext implements IERayTraceContext {
-    @SuppressWarnings("ShadowModifiers")
-    @Shadow
-    private Vector3d startVec;
-    
-    @SuppressWarnings("ShadowModifiers")
-    @Shadow
-    private Vector3d endVec;
-    
-    @Shadow
-    @Final
-    private RayTraceContext.BlockMode blockMode;
-    
-    @Shadow
-    @Final
-    private ISelectionContext context;
-    
-    @Override
-    public IERayTraceContext setStart(Vector3d newStart) {
-        startVec = newStart;
-        return this;
-    }
-    
-    @Override
-    public IERayTraceContext setEnd(Vector3d newEnd) {
-        endVec = newEnd;
-        return this;
-    }
-    
-    // portal placeholder does not have outline if colliding with portal
-    // placeholder blocks entity view
-    @Inject(
-        at = @At("HEAD"),
-        method = "Lnet/minecraft/util/math/RayTraceContext;getBlockShape(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/IBlockReader;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/shapes/VoxelShape;",
-        cancellable = true
-    )
-    private void onGetBlockShape(
-        BlockState blockState,
-        IBlockReader blockView,
-        BlockPos blockPos,
-        CallbackInfoReturnable<VoxelShape> cir
-    ) {
-        if (blockState.getBlock() == PortalPlaceholderBlock.instance) {
-            if (blockMode == RayTraceContext.BlockMode.OUTLINE) {
-                if (blockView instanceof World) {
-                    boolean isIntersectingWithPortal = McHelper.getEntitiesRegardingLargeEntities(
-                        (World) blockView, new AxisAlignedBB(blockPos),
-                        10, Portal.class, e -> true
-                    ).isEmpty();
-                    if (!isIntersectingWithPortal) {
-                        cir.setReturnValue(VoxelShapes.empty());
-                    }
-                }
-            }
-            else if (blockMode == RayTraceContext.BlockMode.COLLIDER) {
-                cir.setReturnValue(PortalPlaceholderBlock.instance.getShape(
-                    blockState, blockView, blockPos, context
-                ));
-            }
-        }
-    }
+public abstract class MixinRaycastContext implements IERayTraceContext
+{
+	@SuppressWarnings("ShadowModifiers")
+	@Shadow
+	private Vector3d startVec;
+
+	@SuppressWarnings("ShadowModifiers")
+	@Shadow
+	private Vector3d endVec;
+
+	@Shadow
+	@Final
+	private RayTraceContext.BlockMode blockMode;
+
+	@Shadow
+	@Final
+	private ISelectionContext context;
+
+	@Override
+	public IERayTraceContext setStart(Vector3d newStart)
+	{
+		startVec = newStart;
+		return this;
+	}
+
+	@Override
+	public IERayTraceContext setEnd(Vector3d newEnd)
+	{
+		endVec = newEnd;
+		return this;
+	}
+
+	// portal placeholder does not have outline if colliding with portal
+	// placeholder blocks entity view
+	@Inject(
+			at = @At("HEAD"),
+			method = "Lnet/minecraft/util/math/RayTraceContext;getBlockShape(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/IBlockReader;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/shapes/VoxelShape;",
+			cancellable = true
+	)
+	private void onGetBlockShape(
+			BlockState blockState,
+			IBlockReader blockView,
+			BlockPos blockPos,
+			CallbackInfoReturnable<VoxelShape> cir
+	)
+	{
+		if (blockState.getBlock() == PortalPlaceholderBlock.instance)
+		{
+			if (blockMode == RayTraceContext.BlockMode.OUTLINE)
+			{
+				if (blockView instanceof World)
+				{
+					boolean isIntersectingWithPortal = McHelper.getEntitiesRegardingLargeEntities(
+							(World) blockView, new AxisAlignedBB(blockPos),
+							10, Portal.class, e -> true
+					).isEmpty();
+					if (!isIntersectingWithPortal)
+					{
+						cir.setReturnValue(VoxelShapes.empty());
+					}
+				}
+			} else if (blockMode == RayTraceContext.BlockMode.COLLIDER)
+			{
+				cir.setReturnValue(PortalPlaceholderBlock.instance.getShape(
+						blockState, blockView, blockPos, context
+				));
+			}
+		}
+	}
 }

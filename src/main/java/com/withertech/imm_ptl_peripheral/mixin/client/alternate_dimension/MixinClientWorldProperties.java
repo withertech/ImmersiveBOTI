@@ -9,18 +9,21 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientWorld.ClientWorldInfo.class)
-public class MixinClientWorldProperties {
-    @Inject(
-        method = "Lnet/minecraft/client/world/ClientWorld$ClientWorldInfo;getVoidFogHeight()D",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private void onGetSkyDarknessHeight(CallbackInfoReturnable<Double> cir) {
-        boolean isAlternateDimension =
-            AlternateDimensions.isAlternateDimension(Minecraft.getInstance().world);
-    
-        if (isAlternateDimension) {
-            cir.setReturnValue(-10000.0);
-        }
-    }
+public class MixinClientWorldProperties
+{
+	@Inject(
+			method = "Lnet/minecraft/client/world/ClientWorld$ClientWorldInfo;getVoidFogHeight()D",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private void onGetSkyDarknessHeight(CallbackInfoReturnable<Double> cir)
+	{
+		boolean isAlternateDimension =
+				AlternateDimensions.isAlternateDimension(Minecraft.getInstance().world);
+
+		if (isAlternateDimension)
+		{
+			cir.setReturnValue(-10000.0);
+		}
+	}
 }

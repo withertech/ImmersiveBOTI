@@ -16,16 +16,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerWorldInfo.class)
-public class MixinLevelProperties_D {
-    @Shadow
-    @Final
-    private DimensionGeneratorSettings generatorSettings;
-    
-    @Shadow
-    @Final
-    @Mutable
-    private Lifecycle lifecycle;
-    
+public class MixinLevelProperties_D
+{
+	@Shadow
+	@Final
+	private DimensionGeneratorSettings generatorSettings;
+
+	@Shadow
+	@Final
+	@Mutable
+	private Lifecycle lifecycle;
+
 //    @Inject(
 //        method = "<init>(Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/border/WorldBorder$Properties;IILjava/util/UUID;Ljava/util/LinkedHashSet;Lnet/minecraft/world/timer/Timer;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelInfo;Lnet/minecraft/world/gen/GeneratorOptions;Lcom/mojang/serialization/Lifecycle;)V",
 //        at = @At("RETURN")
@@ -45,19 +46,20 @@ public class MixinLevelProperties_D {
 //            lifecycle = Lifecycle.stable();
 //        }
 //    }
-    
-    @Inject(
-        method = "Lnet/minecraft/world/storage/ServerWorldInfo;serialize(Lnet/minecraft/util/registry/DynamicRegistries;Lnet/minecraft/nbt/CompoundNBT;Lnet/minecraft/nbt/CompoundNBT;)V",
-        at = @At("HEAD")
-    )
-    private void onUpdateProperties(
-        DynamicRegistries dynamicRegistryManager, CompoundNBT compoundTag,
-        CompoundNBT compoundTag2, CallbackInfo ci
-    ) {
-        ((IEGeneratorOptions) generatorSettings).setDimOptionRegistry(
-            IPDimensionAPI.getAdditionalDimensionsRemoved(
-                    generatorSettings.func_236224_e_()
-            )
-        );
-    }
+
+	@Inject(
+			method = "Lnet/minecraft/world/storage/ServerWorldInfo;serialize(Lnet/minecraft/util/registry/DynamicRegistries;Lnet/minecraft/nbt/CompoundNBT;Lnet/minecraft/nbt/CompoundNBT;)V",
+			at = @At("HEAD")
+	)
+	private void onUpdateProperties(
+			DynamicRegistries dynamicRegistryManager, CompoundNBT compoundTag,
+			CompoundNBT compoundTag2, CallbackInfo ci
+	)
+	{
+		((IEGeneratorOptions) generatorSettings).setDimOptionRegistry(
+				IPDimensionAPI.getAdditionalDimensionsRemoved(
+						generatorSettings.func_236224_e_()
+				)
+		);
+	}
 }

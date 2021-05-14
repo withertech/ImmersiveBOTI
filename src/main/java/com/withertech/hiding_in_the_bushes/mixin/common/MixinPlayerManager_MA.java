@@ -13,19 +13,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(PlayerList.class)
-public class MixinPlayerManager_MA {
-    @Shadow
-    @Final
-    private List<ServerPlayerEntity> players;
-    
-    @Inject(
-        method = "func_232644_a_",
-        at = @At("HEAD")
-    )
-    private void onPlayerRespawn(
-        ServerPlayerEntity p_232644_1_, boolean p_232644_2_,
-        CallbackInfoReturnable<ServerPlayerEntity> cir
-    ) {
-        Global.chunkDataSyncManager.onPlayerRespawn(p_232644_1_);
-    }
+public class MixinPlayerManager_MA
+{
+	@Shadow
+	@Final
+	private List<ServerPlayerEntity> players;
+
+	@Inject(
+			method = "func_232644_a_",
+			at = @At("HEAD")
+	)
+	private void onPlayerRespawn(
+			ServerPlayerEntity p_232644_1_, boolean p_232644_2_,
+			CallbackInfoReturnable<ServerPlayerEntity> cir
+	)
+	{
+		Global.chunkDataSyncManager.onPlayerRespawn(p_232644_1_);
+	}
 }

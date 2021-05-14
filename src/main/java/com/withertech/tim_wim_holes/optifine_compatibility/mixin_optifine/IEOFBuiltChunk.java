@@ -8,8 +8,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Pseudo
 @Mixin(targets = "net.minecraft.client.renderer.chunk.ChunkRenderDispatcher$ChunkRender")
-public interface IEOFBuiltChunk {
-    @Invoker("setRenderChunkNeighbour")
-    void ip_setRenderChunkNeighbour(Direction facing, ChunkRenderDispatcher.ChunkRender neighbour);
-    
+public interface IEOFBuiltChunk
+{
+	@Invoker("setRenderChunkNeighbour")
+	void ip_setRenderChunkNeighbour(Direction facing, ChunkRenderDispatcher.ChunkRender neighbour);
+
 }

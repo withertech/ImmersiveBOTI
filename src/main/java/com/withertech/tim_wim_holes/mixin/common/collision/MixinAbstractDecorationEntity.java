@@ -8,12 +8,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HangingEntity.class)
-public class MixinAbstractDecorationEntity {
-    @Inject(
-        method = "Lnet/minecraft/entity/item/HangingEntity;tick()V",
-        at = @At("HEAD")
-    )
-    private void onTick(CallbackInfo ci) {
-        ((IEEntity) this).tickCollidingPortal(1);
-    }
+public class MixinAbstractDecorationEntity
+{
+	@Inject(
+			method = "Lnet/minecraft/entity/item/HangingEntity;tick()V",
+			at = @At("HEAD")
+	)
+	private void onTick(CallbackInfo ci)
+	{
+		((IEEntity) this).tickCollidingPortal(1);
+	}
 }

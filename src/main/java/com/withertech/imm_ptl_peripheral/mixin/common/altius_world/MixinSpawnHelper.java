@@ -10,30 +10,34 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(WorldEntitySpawner.class)
-public class MixinSpawnHelper {
-    
-    //avoid spawning on top of nether in altius world
-    //normally mob cannot spawn on bedrock but altius replaces it with obsidian
-    @Redirect(
-        method = "Lnet/minecraft/world/spawner/WorldEntitySpawner;getRandomHeight(Lnet/minecraft/world/World;Lnet/minecraft/world/chunk/Chunk;)Lnet/minecraft/util/math/BlockPos;",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/chunk/Chunk;getTopBlockY(Lnet/minecraft/world/gen/Heightmap$Type;II)I"
-        )
-    )
-    private static int redirectGetTopY(
-        Chunk chunk,
-        Heightmap.Type type,
-        int x,
-        int z
-    ) {
-        int height = chunk.getTopBlockY(type, x, z);
-        int dimHeight = chunk.getWorld().func_234938_ad_();
-        if (AltiusGameRule.getIsDimensionStack()) {
-            if (chunk.getWorld().getDimensionKey() == World.THE_NETHER) {
-                return Math.min(height, dimHeight - 3);
-            }
-        }
-        return height;
-    }
+public class MixinSpawnHelper
+{
+
+	//avoid spawning on top of nether in altius world
+	//normally mob cannot spawn on bedrock but altius replaces it with obsidian
+	@Redirect(
+			method = "Lnet/minecraft/world/spawner/WorldEntitySpawner;getRandomHeight(Lnet/minecraft/world/World;Lnet/minecraft/world/chunk/Chunk;)Lnet/minecraft/util/math/BlockPos;",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/chunk/Chunk;getTopBlockY(Lnet/minecraft/world/gen/Heightmap$Type;II)I"
+			)
+	)
+	private static int redirectGetTopY(
+			Chunk chunk,
+			Heightmap.Type type,
+			int x,
+			int z
+	)
+	{
+		int height = chunk.getTopBlockY(type, x, z);
+		int dimHeight = chunk.getWorld().func_234938_ad_();
+		if (AltiusGameRule.getIsDimensionStack())
+		{
+			if (chunk.getWorld().getDimensionKey() == World.THE_NETHER)
+			{
+				return Math.min(height, dimHeight - 3);
+			}
+		}
+		return height;
+	}
 }

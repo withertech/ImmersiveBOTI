@@ -19,8 +19,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FlintAndSteelItem.class)
-public class MixinFlintAndSteelItem {
-    //TODO make it possible to ignite on horizontal obsidian face
+public class MixinFlintAndSteelItem
+{
+	//TODO make it possible to ignite on horizontal obsidian face
 
 //    @Inject(
 //        method = "canIgnite",
@@ -42,31 +43,34 @@ public class MixinFlintAndSteelItem {
 //            }
 //        }
 //    }
-    
-    @Inject(method = "Lnet/minecraft/item/FlintAndSteelItem;onItemUse(Lnet/minecraft/item/ItemUseContext;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), cancellable = true)
-    private void onUseFlintAndSteel(
-        ItemUseContext context,
-        CallbackInfoReturnable<ActionResultType> cir
-    ) {
-        IWorld world = context.getWorld();
-        if (!world.isRemote()) {
-            BlockPos targetPos = context.getPos();
-            Direction side = context.getFace();
-            BlockPos firePos = targetPos.offset(side);
-            BlockState targetBlockState = world.getBlockState(targetPos);
-            Block targetBlock = targetBlockState.getBlock();
-            if (BreakableMirror.isGlass(((World) world), targetPos)) {
-                BreakableMirror mirror = BreakableMirror.createMirror(
-                    ((ServerWorld) world), targetPos, side
-                );
-                cir.setReturnValue(ActionResultType.SUCCESS);
-            }
-            else if (targetBlock == PeripheralModMain.portalHelperBlock) {
-                boolean result = IntrinsicPortalGeneration.activatePortalHelper(
-                    ((ServerWorld) world),
-                    firePos
-                );
-            }
-        }
-    }
+
+	@Inject(method = "Lnet/minecraft/item/FlintAndSteelItem;onItemUse(Lnet/minecraft/item/ItemUseContext;)Lnet/minecraft/util/ActionResultType;", at = @At("HEAD"), cancellable = true)
+	private void onUseFlintAndSteel(
+			ItemUseContext context,
+			CallbackInfoReturnable<ActionResultType> cir
+	)
+	{
+		IWorld world = context.getWorld();
+		if (!world.isRemote())
+		{
+			BlockPos targetPos = context.getPos();
+			Direction side = context.getFace();
+			BlockPos firePos = targetPos.offset(side);
+			BlockState targetBlockState = world.getBlockState(targetPos);
+			Block targetBlock = targetBlockState.getBlock();
+			if (BreakableMirror.isGlass(((World) world), targetPos))
+			{
+				BreakableMirror mirror = BreakableMirror.createMirror(
+						((ServerWorld) world), targetPos, side
+				);
+				cir.setReturnValue(ActionResultType.SUCCESS);
+			} else if (targetBlock == PeripheralModMain.portalHelperBlock)
+			{
+				boolean result = IntrinsicPortalGeneration.activatePortalHelper(
+						((ServerWorld) world),
+						firePos
+				);
+			}
+		}
+	}
 }

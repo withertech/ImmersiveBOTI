@@ -13,16 +13,19 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SPlayerPositionLookPacket.class)
-public class MixinPlayerPositionLookS2CPacket_C {
-    @Inject(method = "Lnet/minecraft/network/play/server/SPlayerPositionLookPacket;readPacketData(Lnet/minecraft/network/PacketBuffer;)V", at = @At("RETURN"))
-    private void onRead(PacketBuffer buf, CallbackInfo ci) {
-        if (buf.isReadable()) {
-            RegistryKey<World> playerDimension = DimId.readWorldId(buf, true);
-            ((IEPlayerPositionLookS2CPacket) this).setPlayerDimension(playerDimension);
-            NetworkAdapt.setServerHasIP(true);
-        }
-        else {
-            NetworkAdapt.setServerHasIP(false);
-        }
-    }
+public class MixinPlayerPositionLookS2CPacket_C
+{
+	@Inject(method = "Lnet/minecraft/network/play/server/SPlayerPositionLookPacket;readPacketData(Lnet/minecraft/network/PacketBuffer;)V", at = @At("RETURN"))
+	private void onRead(PacketBuffer buf, CallbackInfo ci)
+	{
+		if (buf.isReadable())
+		{
+			RegistryKey<World> playerDimension = DimId.readWorldId(buf, true);
+			((IEPlayerPositionLookS2CPacket) this).setPlayerDimension(playerDimension);
+			NetworkAdapt.setServerHasIP(true);
+		} else
+		{
+			NetworkAdapt.setServerHasIP(false);
+		}
+	}
 }

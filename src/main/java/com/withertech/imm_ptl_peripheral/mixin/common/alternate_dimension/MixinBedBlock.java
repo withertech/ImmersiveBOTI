@@ -4,7 +4,8 @@ import net.minecraft.block.BedBlock;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BedBlock.class)
-public class MixinBedBlock {
+public class MixinBedBlock
+{
 //    @Inject(
 //        method = "isOverworld",
 //        at = @At("HEAD"),

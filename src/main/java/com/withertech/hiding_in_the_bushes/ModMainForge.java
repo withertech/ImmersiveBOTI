@@ -49,36 +49,39 @@ import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ModMainForge.MODID)
-public class ModMainForge {
-    public static final String MODID = "tim_wim_holes";
-    // Directly reference a log4j logger.
-    public static final Logger LOGGER = LogManager.getLogger();
-    
-    public static boolean enableModelDataFix = true;
-    
-    public ModMainForge() {
-        // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
-        
-        ConfigClient.init();
-        ConfigServer.init();
-    }
-    
-    @OnlyIn(Dist.CLIENT)
-    private static void initPortalRenderers() {
-        EntityRendererManager manager = Minecraft.getInstance().getRenderManager();
-        
-        Arrays.stream(new EntityType<?>[]{
-            Portal.entityType/*,
+public class ModMainForge
+{
+	public static final String MODID = "tim_wim_holes";
+	// Directly reference a log4j logger.
+	public static final Logger LOGGER = LogManager.getLogger();
+
+	public static boolean enableModelDataFix = true;
+
+	public ModMainForge()
+	{
+		// Register the setup method for modloading
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		// Register the enqueueIMC method for modloading
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+		// Register the processIMC method for modloading
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+		// Register the doClientStuff method for modloading
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+		// Register ourselves for server and other game events we are interested in
+		MinecraftForge.EVENT_BUS.register(this);
+
+		ConfigClient.init();
+		ConfigServer.init();
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	private static void initPortalRenderers()
+	{
+		EntityRendererManager manager = Minecraft.getInstance().getRenderManager();
+
+		Arrays.stream(new EntityType<?>[]{
+				Portal.entityType/*,
             NetherPortalEntity.entityType,
             EndPortalEntity.entityType,
             Mirror.entityType,
@@ -87,130 +90,148 @@ public class ModMainForge {
             WorldWrappingPortal.entityType,
             VerticalConnectingPortal.entityType,
             GeneralBreakablePortal.entityType*/
-        }).peek(
-            Validate::notNull
-        ).forEach(
-            entityType -> manager.register(
-                entityType,
-                (EntityRenderer) new PortalEntityRenderer(manager)
-            )
-        );
-        
-        manager.register(
-            LoadingIndicatorEntity.entityType,
-            new LoadingIndicatorRenderer(manager)
-        );
-    }
-    
-    private void setup(final FMLCommonSetupEvent event) {
-        // concurrent init may have issues
-        DeferredWorkQueue.runLater(() -> {
-            ModMain.init();
-            PeripheralModMain.init();
-        });
-    }
-    
-    private void doClientStuff(final FMLClientSetupEvent event) {
-        Minecraft.getInstance().execute(() -> {
-            ModMainClient.init();
-            
-            PeripheralModMain.initClient();
-            
-            ConfigClient instance = ConfigClient.instance;
-            if (instance.compatibilityRenderMode.get()) {
-                Global.renderMode = Global.RenderMode.compatibility;
-                Helper.info("Initially Switched to Compatibility Render Mode");
-            }
-            Global.doCheckGlError = instance.doCheckGlError.get();
-            Helper.info("Do Check Gl Error: " + Global.doCheckGlError);
-            Global.renderYourselfInPortal = instance.renderYourselfInPortal.get();
-            Global.maxPortalLayer = instance.maxPortalLayer.get();
-            Global.correctCrossPortalEntityRendering =
-                instance.correctCrossPortalEntityRendering.get();
-            Global.reducedPortalRendering = instance.reducedPortalRendering.get();
-            Global.pureMirror = instance.pureMirror.get();
-            Global.lagAttackProof = instance.lagAttackProof.get();
-            enableModelDataFix = instance.modelDataFix.get();
-            RenderDimensionRedirect.updateIdMap(
-                ConfigClient.listToMap(
-                    Arrays.asList(
-                        instance.renderDimensionRedirect.get().split("\n")
-                    )
-                )
-            );
-            
+		}).peek(
+				Validate::notNull
+		).forEach(
+				entityType -> manager.register(
+						entityType,
+						(EntityRenderer) new PortalEntityRenderer(manager)
+				)
+		);
+
+		manager.register(
+				LoadingIndicatorEntity.entityType,
+				new LoadingIndicatorRenderer(manager)
+		);
+	}
+
+	public static void applyServerConfigs()
+	{
+		ConfigServer instance = ConfigServer.instance;
+//        Global.netherPortalFindingRadius = instance.portalSearchingRange.get();
+		Global.indirectLoadingRadiusCap = instance.indirectLoadingRadiusCap.get();
+		Global.activeLoading = instance.activeLoadRemoteChunks.get();
+		Global.teleportationDebugEnabled = instance.teleportationDebug.get();
+		Global.multiThreadedNetherPortalSearching = instance.multiThreadedNetherPortalSearching.get();
+		Global.looseMovementCheck = instance.looseMovementCheck.get();
+//        Global.enableAlternateDimensions = instance.enableAlternateDimensions.get();
+//        Global.netherPortalMode = instance.netherPortalMode.get();
+//        Global.endPortalMode = instance.endPortalMode.get();
+	}
+
+	public static void checkMixinState()
+	{
+	}
+
+	public static boolean isMixinInClasspath()
+	{
+		try
+		{
+			Class.forName("org.spongepowered.asm.launch.Phases");
+			return true;
+		} catch (ClassNotFoundException e)
+		{
+			return false;
+		}
+	}
+
+	private void setup(final FMLCommonSetupEvent event)
+	{
+		// concurrent init may have issues
+		DeferredWorkQueue.runLater(() ->
+		{
+			ModMain.init();
+			PeripheralModMain.init();
+		});
+	}
+
+	private void doClientStuff(final FMLClientSetupEvent event)
+	{
+		Minecraft.getInstance().execute(() ->
+		{
+			ModMainClient.init();
+
+			PeripheralModMain.initClient();
+
+			ConfigClient instance = ConfigClient.instance;
+			if (instance.compatibilityRenderMode.get())
+			{
+				Global.renderMode = Global.RenderMode.compatibility;
+				Helper.info("Initially Switched to Compatibility Render Mode");
+			}
+			Global.doCheckGlError = instance.doCheckGlError.get();
+			Helper.info("Do Check Gl Error: " + Global.doCheckGlError);
+			Global.renderYourselfInPortal = instance.renderYourselfInPortal.get();
+			Global.maxPortalLayer = instance.maxPortalLayer.get();
+			Global.correctCrossPortalEntityRendering =
+					instance.correctCrossPortalEntityRendering.get();
+			Global.reducedPortalRendering = instance.reducedPortalRendering.get();
+			Global.pureMirror = instance.pureMirror.get();
+			Global.lagAttackProof = instance.lagAttackProof.get();
+			enableModelDataFix = instance.modelDataFix.get();
+			RenderDimensionRedirect.updateIdMap(
+					ConfigClient.listToMap(
+							Arrays.asList(
+									instance.renderDimensionRedirect.get().split("\n")
+							)
+					)
+			);
+
 //            Validate.notNull(PeripheralModMain.portalHelperBlock);
 //            RenderTypeLookup.setRenderLayer(
 //                PeripheralModMain.portalHelperBlock, RenderType.getCutout()
 //            );
-        });
-        
-        initPortalRenderers();
-    }
-    
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-    
-    }
-    
-    private void processIMC(final InterModProcessEvent event) {
-    
-    }
-    
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-    
-    }
+		});
 
-    public static void applyServerConfigs() {
-        ConfigServer instance = ConfigServer.instance;
-//        Global.netherPortalFindingRadius = instance.portalSearchingRange.get();
-        Global.indirectLoadingRadiusCap = instance.indirectLoadingRadiusCap.get();
-        Global.activeLoading = instance.activeLoadRemoteChunks.get();
-        Global.teleportationDebugEnabled = instance.teleportationDebug.get();
-        Global.multiThreadedNetherPortalSearching = instance.multiThreadedNetherPortalSearching.get();
-        Global.looseMovementCheck = instance.looseMovementCheck.get();
-//        Global.enableAlternateDimensions = instance.enableAlternateDimensions.get();
-//        Global.netherPortalMode = instance.netherPortalMode.get();
-//        Global.endPortalMode = instance.endPortalMode.get();
-    }
-    
-    @SubscribeEvent
-    public void onModelRegistry(ModelRegistryEvent event) {
-    
-    }
-    
-    public static void checkMixinState() {
-    }
-    
-    public static boolean isMixinInClasspath() {
-        try {
-            Class.forName("org.spongepowered.asm.launch.Phases");
-            return true;
-        }
-        catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-    
-    @SubscribeEvent
-    public void onServerTick(TickEvent.ServerTickEvent event) {
-        checkMixinState();
-    }
-    
-    @SubscribeEvent
-    public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if (!Global.serverTeleportationManager.isFiringMyChangeDimensionEvent) {
-            PlayerEntity player = event.getPlayer();
-            if (player instanceof ServerPlayerEntity) {
-                GlobalPortalStorage.onPlayerLoggedIn((ServerPlayerEntity) player);
-            }
-        }
-    }
-    
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
+		initPortalRenderers();
+	}
+
+	private void enqueueIMC(final InterModEnqueueEvent event)
+	{
+
+	}
+
+	private void processIMC(final InterModProcessEvent event)
+	{
+
+	}
+
+	@SubscribeEvent
+	public void onServerStarting(FMLServerStartingEvent event)
+	{
+
+	}
+
+	@SubscribeEvent
+	public void onModelRegistry(ModelRegistryEvent event)
+	{
+
+	}
+
+	@SubscribeEvent
+	public void onServerTick(TickEvent.ServerTickEvent event)
+	{
+		checkMixinState();
+	}
+
+	@SubscribeEvent
+	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event)
+	{
+		if (!Global.serverTeleportationManager.isFiringMyChangeDimensionEvent)
+		{
+			PlayerEntity player = event.getPlayer();
+			if (player instanceof ServerPlayerEntity)
+			{
+				GlobalPortalStorage.onPlayerLoggedIn((ServerPlayerEntity) player);
+			}
+		}
+	}
+
+	// You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
+	// Event bus for receiving Registry Events)
+	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class RegistryEvents
+	{
 
 
 //        @SubscribeEvent
@@ -239,7 +260,7 @@ public class ModMainForge {
 //                PeripheralModMain.portalHelperBlock
 //            );
 //        }
-        
+
 //        @SubscribeEvent
 //        public static void onItemRegistry(final RegistryEvent.Register<Item> event) {
 //            IForgeRegistry<Item> registry = event.getRegistry();
@@ -255,40 +276,42 @@ public class ModMainForge {
 //                PeripheralModMain.portalHelperBlockItem
 //            );
 //        }
-        
-        private static <T extends Entity> void registerEntity(
-            Consumer<EntityType<T>> setEntityType,
-            Supplier<EntityType<T>> getEntityType,
-            String id,
-            EntityType.IFactory<T> constructor,
-            IForgeRegistry<EntityType<?>> registry
-        ) {
-            BiFunction<SpawnEntity, World, T> biFunction = (a, world) -> constructor.create(getEntityType.get(), world);
-            EntityType<T> entityType = EntityType.Builder.create(
-                constructor, EntityClassification.MISC
-            ).size(
-                1, 1
-            ).immuneToFire().setCustomClientFactory(
-                biFunction
-            ).setTrackingRange(96).build(
-                id
-            );
-            setEntityType.accept(entityType);
-            
-            registry.register(entityType.setRegistryName(id));
-        }
-        
-        @SubscribeEvent
-        public static void onEntityRegistry(RegistryEvent.Register<EntityType<?>> event) {
-            
-            IForgeRegistry<EntityType<?>> registry = event.getRegistry();
-            registerEntity(
-                o -> Portal.entityType = o,
-                () -> Portal.entityType,
-                ModMainForge.MODID + ":portal",
-                Portal::new,
-                registry
-            );
+
+		private static <T extends Entity> void registerEntity(
+				Consumer<EntityType<T>> setEntityType,
+				Supplier<EntityType<T>> getEntityType,
+				String id,
+				EntityType.IFactory<T> constructor,
+				IForgeRegistry<EntityType<?>> registry
+		)
+		{
+			BiFunction<SpawnEntity, World, T> biFunction = (a, world) -> constructor.create(getEntityType.get(), world);
+			EntityType<T> entityType = EntityType.Builder.create(
+					constructor, EntityClassification.MISC
+			).size(
+					1, 1
+			).immuneToFire().setCustomClientFactory(
+					biFunction
+			).setTrackingRange(96).build(
+					id
+			);
+			setEntityType.accept(entityType);
+
+			registry.register(entityType.setRegistryName(id));
+		}
+
+		@SubscribeEvent
+		public static void onEntityRegistry(RegistryEvent.Register<EntityType<?>> event)
+		{
+
+			IForgeRegistry<EntityType<?>> registry = event.getRegistry();
+			registerEntity(
+					o -> Portal.entityType = o,
+					() -> Portal.entityType,
+					ModMainForge.MODID + ":portal",
+					Portal::new,
+					registry
+			);
 /*            registerEntity(
                 o -> NetherPortalEntity.entityType = o,
                 () -> NetherPortalEntity.entityType,
@@ -366,7 +389,7 @@ public class ModMainForge {
                 LoadingIndicatorEntity.entityType.setRegistryName(
                     ModMainForge.MODID + ":loading_indicator")
             );*/
-        }
-    }
-    
+		}
+	}
+
 }

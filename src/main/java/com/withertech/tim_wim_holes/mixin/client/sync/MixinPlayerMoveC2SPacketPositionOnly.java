@@ -14,22 +14,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @OnlyIn(Dist.CLIENT)
 @Mixin(CPlayerPacket.PositionPacket.class)
-public class MixinPlayerMoveC2SPacketPositionOnly {
-    @OnlyIn(Dist.CLIENT)
-    @Inject(
-        method = "<init>(DDDZ)V",
-        at = @At("RETURN")
-    )
-    private void onConstruct1(
-        double double_1,
-        double double_2,
-        double double_3,
-        boolean boolean_1,
-        CallbackInfo ci
-    ) {
-        RegistryKey<World> dimension = Minecraft.getInstance().player.world.getDimensionKey();
-        ((IEPlayerMoveC2SPacket) this).setPlayerDimension(dimension);
-        assert dimension == Minecraft.getInstance().world.getDimensionKey();
-    }
-    
+public class MixinPlayerMoveC2SPacketPositionOnly
+{
+	@OnlyIn(Dist.CLIENT)
+	@Inject(
+			method = "<init>(DDDZ)V",
+			at = @At("RETURN")
+	)
+	private void onConstruct1(
+			double double_1,
+			double double_2,
+			double double_3,
+			boolean boolean_1,
+			CallbackInfo ci
+	)
+	{
+		RegistryKey<World> dimension = Minecraft.getInstance().player.world.getDimensionKey();
+		((IEPlayerMoveC2SPacket) this).setPlayerDimension(dimension);
+		assert dimension == Minecraft.getInstance().world.getDimensionKey();
+	}
+
 }

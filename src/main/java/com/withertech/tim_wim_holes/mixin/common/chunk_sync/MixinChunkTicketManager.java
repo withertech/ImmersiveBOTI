@@ -17,36 +17,41 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TicketManager.class)
-public abstract class MixinChunkTicketManager implements IEChunkTicketManager {
-    
-    @Shadow
-    @Final
-    private Long2ObjectMap<ObjectSet<ServerPlayerEntity>> playersByChunkPos;
-    
-    
-    @Shadow
-    protected abstract void setViewDistance(int viewDistance);
-    
-    @Shadow protected abstract SortedArraySet<Ticket<?>> getTicketSet(long position);
-    
-    //avoid NPE
-    @Inject(method = "Lnet/minecraft/world/server/TicketManager;removePlayer(Lnet/minecraft/util/math/SectionPos;Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("HEAD"))
-    private void onHandleChunkLeave(
-        SectionPos chunkSectionPos_1,
-        ServerPlayerEntity serverPlayerEntity_1,
-        CallbackInfo ci
-    ) {
-        long long_1 = chunkSectionPos_1.asChunkPos().asLong();
-        playersByChunkPos.putIfAbsent(long_1, new ObjectOpenHashSet<>());
-    }
-    
-    @Override
-    public void mySetWatchDistance(int newWatchDistance) {
-        setViewDistance(newWatchDistance);
-    }
-    
-    @Override
-    public SortedArraySet<Ticket<?>> portal_getTicketSet(long chunkPos) {
-        return getTicketSet(chunkPos);
-    }
+public abstract class MixinChunkTicketManager implements IEChunkTicketManager
+{
+
+	@Shadow
+	@Final
+	private Long2ObjectMap<ObjectSet<ServerPlayerEntity>> playersByChunkPos;
+
+
+	@Shadow
+	protected abstract void setViewDistance(int viewDistance);
+
+	@Shadow
+	protected abstract SortedArraySet<Ticket<?>> getTicketSet(long position);
+
+	//avoid NPE
+	@Inject(method = "Lnet/minecraft/world/server/TicketManager;removePlayer(Lnet/minecraft/util/math/SectionPos;Lnet/minecraft/entity/player/ServerPlayerEntity;)V", at = @At("HEAD"))
+	private void onHandleChunkLeave(
+			SectionPos chunkSectionPos_1,
+			ServerPlayerEntity serverPlayerEntity_1,
+			CallbackInfo ci
+	)
+	{
+		long long_1 = chunkSectionPos_1.asChunkPos().asLong();
+		playersByChunkPos.putIfAbsent(long_1, new ObjectOpenHashSet<>());
+	}
+
+	@Override
+	public void mySetWatchDistance(int newWatchDistance)
+	{
+		setViewDistance(newWatchDistance);
+	}
+
+	@Override
+	public SortedArraySet<Ticket<?>> portal_getTicketSet(long chunkPos)
+	{
+		return getTicketSet(chunkPos);
+	}
 }

@@ -18,42 +18,45 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.function.Consumer;
 
 @Mixin(ChunkHolder.class)
-public class MixinChunkHolder implements IEChunkHolder {
-    
-    @Shadow
-    @Final
-    private ChunkPos pos;
-    
-    @Shadow
-    @Final
-    private ChunkHolder.IPlayerProvider playerProvider;
-    
-    /**
-     * @author qouteall
-     */
-    @Overwrite
-    private void sendToTracking(IPacket<?> packet_1, boolean onlyOnRenderDistanceEdge) {
-        RegistryKey<World> dimension =
-            ((IEThreadedAnvilChunkStorage) playerProvider).getWorld().getDimensionKey();
-        
-        Consumer<ServerPlayerEntity> func = player ->
-            player.connection.sendPacket(
-                MyNetwork.createRedirectedMessage(
-                    dimension, packet_1
-                )
-            );
-        
-        if (onlyOnRenderDistanceEdge) {
-            NewChunkTrackingGraph.getFarWatchers(
-                dimension, pos.x, pos.z
-            ).forEach(func);
-        }
-        else {
-            NewChunkTrackingGraph.getPlayersViewingChunk(
-                dimension, pos.x, pos.z
-            ).forEach(func);
-        }
-        
-    }
-    
+public class MixinChunkHolder implements IEChunkHolder
+{
+
+	@Shadow
+	@Final
+	private ChunkPos pos;
+
+	@Shadow
+	@Final
+	private ChunkHolder.IPlayerProvider playerProvider;
+
+	/**
+	 * @author qouteall
+	 */
+	@Overwrite
+	private void sendToTracking(IPacket<?> packet_1, boolean onlyOnRenderDistanceEdge)
+	{
+		RegistryKey<World> dimension =
+				((IEThreadedAnvilChunkStorage) playerProvider).getWorld().getDimensionKey();
+
+		Consumer<ServerPlayerEntity> func = player ->
+				player.connection.sendPacket(
+						MyNetwork.createRedirectedMessage(
+								dimension, packet_1
+						)
+				);
+
+		if (onlyOnRenderDistanceEdge)
+		{
+			NewChunkTrackingGraph.getFarWatchers(
+					dimension, pos.x, pos.z
+			).forEach(func);
+		} else
+		{
+			NewChunkTrackingGraph.getPlayersViewingChunk(
+					dimension, pos.x, pos.z
+			).forEach(func);
+		}
+
+	}
+
 }

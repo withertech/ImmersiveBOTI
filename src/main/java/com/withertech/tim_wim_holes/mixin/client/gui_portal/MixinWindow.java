@@ -4,7 +4,8 @@ import net.minecraft.client.MainWindow;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(MainWindow.class)
-public class MixinWindow {
+public class MixinWindow
+{
 //    @Inject(method = "getFramebufferWidth", at = @At("HEAD"), cancellable = true)
 //    private void onGetFramebufferWidth(CallbackInfoReturnable<Integer> cir) {
 //        Framebuffer guiPortalRenderingFb = GuiPortalRendering.getRenderingFrameBuffer();

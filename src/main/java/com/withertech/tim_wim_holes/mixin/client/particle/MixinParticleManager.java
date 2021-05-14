@@ -20,53 +20,62 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ParticleManager.class)
-public class MixinParticleManager implements IEParticleManager {
-    @Shadow
-    protected ClientWorld world;
-    
-    // skip particle rendering for far portals
-    @Inject(
-        method = "Lnet/minecraft/client/particle/ParticleManager;renderParticles(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;Lnet/minecraft/client/renderer/LightTexture;Lnet/minecraft/client/renderer/ActiveRenderInfo;F)V",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private void onBeginRenderParticles(
-        MatrixStack matrixStack, IRenderTypeBuffer.Impl immediate,
-        LightTexture lightmapTextureManager, ActiveRenderInfo camera, float f, CallbackInfo ci
-    ) {
-        if (PortalRendering.isRendering()) {
-            if (RenderStates.getRenderedPortalNum() > 4) {
-                ci.cancel();
-            }
-        }
-    }
-    
-    @Redirect(
-        method = "*",//for optifine
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/particle/Particle;renderParticle(Lcom/mojang/blaze3d/vertex/IVertexBuilder;Lnet/minecraft/client/renderer/ActiveRenderInfo;F)V"
-        ),
-        require = 0
-    )
-    private void redirectBuildGeometry(Particle particle, IVertexBuilder vertexConsumer, ActiveRenderInfo camera, float tickDelta) {
-        if (RenderStates.shouldRenderParticle(particle)) {
-            particle.renderParticle(vertexConsumer, camera, tickDelta);
-        }
-    }
-    
-    // a lava ember particle can generate a smoke particle during ticking
-    // avoid generating the particle into the wrong dimension
-    @Inject(method = "Lnet/minecraft/client/particle/ParticleManager;tickParticle(Lnet/minecraft/client/particle/Particle;)V", at = @At("HEAD"), cancellable = true)
-    private void onTickParticle(Particle particle, CallbackInfo ci) {
-        if (((IEParticle) particle).portal_getWorld() != Minecraft.getInstance().world) {
-            ci.cancel();
-        }
-    }
-    
-    @Override
-    public void mySetWorld(ClientWorld world_) {
-        world = world_;
-    }
-    
+public class MixinParticleManager implements IEParticleManager
+{
+	@Shadow
+	protected ClientWorld world;
+
+	// skip particle rendering for far portals
+	@Inject(
+			method = "Lnet/minecraft/client/particle/ParticleManager;renderParticles(Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer$Impl;Lnet/minecraft/client/renderer/LightTexture;Lnet/minecraft/client/renderer/ActiveRenderInfo;F)V",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private void onBeginRenderParticles(
+			MatrixStack matrixStack, IRenderTypeBuffer.Impl immediate,
+			LightTexture lightmapTextureManager, ActiveRenderInfo camera, float f, CallbackInfo ci
+	)
+	{
+		if (PortalRendering.isRendering())
+		{
+			if (RenderStates.getRenderedPortalNum() > 4)
+			{
+				ci.cancel();
+			}
+		}
+	}
+
+	@Redirect(
+			method = "*",//for optifine
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/client/particle/Particle;renderParticle(Lcom/mojang/blaze3d/vertex/IVertexBuilder;Lnet/minecraft/client/renderer/ActiveRenderInfo;F)V"
+			),
+			require = 0
+	)
+	private void redirectBuildGeometry(Particle particle, IVertexBuilder vertexConsumer, ActiveRenderInfo camera, float tickDelta)
+	{
+		if (RenderStates.shouldRenderParticle(particle))
+		{
+			particle.renderParticle(vertexConsumer, camera, tickDelta);
+		}
+	}
+
+	// a lava ember particle can generate a smoke particle during ticking
+	// avoid generating the particle into the wrong dimension
+	@Inject(method = "Lnet/minecraft/client/particle/ParticleManager;tickParticle(Lnet/minecraft/client/particle/Particle;)V", at = @At("HEAD"), cancellable = true)
+	private void onTickParticle(Particle particle, CallbackInfo ci)
+	{
+		if (((IEParticle) particle).portal_getWorld() != Minecraft.getInstance().world)
+		{
+			ci.cancel();
+		}
+	}
+
+	@Override
+	public void mySetWorld(ClientWorld world_)
+	{
+		world = world_;
+	}
+
 }

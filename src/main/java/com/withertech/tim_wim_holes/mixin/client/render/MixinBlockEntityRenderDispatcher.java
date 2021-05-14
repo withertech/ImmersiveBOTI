@@ -14,31 +14,36 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TileEntityRendererDispatcher.class)
-public class MixinBlockEntityRenderDispatcher {
-    @Inject(
-        method = "Lnet/minecraft/client/renderer/tileentity/TileEntityRendererDispatcher;renderTileEntity(Lnet/minecraft/tileentity/TileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;)V",
-        at = @At("HEAD"),
-        cancellable = true
-    )
-    private <E extends TileEntity> void onRenderBlockEntity(
-        E blockEntity,
-        float tickDelta,
-        MatrixStack matrix,
-        IRenderTypeBuffer vertexConsumerProvider,
-        CallbackInfo ci
-    ) {
-        if (OFInterface.isShadowPass.getAsBoolean()) {
-            return;
-        }
-        if (PortalRendering.isRendering()) {
-            PortalLike renderingPortal = PortalRendering.getRenderingPortal();
-            boolean canRender = renderingPortal.isInside(
-                Vector3d.copyCentered(blockEntity.getPos()),
-                -0.1
-            );
-            if (!canRender) {
-                ci.cancel();
-            }
-        }
-    }
+public class MixinBlockEntityRenderDispatcher
+{
+	@Inject(
+			method = "Lnet/minecraft/client/renderer/tileentity/TileEntityRendererDispatcher;renderTileEntity(Lnet/minecraft/tileentity/TileEntity;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;)V",
+			at = @At("HEAD"),
+			cancellable = true
+	)
+	private <E extends TileEntity> void onRenderBlockEntity(
+			E blockEntity,
+			float tickDelta,
+			MatrixStack matrix,
+			IRenderTypeBuffer vertexConsumerProvider,
+			CallbackInfo ci
+	)
+	{
+		if (OFInterface.isShadowPass.getAsBoolean())
+		{
+			return;
+		}
+		if (PortalRendering.isRendering())
+		{
+			PortalLike renderingPortal = PortalRendering.getRenderingPortal();
+			boolean canRender = renderingPortal.isInside(
+					Vector3d.copyCentered(blockEntity.getPos()),
+					-0.1
+			);
+			if (!canRender)
+			{
+				ci.cancel();
+			}
+		}
+	}
 }

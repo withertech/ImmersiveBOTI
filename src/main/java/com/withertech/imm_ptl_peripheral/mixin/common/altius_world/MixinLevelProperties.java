@@ -18,39 +18,41 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerWorldInfo.class)
-public class MixinLevelProperties {
-    
-   
-    
-    @Shadow
-    @Final
-    private DimensionGeneratorSettings generatorSettings;
-    
-    @Inject(
-        method = "Lnet/minecraft/world/storage/ServerWorldInfo;decodeWorldInfo(Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundNBT;Lnet/minecraft/world/WorldSettings;Lnet/minecraft/world/storage/VersionData;Lnet/minecraft/world/gen/settings/DimensionGeneratorSettings;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/storage/ServerWorldInfo;",
-        at = @At("RETURN"),
-        cancellable = true
-    )
-    private static void onReadDataFromTag(
-        Dynamic<INBT> dynamic,
-        DataFixer dataFixer,
-        int i,
-        CompoundNBT playerTag,
-        WorldSettings levelInfo,
-        VersionData saveVersionInfo,
-        DimensionGeneratorSettings generatorOptions,
-        Lifecycle lifecycle,
-        CallbackInfoReturnable<ServerWorldInfo> cir
-    ) {
-        ServerWorldInfo levelProperties = cir.getReturnValue();
-        
-        MixinLevelProperties this_ = (MixinLevelProperties) (Object) levelProperties;
-        
-        INBT altiusTag = dynamic.getElement("altius", null);
-        if (altiusTag != null) {
-            AltiusGameRule.upgradeOldDimensionStack();
-        }
-    }
-    
-   
+public class MixinLevelProperties
+{
+
+
+	@Shadow
+	@Final
+	private DimensionGeneratorSettings generatorSettings;
+
+	@Inject(
+			method = "Lnet/minecraft/world/storage/ServerWorldInfo;decodeWorldInfo(Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundNBT;Lnet/minecraft/world/WorldSettings;Lnet/minecraft/world/storage/VersionData;Lnet/minecraft/world/gen/settings/DimensionGeneratorSettings;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/storage/ServerWorldInfo;",
+			at = @At("RETURN"),
+			cancellable = true
+	)
+	private static void onReadDataFromTag(
+			Dynamic<INBT> dynamic,
+			DataFixer dataFixer,
+			int i,
+			CompoundNBT playerTag,
+			WorldSettings levelInfo,
+			VersionData saveVersionInfo,
+			DimensionGeneratorSettings generatorOptions,
+			Lifecycle lifecycle,
+			CallbackInfoReturnable<ServerWorldInfo> cir
+	)
+	{
+		ServerWorldInfo levelProperties = cir.getReturnValue();
+
+		MixinLevelProperties this_ = (MixinLevelProperties) (Object) levelProperties;
+
+		INBT altiusTag = dynamic.getElement("altius", null);
+		if (altiusTag != null)
+		{
+			AltiusGameRule.upgradeOldDimensionStack();
+		}
+	}
+
+
 }

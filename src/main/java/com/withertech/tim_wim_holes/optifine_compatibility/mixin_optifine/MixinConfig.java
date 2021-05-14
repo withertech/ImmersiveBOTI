@@ -10,12 +10,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Pseudo
 @Mixin(value = Config.class, remap = false)
-public class MixinConfig {
-    @Inject(method = "isShaders", at = @At("HEAD"), cancellable = true)
-    private static void onIsShaders(CallbackInfoReturnable<Boolean> cir) {
-        if (OFGlobal.shaderContextManager.isContextSwitched()) {
-            cir.setReturnValue(true);
-            cir.cancel();
-        }
-    }
+public class MixinConfig
+{
+	@Inject(method = "isShaders", at = @At("HEAD"), cancellable = true)
+	private static void onIsShaders(CallbackInfoReturnable<Boolean> cir)
+	{
+		if (OFGlobal.shaderContextManager.isContextSwitched())
+		{
+			cir.setReturnValue(true);
+			cir.cancel();
+		}
+	}
 }
