@@ -21,7 +21,7 @@ apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.0.4'
+version = '0.0.5-DEV'
 group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'tim-wim-hole'
 
@@ -151,7 +151,7 @@ curseforge {
         id = '481480'
         changelog =
 '''
-Added support for steam exterior
+fixed crash
 '''
         releaseType = 'alpha'
         addGameVersion '1.16.5'

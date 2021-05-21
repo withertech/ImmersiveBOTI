@@ -49,19 +49,19 @@ public abstract class MixinModernPoliceBoxExteriorTile extends ExteriorTile impl
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0, 0, 0.6));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0.6, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0, 0, 0.6));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0.6, 0, 0));
 											break;
 									}
 
@@ -79,19 +79,19 @@ public abstract class MixinModernPoliceBoxExteriorTile extends ExteriorTile impl
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0, 0, 0.6));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0.6, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0, 0, 0.6));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0.6, 0, 0));
 											break;
 									}
 
@@ -109,19 +109,19 @@ public abstract class MixinModernPoliceBoxExteriorTile extends ExteriorTile impl
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0, 0, 0.6));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0.6, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0, 0, 0.6));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0.6, 0, 0));
 											break;
 									}
 
@@ -139,19 +139,19 @@ public abstract class MixinModernPoliceBoxExteriorTile extends ExteriorTile impl
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0, 0, 0.6));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).subtract(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).subtract(0.6, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0, 0, 0.6));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0, 0, 0.6));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.125).add(0.6, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.125).add(0.6, 0, 0));
 											break;
 									}
 

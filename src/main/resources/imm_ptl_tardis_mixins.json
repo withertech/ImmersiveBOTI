@@ -6,6 +6,7 @@
   "mixins": [
     "common.tardis.exterior.MixinExteriorTile",
     "common.tardis.exterior.MixinExteriorBlock",
+    "common.tardis.exterior.MixinTardisBottomBlock",
     "common.tardis.exterior.MixinApertureExteriorTile",
     "common.tardis.exterior.MixinClockExteriorTile",
     "common.tardis.exterior.MixinDisguiseExteriorTile",

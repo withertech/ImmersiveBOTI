@@ -12,6 +12,7 @@ import net.optifine.expr.IExpressionBool;
 import net.optifine.shaders.*;
 import net.optifine.shaders.config.*;
 import net.optifine.shaders.uniform.*;
+import net.optifine.util.DynamicDimension;
 import org.lwjgl.opengl.GLCapabilities;
 import org.spongepowered.asm.mixin.*;
 
@@ -19,10 +20,8 @@ import java.awt.*;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 // ugly hack. don't look at it
@@ -1024,7 +1023,7 @@ public abstract class MixinShaders_Swap
 	@Shadow
 	private static String noiseTexturePath;
 	@Shadow
-	private static Dimension[] colorBufferSizes;
+	private static DynamicDimension[] colorBufferSizes;
 	@Shadow
 	private static CustomUniforms customUniforms;
 	@Shadow

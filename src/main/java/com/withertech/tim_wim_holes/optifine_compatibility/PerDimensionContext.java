@@ -10,6 +10,7 @@ import net.optifine.expr.IExpressionBool;
 import net.optifine.shaders.*;
 import net.optifine.shaders.config.*;
 import net.optifine.shaders.uniform.*;
+import net.optifine.util.DynamicDimension;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GLCapabilities;
 
@@ -387,7 +388,7 @@ public class PerDimensionContext
 	public ICustomTexture[] customTexturesShadowcomp;
 	public ICustomTexture[] customTexturesPrepare;
 	public String noiseTexturePath;
-	public Dimension[] colorBufferSizes;
+	public DynamicDimension[] colorBufferSizes;
 	public CustomUniforms customUniforms;
 	public boolean saveFinalShaders;
 	public float blockLightLevel05;
