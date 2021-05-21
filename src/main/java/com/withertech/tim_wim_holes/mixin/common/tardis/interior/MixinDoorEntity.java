@@ -15,8 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 
-@Mixin(DoorEntity.class)
+@Mixin(value = DoorEntity.class, remap = false)
 public abstract class MixinDoorEntity extends Entity
 {
 
@@ -28,7 +29,7 @@ public abstract class MixinDoorEntity extends Entity
 	@Inject(method = "teleportEntity(Ljava/util/List;)V", at = @At("HEAD"), cancellable = true, remap = false)
 	public void teleportEntity(List<Entity> entity, CallbackInfo ci)
 	{
-		if (!this.getConsole().isInFlight() && !this.getConsole().getInteriorManager().isInteriorStillRegenerating())
+		if (!Objects.requireNonNull(this.getConsole()).isInFlight() && !this.getConsole().getInteriorManager().isInteriorStillRegenerating())
 		{
 			ci.cancel();
 		}

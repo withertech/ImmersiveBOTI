@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Mixin(ExteriorTile.class)
+@Mixin(value = ExteriorTile.class, remap = false)
 public abstract class MixinExteriorTile extends TileEntity implements IEExteriorTile
 {
 

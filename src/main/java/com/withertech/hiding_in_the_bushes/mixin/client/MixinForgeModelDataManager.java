@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -54,10 +55,7 @@ public class MixinForgeModelDataManager
 			{
 				ModMain.clientCleanupSignal.connect(MixinForgeModelDataManager::portal_cleanup);
 
-				MyClientChunkManager.clientChunkUnloadSignal.connect((chunk) ->
-				{
-					portal_getManager(chunk.getWorld()).onChunkUnload(chunk);
-				});
+				MyClientChunkManager.clientChunkUnloadSignal.connect((chunk) -> portal_getManager(chunk.getWorld()).onChunkUnload(chunk));
 
 				Helper.info("IP Forge Model Data Fix Initialized");
 			} else
@@ -83,6 +81,7 @@ public class MixinForgeModelDataManager
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	private static void cleanCaches(World world)
@@ -107,7 +106,7 @@ public class MixinForgeModelDataManager
 		}
 
 		Validate.notNull(te);
-		portal_getManager(te.getWorld()).requestModelDataRefresh(te);
+		portal_getManager(Objects.requireNonNull(te.getWorld())).requestModelDataRefresh(te);
 
 		ci.cancel();
 	}

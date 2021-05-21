@@ -71,8 +71,7 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
 		{
 			return true;
 		}
-		boolean portalsNearby = McHelper.getNearbyPortals(player, 16).findFirst().isPresent();
-		return portalsNearby;
+		return McHelper.getNearbyPortals(player, 16).findFirst().isPresent();
 	}
 
 	@Shadow
@@ -160,7 +159,7 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
 	}
 
 	/**
-	 * make PlayerPositionLookS2CPacket contain dimension data
+	 * @reason make PlayerPositionLookS2CPacket contain dimension data
 	 *
 	 * @author qouteall
 	 */
@@ -174,6 +173,7 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
 			Set<SPlayerPositionLookPacket.Flags> updates
 	)
 	{
+		//noinspection deprecation
 		if (player.removed)
 		{
 			ModMain.serverTaskList.addTask(() ->

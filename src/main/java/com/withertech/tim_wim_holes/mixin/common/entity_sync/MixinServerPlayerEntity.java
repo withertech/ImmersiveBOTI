@@ -87,6 +87,7 @@ public abstract class MixinServerPlayerEntity extends PlayerEntity implements IE
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	public void removeEntity(Entity entity_1)
@@ -114,6 +115,7 @@ public abstract class MixinServerPlayerEntity extends PlayerEntity implements IE
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	public void addEntity(Entity entity_1)

@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.Objects;
+
 @Mixin(value = ConsoleTile.class, remap = false)
 public abstract class MixinConsoleTile extends TileEntity
 {
@@ -37,6 +39,7 @@ public abstract class MixinConsoleTile extends TileEntity
 
 	/**
 	 * @author Witherking25
+	 * @reason stop default teleport
 	 */
 	@Overwrite
 	public void startInteriorChangeProcess(ServerWorld destWorld)
@@ -47,7 +50,7 @@ public abstract class MixinConsoleTile extends TileEntity
 
 			if (this.nextRoomToChange != null)
 			{
-				ServerWorld consoleWorld = this.getWorld().getServer().getWorld(this.getWorld().getDimensionKey());
+				ServerWorld consoleWorld = Objects.requireNonNull(Objects.requireNonNull(this.getWorld()).getServer()).getWorld(this.getWorld().getDimensionKey());
 				this.setConsoleRoom(this.nextRoomToChange);
 				this.consoleRoom.spawnConsoleRoom(consoleWorld, false);
 			}
@@ -58,7 +61,7 @@ public abstract class MixinConsoleTile extends TileEntity
 				ext.setDoorState(EnumDoorState.CLOSED);
 				ext.setLocked(true);
 				ext.setAdditionalLockLevel(1);
-				ext.getWorld().playSound(null, this.getPos(), this.exterior.getDoorSounds().getClosedSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
+				Objects.requireNonNull(ext.getWorld()).playSound(null, this.getPos(), this.exterior.getDoorSounds().getClosedSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
 				ext.getWorld().playSound(null, this.getPos(), TSounds.DOOR_LOCK.get(), SoundCategory.BLOCKS, 0.5F, 1.0F);
 			});
 			int fuelUsage = TConfig.SERVER.interiorChangeArtronUse.get();

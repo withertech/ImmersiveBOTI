@@ -21,7 +21,7 @@ apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.0.5-DEV'
+version = '0.0.5'
 group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'tim-wim-hole'
 
@@ -151,7 +151,7 @@ curseforge {
         id = '481480'
         changelog =
 '''
-fixed crash
+added support for trunk exterior
 '''
         releaseType = 'alpha'
         addGameVersion '1.16.5'

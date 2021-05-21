@@ -95,7 +95,7 @@ public class MixinPlayerManager
 
 	/**
 	 * @author qoutall
-	 * mostly for sound events
+	 * @reason mostly for sound events
 	 */
 	@Overwrite
 	public void sendToAllNearExcept(

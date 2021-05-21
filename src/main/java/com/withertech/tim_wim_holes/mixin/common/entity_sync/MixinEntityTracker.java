@@ -83,6 +83,7 @@ public abstract class MixinEntityTracker implements IEEntityTracker
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	public void updateTrackingState(ServerPlayerEntity player)
@@ -92,6 +93,7 @@ public abstract class MixinEntityTracker implements IEEntityTracker
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	public void updateTrackingState(List<ServerPlayerEntity> list)
@@ -151,20 +153,14 @@ public abstract class MixinEntityTracker implements IEEntityTracker
 			{
 				CommonNetwork.withForceRedirect(
 						entity.world.getDimensionKey(),
-						() ->
-						{
-							this.entry.track(player);
-						}
+						() -> this.entry.track(player)
 				);
 			}
 		} else if (this.trackingPlayers.remove(player))
 		{
 			CommonNetwork.withForceRedirect(
 					entity.world.getDimensionKey(),
-					() ->
-					{
-						this.entry.untrack(player);
-					}
+					() -> this.entry.untrack(player)
 			);
 		}
 
@@ -183,11 +179,8 @@ public abstract class MixinEntityTracker implements IEEntityTracker
 	public void resendSpawnPacketToTrackers()
 	{
 		IPacket<?> spawnPacket = entity.createSpawnPacket();
-		IPacket redirected = MyNetwork.createRedirectedMessage(entity.world.getDimensionKey(), spawnPacket);
-		trackingPlayers.forEach(player ->
-		{
-			player.connection.sendPacket(redirected);
-		});
+		IPacket<?> redirected = MyNetwork.createRedirectedMessage(entity.world.getDimensionKey(), spawnPacket);
+		trackingPlayers.forEach(player -> player.connection.sendPacket(redirected));
 	}
 
 	@Override

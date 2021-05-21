@@ -11,13 +11,14 @@ import java.util.Random;
 public abstract class MixinWeightedList
 {
 	@Shadow
-	public abstract WeightedList randomizeWithWeight(Random random);
+	public abstract WeightedList<?> randomizeWithWeight(Random random);
 
 	// it's not thread safe
 	// dimension stack made this vanilla issue trigger more frequently
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
 	public Object getRandomValue(Random random)

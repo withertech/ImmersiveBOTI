@@ -41,9 +41,9 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 	@Shadow
 	@Final
 	private ServerWorld world;
-	@Shadow
-	@Final
-	private Int2ObjectMap entities;
+//	@Shadow
+//	@Final
+//	private Int2ObjectMap entities;
 	@Shadow
 	@Final
 	private AtomicInteger loadedChunkCount;
@@ -117,9 +117,10 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 
 	/**
 	 * @author qouteall
+	 * @reason null
 	 */
 	@Overwrite
-	public void sendChunkData(
+	private void sendChunkData(
 			ServerPlayerEntity player,
 			IPacket<?>[] packets_1,
 			Chunk worldChunk_1
@@ -158,7 +159,6 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 		CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>> future = cir.getReturnValue();
 
 		future.thenAcceptAsync((either) ->
-		{
 			either.mapLeft((worldChunk) ->
 			{
 				this.loadedChunkCount.getAndIncrement();
@@ -166,10 +166,7 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 				Global.chunkDataSyncManager.onChunkProvidedDeferred(worldChunk);
 
 				return Either.left(worldChunk);
-			});
-		}, (runnable) ->
-		{
-			this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable));
-		});
+			}), (runnable) -> this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable))
+		);
 	}
 }
