@@ -1,6 +1,6 @@
 package com.withertech.hiding_in_the_bushes;
 
-import com.withertech.imm_ptl_peripheral.PeripheralModMain;
+import com.withertech.tim_wim_holes_peripheral.PeripheralModMain;
 import com.withertech.tim_wim_holes.Global;
 import com.withertech.tim_wim_holes.Helper;
 import com.withertech.tim_wim_holes.ModMain;

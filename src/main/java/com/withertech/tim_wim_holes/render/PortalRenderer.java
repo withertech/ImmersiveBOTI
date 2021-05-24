@@ -221,7 +221,7 @@ public abstract class PortalRenderer
 		if (CGlobal.earlyFrustumCullingPortal)
 		{
 			ClippingHelper frustum = frustumSupplier.get();
-            return !frustum.isBoundingBoxInFrustum(portal.getExactAreaBox());
+			return !frustum.isBoundingBoxInFrustum(portal.getExactAreaBox());
 		}
 		return false;
 	}
@@ -306,7 +306,7 @@ public abstract class PortalRenderer
 	{
 
 		Vector3d cameraPos = CHelper.getCurrentCameraPos();
-        return portal.getDistanceToNearestPointInPortal(cameraPos) > getRenderRange();
-    }
+		return portal.getDistanceToNearestPointInPortal(cameraPos) > getRenderRange();
+	}
 
 }

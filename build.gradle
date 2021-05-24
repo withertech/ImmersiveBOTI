@@ -21,7 +21,7 @@ apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.0.5'
+version = '0.0.6'
 group = 'com.withertech.tim_wim_hole' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'tim-wim-hole'
 
@@ -151,7 +151,7 @@ curseforge {
         id = '481480'
         changelog =
 '''
-added support for trunk exterior
+added support for clock, phone booth, and old police box exteriors
 '''
         releaseType = 'alpha'
         addGameVersion '1.16.5'
@@ -216,7 +216,7 @@ repositories {
 apply plugin: 'org.spongepowered.mixin'
 
 mixin {
-    add sourceSets.main, "imm_ptl.refmap.json"
+    add sourceSets.main, "tim_wim_hole.refmap.json"
     //add sourceSets.another, "another.refmap.json"
 
     disableTargetValidator

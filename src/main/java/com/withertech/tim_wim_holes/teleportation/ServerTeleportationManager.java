@@ -39,9 +39,9 @@ public class ServerTeleportationManager
 	private static final LimitedLogger limitedLogger = new LimitedLogger(20);
 	public final WeakHashMap<ServerPlayerEntity, Tuple<RegistryKey<World>, Vector3d>> lastPosition =
 			new WeakHashMap<>();
+	private final WeakHashMap<Entity, Long> lastTeleportGameTime = new WeakHashMap<>();
 	public boolean isFiringMyChangeDimensionEvent = false;
 	private Set<ServerPlayerEntity> teleportingEntities = new HashSet<>();
-	private final WeakHashMap<Entity, Long> lastTeleportGameTime = new WeakHashMap<>();
 
 	public ServerTeleportationManager()
 	{

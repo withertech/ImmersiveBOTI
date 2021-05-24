@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.tardis.mod.entity.DoorEntity;
 import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nullable;
@@ -447,13 +448,18 @@ public class Portal extends Entity implements PortalLike
 		{
 			return false;
 		}
-		if (entity instanceof ServerPlayerEntity)
+		if (entity instanceof DoorEntity)
+		{
+			return false;
+		}
+		else if (entity instanceof ServerPlayerEntity)
 		{
 			if (specificPlayerId != null)
 			{
 				return entity.getUniqueID().equals(specificPlayerId);
 			}
-		} else
+		}
+		else
 		{
 			if (specificPlayerId != null)
 			{

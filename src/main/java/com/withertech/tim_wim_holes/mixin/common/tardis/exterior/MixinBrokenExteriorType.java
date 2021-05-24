@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BrokenExteriorType.class)
 public class MixinBrokenExteriorType
 {
-	@Inject(method = "swapWithReal(Lnet/minecraft/world/server/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/World;Lnet/minecraft/util/Direction;)V", at = @At("TAIL"), cancellable = true, remap = false)
+	@Inject(method = "swapWithReal(Lnet/minecraft/world/server/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/World;Lnet/minecraft/util/Direction;)V", at = @At("TAIL"), remap = false)
 	public void tameTardis(ServerWorld world, BlockPos pos, World interior, Direction dir, CallbackInfo ci)
 	{
 		TardisHelper.getConsole(world.getServer(), interior).ifPresent(consoleTile -> consoleTile.getOrFindExteriorTile().ifPresent(exteriorTile -> ((IEExteriorTile) exteriorTile).genPortals()));

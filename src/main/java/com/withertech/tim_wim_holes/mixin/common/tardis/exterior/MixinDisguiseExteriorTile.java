@@ -13,10 +13,4 @@ public abstract class MixinDisguiseExteriorTile extends ExteriorTile implements 
 	{
 		super(tileEntityTypeIn);
 	}
-
-	@Override
-	public void genPortals()
-	{
-
-	}
 }

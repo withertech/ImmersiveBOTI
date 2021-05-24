@@ -16,10 +16,9 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public class RenderDimensionRedirect
 {
-	private static Map<String, String> idMap = new HashMap<>();
-
 	//null indicates no shader
 	private static final Map<RegistryKey<World>, RegistryKey<World>> redirectMap = new HashMap<>();
+	private static Map<String, String> idMap = new HashMap<>();
 
 	public static void updateIdMap(Map<String, String> redirectIdMap)
 	{
@@ -64,7 +63,7 @@ public class RenderDimensionRedirect
 		if (redirectMap.containsKey(dimension))
 		{
 			RegistryKey<World> r = redirectMap.get(dimension);
-            return r == null;
+			return r == null;
 		}
 		return false;
 	}
@@ -95,6 +94,6 @@ public class RenderDimensionRedirect
 		}
 
 		//if it's redirected, it's probably redirected to a vanilla dimension
-        return redirectedDimension == World.OVERWORLD;
+		return redirectedDimension == World.OVERWORLD;
 	}
 }

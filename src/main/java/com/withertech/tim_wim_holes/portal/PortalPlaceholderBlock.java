@@ -55,9 +55,9 @@ public class PortalPlaceholderBlock extends Block
 	{
 		super(properties);
 		this.setDefaultState(
-                this.getStateContainer().getBaseState().with(
-                        AXIS, Direction.Axis.X
-                )
+				this.getStateContainer().getBaseState().with(
+						AXIS, Direction.Axis.X
+				)
 		);
 	}
 

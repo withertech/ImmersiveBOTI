@@ -30,16 +30,16 @@ public class MyMixinConnector implements IMixinConnector
 		Helper.info("Invoking Mixin Connector");
 
 		Mixins.addConfiguration(
-				"imm_ptl_mixins.json"
+				"tim_wim_hole_mixins.json"
 		);
 		Mixins.addConfiguration(
-				"imm_ptl_mixins_forge.json"
+				"tim_wim_hole_mixins_forge.json"
 		);
 		Mixins.addConfiguration(
-				"imm_ptl_peripheral_mixins.json"
+				"tim_wim_hole_peripheral_mixins.json"
 		);
 		Mixins.addConfiguration(
-				"imm_ptl_tardis_mixins.json"
+				"tim_wim_hole_tardis_mixins.json"
 		);
 		if (FMLEnvironment.dist == Dist.CLIENT)
 		{
@@ -47,7 +47,7 @@ public class MyMixinConnector implements IMixinConnector
 			if (result)
 			{
 				Mixins.addConfiguration(
-						"imm_ptl_mixins_optifine.json"
+						"tim_wim_hole_mixins_optifine.json"
 				);
 			}
 		}

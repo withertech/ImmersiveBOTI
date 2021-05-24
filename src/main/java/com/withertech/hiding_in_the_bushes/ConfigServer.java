@@ -23,7 +23,7 @@ public class ConfigServer
 	public final ForgeConfigSpec.BooleanValue activeLoadRemoteChunks;
 	public final ForgeConfigSpec.BooleanValue teleportationDebug;
 	public final ForgeConfigSpec.BooleanValue multiThreadedNetherPortalSearching;
-//    public final ForgeConfigSpec.BooleanValue enableAlternateDimensions;
+	//    public final ForgeConfigSpec.BooleanValue enableAlternateDimensions;
 //    public final ForgeConfigSpec.EnumValue<Global.NetherPortalMode> netherPortalMode;
 //    public final ForgeConfigSpec.EnumValue<Global.EndPortalMode> endPortalMode;
 	public final ForgeConfigSpec.BooleanValue looseMovementCheck;

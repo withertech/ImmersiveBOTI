@@ -1,9 +1,6 @@
 package com.withertech.tim_wim_holes.mixin.common.tardis.exterior;
 
-import com.withertech.tim_wim_holes.Helper;
-import com.withertech.tim_wim_holes.McHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -51,8 +48,7 @@ public abstract class MixinExteriorBlock extends TileBlock
 				return VoxelShapeUtils.rotateHorizontal(VoxelShapes.create(0, -1, 0.5, 1, 1, 1), dir);
 			else
 				return VoxelShapes.or(VoxelShapes.fullCube(), VoxelShapes.fullCube().withOffset(0, -1, 0));
-		}
-		else
+		} else
 			return VoxelShapes.or(VoxelShapes.fullCube(), VoxelShapes.fullCube().withOffset(0, -1, 0));
 	}
 }

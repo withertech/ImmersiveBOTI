@@ -13,10 +13,4 @@ public abstract class MixinJapanExteriorTile extends ExteriorTile implements IEE
 	{
 		super(tileEntityTypeIn);
 	}
-
-	@Override
-	public void genPortals()
-	{
-
-	}
 }

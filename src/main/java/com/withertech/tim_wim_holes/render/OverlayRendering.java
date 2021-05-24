@@ -43,7 +43,7 @@ public class OverlayRendering
 	{
 		if (portal instanceof BreakablePortalEntity)
 		{
-            return ((BreakablePortalEntity) portal).overlayBlockState != null;
+			return ((BreakablePortalEntity) portal).overlayBlockState != null;
 		}
 		return false;
 	}

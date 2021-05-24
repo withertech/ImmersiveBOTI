@@ -32,6 +32,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Mixin(value = ModelDataManager.class, remap = false)
 public class MixinForgeModelDataManager
 {
+	private static final ConcurrentHashMap<RegistryKey<World>, ForgeModelDataManagerPerWorld>
+			portal_modelDataManagerMap;
 	@Shadow
 	private static WeakReference<World> currentWorld;
 	@Shadow
@@ -40,10 +42,6 @@ public class MixinForgeModelDataManager
 	@Shadow
 	@Final
 	private static Map<ChunkPos, Map<BlockPos, IModelData>> modelDataCache;
-
-
-	private static final ConcurrentHashMap<RegistryKey<World>, ForgeModelDataManagerPerWorld>
-			portal_modelDataManagerMap;
 
 	static
 	{

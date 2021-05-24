@@ -38,10 +38,10 @@ import java.util.function.Consumer;
 public class MyGameRenderer
 {
 	private static final LimitedLogger limitedLogger = new LimitedLogger(10);
-	public static Minecraft client = Minecraft.getInstance();
 	// portal rendering and outer world rendering uses different buffer builder storages
 	// theoretically every layer of portal rendering should have its own buffer builder storage
 	private static final RenderTypeBuffers secondaryBufferBuilderStorage = new RenderTypeBuffers();
+	public static Minecraft client = Minecraft.getInstance();
 
 	public static void renderWorldNew(
 			WorldRenderInfo worldRenderInfo,

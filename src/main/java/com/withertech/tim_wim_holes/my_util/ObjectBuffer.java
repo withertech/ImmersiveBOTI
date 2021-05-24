@@ -7,10 +7,9 @@ import java.util.function.Supplier;
 public class ObjectBuffer<T>
 {
 	private final ArrayDeque<T> objects = new ArrayDeque<>();
-	private int cacheSize;
 	private final Supplier<T> creator;
 	private final Consumer<T> destroyer;
-
+	private int cacheSize;
 	private int currentConsumption = 0;
 
 	public ObjectBuffer(int cacheSize, Supplier<T> creator, Consumer<T> destroyer)

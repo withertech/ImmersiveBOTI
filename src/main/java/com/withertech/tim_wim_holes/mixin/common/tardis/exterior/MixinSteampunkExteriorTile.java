@@ -9,7 +9,9 @@ import com.withertech.tim_wim_holes.portal.global_portals.GlobalPortalStorage;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
+import net.tardis.mod.entity.TardisEntity;
 import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import net.tardis.mod.tileentities.exteriors.SteampunkExteriorTile;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,19 +50,19 @@ public abstract class MixinSteampunkExteriorTile extends ExteriorTile implements
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0, 0, 0.75));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0.75, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0, 0, 0.75));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0.75, 0, 0));
 											break;
 									}
 
@@ -78,19 +80,19 @@ public abstract class MixinSteampunkExteriorTile extends ExteriorTile implements
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0, 0, 0.75));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0.75, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0, 0, 0.75));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0.75, 0, 0));
 											break;
 									}
 
@@ -108,19 +110,19 @@ public abstract class MixinSteampunkExteriorTile extends ExteriorTile implements
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0, 0, 0.75));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0.75, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0, 0, 0.75));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0.75, 0, 0));
 											break;
 									}
 
@@ -138,19 +140,19 @@ public abstract class MixinSteampunkExteriorTile extends ExteriorTile implements
 									{
 										case NORTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0, 0, 0.75));
 											break;
 										case WEST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).subtract(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).subtract(0.75, 0, 0));
 											break;
 										case SOUTH:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0, 0, 0.75));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0, 0, 0.75));
 											break;
 										case EAST:
 											interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
-											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getDestinationPosition(), 1.25).add(0.75, 0, 0));
+											interiorPortal.setDestination(Vector3d.copyCenteredWithVerticalOffset(console.getCurrentLocation(), 1.25).add(0.75, 0, 0));
 											break;
 									}
 
@@ -168,5 +170,144 @@ public abstract class MixinSteampunkExteriorTile extends ExteriorTile implements
 						})
 				)
 		);
+	}
+
+	@Override
+	public void updateFallingPortal(Vector3d pos, ConsoleTile console)
+	{
+		this.clearPortals(pos);
+		TardisEntity entity = Objects.requireNonNull(console.getEntity());
+		console.getDoor().ifPresent(door ->
+		{
+			Portal interiorPortal = Portal.entityType.create(Objects.requireNonNull(console.getWorld()));
+			assert interiorPortal != null;
+			switch (door.getHorizontalFacing())
+			{
+				case NORTH:
+					interiorPortal.setOriginPos(door.getPositionVec().add(0, 1.25, -0.4));
+					interiorPortal.setOrientationAndSize(
+							new Vector3d(1.0, 0, 0), // axisW
+							new Vector3d(0, 1.0, 0), // axisH
+							1.125, // width
+							2.5 // height
+					);
+
+					switch (console.getTrueExteriorFacingDirection())
+					{
+						case NORTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0, 0, 0.75));
+							break;
+						case WEST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0.75, 0, 0));
+							break;
+						case SOUTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0, 0, 0.75));
+							break;
+						case EAST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0.75, 0, 0));
+							break;
+					}
+
+					break;
+				case SOUTH:
+					interiorPortal.setOriginPos(door.getPositionVec().add(0, 1.25, 0.4));
+					interiorPortal.setOrientationAndSize(
+							new Vector3d(-1.0, 0, 0), // axisW
+							new Vector3d(0, 1.0, 0), // axisH
+							1.125, // width
+							2.5 // height
+					);
+
+					switch (console.getTrueExteriorFacingDirection())
+					{
+						case NORTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0, 0, 0.75));
+							break;
+						case WEST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0.75, 0, 0));
+							break;
+						case SOUTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0, 0, 0.75));
+							break;
+						case EAST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0.75, 0, 0));
+							break;
+					}
+
+					break;
+				case WEST:
+					interiorPortal.setOriginPos(door.getPositionVec().add(-0.4, 1.25, 0));
+					interiorPortal.setOrientationAndSize(
+							new Vector3d(0, 0, -1.0), // axisW
+							new Vector3d(0, 1.0, 0), // axisH
+							1.125, // width
+							2.5 // height
+					);
+
+					switch (console.getTrueExteriorFacingDirection())
+					{
+						case NORTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0, 0, 0.75));
+							break;
+						case WEST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0.75, 0, 0));
+							break;
+						case SOUTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0, 0, 0.75));
+							break;
+						case EAST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0.75, 0, 0));
+							break;
+					}
+
+					break;
+				case EAST:
+					interiorPortal.setOriginPos(door.getPositionVec().add(0.4, 1.25, 0));
+					interiorPortal.setOrientationAndSize(
+							new Vector3d(0, 0, 1.0), // axisW
+							new Vector3d(0, 1.0, 0), // axisH
+							1.125, // width
+							2.5 // height
+					);
+
+					switch (console.getTrueExteriorFacingDirection())
+					{
+						case NORTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 90).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0, 0, 0.75));
+							break;
+						case WEST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 180).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).subtract(0.75, 0, 0));
+							break;
+						case SOUTH:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 270).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0, 0, 0.75));
+							break;
+						case EAST:
+							interiorPortal.setRotationTransformation(DQuaternion.rotationByDegrees(new Vector3d(0, 1, 0), 0).toMcQuaternion());
+							interiorPortal.setDestination(new Vector3d((int)pos.getX() + 0.5D, pos.getY(), (int)pos.getZ() + 0.5D).add(0, 1.25, 0).add(0.75, 0, 0));
+							break;
+					}
+
+					break;
+			}
+			interiorPortal.setDestinationDimension(entity.getEntityWorld().getDimensionKey());
+			interiorPortal.setCustomName(new StringTextComponent("Interior"));
+			Helper.debug("Interior Portal Created: " + interiorPortal);
+			GlobalPortalStorage.convertNormalPortalIntoGlobalPortal(interiorPortal);
+		});
 	}
 }

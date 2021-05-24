@@ -263,7 +263,7 @@ public class EndPortalEntity extends Portal
 				{
 					return false;
 				}
-                return player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() != Items.ELYTRA;
+				return player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() != Items.ELYTRA;
 			}
 			return true;
 		} else

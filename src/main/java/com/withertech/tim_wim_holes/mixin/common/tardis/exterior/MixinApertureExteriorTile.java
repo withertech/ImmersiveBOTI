@@ -9,15 +9,8 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(ApertureExteriorTile.class)
 public abstract class MixinApertureExteriorTile extends ExteriorTile implements IEExteriorTile
 {
-
 	public MixinApertureExteriorTile(TileEntityType<?> tileEntityTypeIn)
 	{
 		super(tileEntityTypeIn);
-	}
-
-	@Override
-	public void genPortals()
-	{
-
 	}
 }

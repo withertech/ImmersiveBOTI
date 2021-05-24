@@ -1,0 +1,36 @@
+{
+  "required": true,
+  "package": "com.withertech.tim_wim_holes.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "tim_wim_hole.refmap.json",
+  "mixins": [
+    "common.tardis.exterior.MixinExteriorTile",
+    "common.tardis.exterior.MixinExteriorBlock",
+    "common.tardis.exterior.MixinClockExteriorBlock",
+    "common.tardis.exterior.MixinTardisBottomBlock",
+    "common.tardis.exterior.MixinTardisEntity",
+    "common.tardis.exterior.MixinApertureExteriorTile",
+    "common.tardis.exterior.MixinClockExteriorTile",
+    "common.tardis.exterior.MixinDisguiseExteriorTile",
+    "common.tardis.exterior.MixinFortuneExteriorTile",
+    "common.tardis.exterior.MixinJapanExteriorTile",
+    "common.tardis.exterior.MixinModernPoliceBoxExteriorTile",
+    "common.tardis.exterior.MixinPoliceBoxExteriorTile",
+    "common.tardis.exterior.MixinSafeExteriorTile",
+    "common.tardis.exterior.MixinSteampunkExteriorTile",
+    "common.tardis.exterior.MixinTelephoneExteriorTile",
+    "common.tardis.exterior.MixinTrunkExteriorTile",
+    "common.tardis.exterior.MixinTT2020ExteriorTile",
+    "common.tardis.exterior.MixinTTCapsuleExteriorTile",
+    "common.tardis.exterior.MixinBrokenExteriorType",
+    "common.tardis.interior.MixinDoorEntity"
+  ],
+  "client": [
+    "client.tardis.renderer.MixinBOTIRenderer",
+    "client.tardis.models.exterior.MixinPoliceBoxExteriorModel",
+    "client.tardis.models.interior.MixinPoliceBoxInteriorModel"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

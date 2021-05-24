@@ -30,7 +30,7 @@ public class ModMain
 
 	public static void init()
 	{
-		Helper.info("Immersive Portals Mod Initializing");
+		Helper.info("Timey Wimey Holes Initializing");
 
 		MyNetwork.init();
 

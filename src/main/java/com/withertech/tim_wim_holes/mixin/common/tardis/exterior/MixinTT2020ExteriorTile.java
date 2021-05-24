@@ -13,10 +13,4 @@ public abstract class MixinTT2020ExteriorTile extends ExteriorTile implements IE
 	{
 		super(tileEntityTypeIn);
 	}
-
-	@Override
-	public void genPortals()
-	{
-
-	}
 }

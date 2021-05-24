@@ -160,7 +160,6 @@ public abstract class MixinServerPlayNetworkHandler implements IEServerPlayNetwo
 
 	/**
 	 * @reason make PlayerPositionLookS2CPacket contain dimension data
-	 *
 	 * @author qouteall
 	 */
 	@Overwrite

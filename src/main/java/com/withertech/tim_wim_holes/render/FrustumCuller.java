@@ -173,8 +173,8 @@ public class FrustumCuller
 		{
 			return true;
 		}
-        return up == BatchTestResult.all_true && down == BatchTestResult.all_false;
-    }
+		return up == BatchTestResult.all_true && down == BatchTestResult.all_false;
+	}
 
 	private static boolean isFullyInFrustum(
 			double minX, double minY, double minZ, double maxX, double maxY, double maxZ,

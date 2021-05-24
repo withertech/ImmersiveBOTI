@@ -24,8 +24,8 @@ public class StaticFieldsSwappingManager<Context>
 	private final boolean strictCheck;
 	@Nullable
 	private final Supplier<Context> contextConstructor;
-	private RegistryKey<World> outerDimension;
 	private final Stack<ContextRecord<Context>> swappedContext = new Stack<>();
+	private RegistryKey<World> outerDimension;
 
 	public StaticFieldsSwappingManager(
 			Consumer<Context> copyFromObject,

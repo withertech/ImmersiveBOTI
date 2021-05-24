@@ -3,7 +3,6 @@ package com.withertech.tim_wim_holes.mixin.common.chunk_sync;
 import com.mojang.datafixers.util.Either;
 import com.withertech.tim_wim_holes.Global;
 import com.withertech.tim_wim_holes.ducks.IEThreadedAnvilChunkStorage;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -41,7 +40,7 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 	@Shadow
 	@Final
 	private ServerWorld world;
-//	@Shadow
+	//	@Shadow
 //	@Final
 //	private Int2ObjectMap entities;
 	@Shadow
@@ -159,14 +158,14 @@ public abstract class MixinThreadedAnvilChunkStorage_C implements IEThreadedAnvi
 		CompletableFuture<Either<Chunk, ChunkHolder.IChunkLoadingError>> future = cir.getReturnValue();
 
 		future.thenAcceptAsync((either) ->
-			either.mapLeft((worldChunk) ->
-			{
-				this.loadedChunkCount.getAndIncrement();
+				either.mapLeft((worldChunk) ->
+				{
+					this.loadedChunkCount.getAndIncrement();
 
-				Global.chunkDataSyncManager.onChunkProvidedDeferred(worldChunk);
+					Global.chunkDataSyncManager.onChunkProvidedDeferred(worldChunk);
 
-				return Either.left(worldChunk);
-			}), (runnable) -> this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable))
+					return Either.left(worldChunk);
+				}), (runnable) -> this.field_219265_s.enqueue(ChunkTaskPriorityQueueSorter.func_219081_a(chunkHolder, runnable))
 		);
 	}
 }

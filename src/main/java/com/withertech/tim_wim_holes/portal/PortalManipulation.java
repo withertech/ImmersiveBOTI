@@ -224,7 +224,7 @@ public class PortalManipulation
 	)
 	{
 		removeOverlappedPortals(
-                portal.world,
+				portal.world,
 				portal.getOriginPos(),
 				portal.getNormal().scale(-1),
 				p -> Objects.equals(p.specificPlayerId, portal.specificPlayerId),

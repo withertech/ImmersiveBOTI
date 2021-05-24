@@ -178,7 +178,7 @@ public class MyRenderHelper
 		CHelper.checkGlError();
 
 		RenderSystem.assertThread(RenderSystem::isOnRenderThread);
-        GlStateManager.colorMask(true, true, true, doEnableModifyAlpha);
+		GlStateManager.colorMask(true, true, true, doEnableModifyAlpha);
 		GlStateManager.disableDepthTest();
 		GlStateManager.depthMask(false);
 		GlStateManager.matrixMode(GL_PROJECTION);

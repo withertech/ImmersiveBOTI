@@ -46,8 +46,7 @@ public abstract class MixinDoorEntity extends Entity
 				((IEExteriorTile) exteriorTile).clearPortals();
 			else
 			{
-				((IEExteriorTile) exteriorTile).clearPortals();
-				((IEExteriorTile) exteriorTile).genPortals();
+				((IEExteriorTile) exteriorTile).updatePortals();
 			}
 		});
 	}

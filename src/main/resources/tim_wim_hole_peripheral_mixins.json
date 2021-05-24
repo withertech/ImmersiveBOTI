@@ -1,0 +1,34 @@
+{
+  "required": true,
+  "package": "com.withertech.tim_wim_holes_peripheral.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "tim_wim_hole.refmap.json",
+  "mixins": [
+
+    "common.alternate_dimension.MixinAvoidSunlightGoal",
+    "common.alternate_dimension.MixinBedBlock",
+    "common.alternate_dimension.MixinDimensionType",
+    "common.alternate_dimension.MixinOreFeature",
+    "common.alternate_dimension.MixinSimpleRegistry",
+    "common.alternate_dimension.MixinStructureFeature",
+    "common.altius_world.MixinChunkGenerator",
+    "common.altius_world.MixinChunkStatus",
+    "common.altius_world.MixinLevelInfo",
+    "common.altius_world.MixinLevelProperties",
+    "common.altius_world.MixinMinecraftServer_A",
+    "common.altius_world.MixinNoiseChunkGenerator",
+    "common.altius_world.MixinSpawnHelper",
+    "common.fix_concurrency.MixinWeightedList"
+  ],
+  "client": [
+    "client.MixinBossBarHud",
+    "client.alternate_dimension.MixinBackgroundRenderer_A",
+    "client.alternate_dimension.MixinClientWorld_A",
+    "client.alternate_dimension.MixinClientWorldProperties",
+    "client.alternate_dimension.MixinWorldRenderer_A",
+    "client.altius_world.MixinWorldRenderer_A"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
